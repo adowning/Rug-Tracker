@@ -1,0 +1,52 @@
+<ion-view view-title="Job List" hide-back-button="true">
+        <ion-content class="padding-top">
+          <form novalidate name="addJobForm" ng-submit="addJobForm.$valid && addJob(job)">
+            <div class="list">
+              <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addJobForm.id.$invalid && addJobForm.$submitted }">
+                <span class="input-label">Job #</span>
+                <input name="id" type="text" ng-model="job.id" placeholder="Job Number"
+                       ng-minlength="5"
+                       ng-maxlength="5"
+                       required>
+              </label>
+              <div class="form-errors" ng-messages="addJobForm.id.$error" ng-if="addJobForm.$submitted">
+                <div class="form-error" ng-message="required">This field is required.</div>
+                <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+                <div class="form-error" ng-message="maxlength">This field is must be 5 characters.</div>
+              </div>
+            </div>
+            <div class="padding-top">
+              <input type="submit" class="button button-block button-positive" value="Add Job">
+              <p class="text-center padding-top">
+            </div>
+          </form>
+          <ion-list>
+            <!--<ion-item ng-repeat="job in jobList">-->
+              <ion-item ng-repeat="item in jobList"
+                        class="item-thumbnail-left" href="#/ruglist/?id={{item.orderNumber}}&customer={{item.accountName}}">
+                <h2>{{item.accountName}}</h2>
+
+                <!--<img ng-src="{{item.img}}">
+
+                <!--<p>{{item.description}}</p>-->
+                <!--<ion-option-button class="button-positive"-->
+                                   <!--ng-click="share(item)">-->
+                  <!--Share-->
+                <!--</ion-option-button>-->
+                <!--<ion-option-button class="button-info"-->
+                                   <!--ng-click="edit(item)">-->
+                  <!--Edit-->
+                <!--</ion-option-button>-->
+                <!--<ion-delete-button class="ion-minus-circled"-->
+                                   <!--ng-click="items.splice($index, 1)">-->
+                <!--</ion-delete-button>-->
+                <!--<ion-reorder-button class="ion-navicon"-->
+                                    <!--on-reorder="reorderItem(item, $fromIndex, $toIndex)">-->
+                <!--</ion-reorder-button>-->
+
+              </ion-item>
+            <!--</ion-item>-->
+          </ion-list>
+          <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
+        </ion-content>
+</ion-view>

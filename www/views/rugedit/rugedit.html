@@ -1,0 +1,88 @@
+<ion-view view-title="Edit/Add Rug for {{customer}}" hide-back-button="true">
+
+<ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-camera" ng-click="upload()"></button>
+  </ion-nav-buttons>
+  <!--<div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">-->
+    <!--<div class="col col-25" ng-if="$index < images.length">-->
+      <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" />-->
+    <!--</div>-->
+    <!--<div class="col col-25" ng-if="$index + 1 < images.length">-->
+      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%" />-->
+    <!--</div>-->
+    <!--<div class="col col-25" ng-if="$index + 2 < images.length">-->
+      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%" />-->
+    <!--</div>-->
+    <!--<div class="col col-25" ng-if="$index + 3 < images.length">-->
+      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 3].image}}" width="100%" />-->
+    <!--</div>-->
+  <!--</div>-->
+  <ion-content class="padding-top">
+    <form novalidate name="addRugForm" ng-submit="addRugForm.$valid && addRug(rug)">
+      <div class="list">
+        <span class="input-label">Description</span>
+
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
+          <input name="description" type="text" ng-model="rug.description" placeholder="{{rug.description}}"
+                 required>
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.description.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
+        <span class="input-label">Damaged Areas</span>
+
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
+
+        <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}" required>
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
+      <div ng-show="!isNewRug">
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
+
+          <span class="input-label">Status</span>
+          <select name="singleSelect" ng-model="rug.status">
+            <option value="NotStarted">NotStarted</option>
+            <option value="Cleaned">Cleaned</option>
+            <option value="FailedInspection">FailedInspection</option>
+            <option value="PassedInspection">PassedInspection</option>
+            <option value="ReCleaned">ReCleaned</option>
+          </select>
+        </label>
+      </div>
+        <!--<input ng-click="getPhoto()" class="button button-block button-positive" value="Take Photo">-->
+
+      </div>
+      <div class="padding-top">
+        <div ng-if="newRug">
+          <input type="submit" class="button button-block button-positive" value="Add">
+        </div>
+        <div ng-if="!newRug">
+          <input type="submit" class="button button-block button-positive" value="Edit">
+        </div>
+
+        <div ng-if="!newRug">
+          <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Delete">
+
+        </div>
+        <a href="#/ruglist/?id={{rug.orderNumber}}&customer={{customer}}" class="button button-full button-positive">
+          Back
+        </a>
+      </div>
+    </form>
+
+    <ion-list>
+   <!-- TODO make me collapsable -->
+      <ion-item ng-repeat="item in auditList"
+                class="item-thumbnail-left">
+        <h2>{{item.status}}</h2>
+        <p>{{item.description}}</p>
+        <p>{{item.preDamage}}</p>
+        <p>{{item.person}}</p>
+        <p>{{item.time}}</p>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

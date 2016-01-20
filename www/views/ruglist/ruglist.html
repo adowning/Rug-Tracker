@@ -1,0 +1,21 @@
+<ion-view view-title="Rug List for {{customer}}" hide-back-button="true">
+  <ion-content class="padding-top">
+
+    <ion-list>
+      <!--<ion-item ng-repeat="job in jobList">-->
+      <ion-item ng-repeat="item in rugList"
+                class="item-thumbnail-left" href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
+        <h2>{{item.description}}</h2>
+        <p>{{item.status}}</p>
+      </ion-item>
+    </ion-list>
+    <a href="#/rugedit/?id=newrug&jobID={{jobID}}&customer={{customer}}" class="button button-full button-positive">
+      Add Rug
+    </a>
+    <a href="#/home" class="button button-full button-positive">
+      Back
+    </a>
+    <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
+
+  </ion-content>
+</ion-view>
