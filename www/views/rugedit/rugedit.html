@@ -38,10 +38,32 @@
         <div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
+        <span class="input-label">Contact Discussion</span>
+
+        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.contact.$invalid && addRugForm.$submitted }">
+          <input name="contact" type="text" ng-model="rug.contact" placeholder="Contact stuff" value="Contact Stuff"
+                 required>
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
+
+    <ion-list>
+   <!-- TODO make me collapsable -->
+      <ion-item ng-repeat="item in contactList"
+                class="item-thumbnail-left">
+        <h2>{{item.value}}</h2>
+        <p>{{item.person}}</p>
+        <p>{{item.time}}</p>
+      </ion-item>
+    </ion-list>
+
       <div ng-show="!isNewRug">
+        <span class="input-label">Rug Status</span>
+
         <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
 
-          <span class="input-label">Status</span>
+          <!-- <span class="input-label">Status</span> -->
           <select name="singleSelect" ng-model="rug.status">
             <option value="NotStarted">NotStarted</option>
             <option value="Cleaned">Cleaned</option>
@@ -63,7 +85,7 @@
         </div>
 
         <div ng-if="!newRug">
-          <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Delete">
+          <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Remove">
 
         </div>
         <a href="#/ruglist/?id={{rug.orderNumber}}&customer={{customer}}" class="button button-full button-positive">

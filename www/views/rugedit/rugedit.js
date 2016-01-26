@@ -1,43 +1,6 @@
 'Use Strict';
-angular.module('App').controller('rugEditController', function ($scope, Camera, $cordovaCamera,  $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('rugEditController', function ($scope, $timeout, $rootScope, Camera, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
 
-  //
-  //$scope.upload = function() {
-  //  var options = {
-  //    quality: 75,
-  //    destinationType: Camera.DestinationType.DATA_URL,
-  //    sourceType: Camera.PictureSourceType.CAMERA,
-  //    allowEdit: true,
-  //    encodingType: Camera.EncodingType.JPEG,
-  //    popoverOptions: CameraPopoverOptions,
-  //    targetWidth: 500,
-  //    targetHeight: 500,
-  //    saveToPhotoAlbum: false
-  //  };
-  //  $cordovaCamera.getPicture(options).then(function (imageData) {
-  //    syncArray.$add({image: imageData}).then(function () {
-  //      alert("Image has been uploaded");
-  //    });
-  //  }, function (error) {
-  //    console.error(error);
-  //  });
-  //}
-  //$scope.getPhoto = function () {
-  //  var options =   {
-  //    quality: 50,
-  //    destinationType: Camera.DestinationType.DATA_URL,
-  //    sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
-  //    encodingType: 0     // 0=JPG 1=PNG
-  //  }
-  //  // Take picture using device camera and retrieve image as base64-encoded string
-  //  navigator.camera.getPicture(onSuccess,onFail,options);
-  //  //console.log(Camera)
-  //  //Camera.getPicture().then(function (imageURI) {
-  //  //  console.log(imageURI);
-  //  //}, function (err) {
-  //  //  console.err(err);
-  //  //});
-  //}
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
@@ -47,24 +10,24 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
       $scope.isNewRug = true;
 
       $scope.addRug = function (rug) {
+        var date = new Date();
+
         rug.orderNumber = $stateParams.jobID;
         var ref = new Firebase(FURL + 'rugs');
         var newChildRef = ref.push();
-        console.log(newChildRef.key())
         rug.key = newChildRef.key();
+        rug.createdOn = date.toString();
         rug.status = 'NotStarted';
-        console.log($stateParams.customer)
         rug.customer = $stateParams.customer;
+
 
         newChildRef.set(rug);
 
         var audit = {};
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
-        console.log(newChildRef.key())
         audit.key = newChildRef.key();
         audit.person = $localStorage.email;
-        var date = new Date();
         audit.time = date.toString();
         audit.rugKey = rug.key;
         audit.status = 'NotStarted';
@@ -72,8 +35,23 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
         audit.preDamage = rug.preDamage;
         newChildRef.set(audit);
 
+        var contact = {};
+        var ref = new Firebase(FURL + 'contactEvents');
+        var newChildRef = ref.push();
+        contact.key = newChildRef.key();
+        contact.value = rug.contact;
+        contact.person = $localStorage.email;
+        contact.time = date.toString();
+        contact.rugKey = rug.key;
+        newChildRef.set(contact);
+
         console.log('adding new rug')
-        $location.path('/home');
+        $timeout(function () {
+          $location.path("/home");
+          console.log($location.path());
+        });
+
+
       }
     } else {
       var ref = new Firebase(FURL + 'rugs');
@@ -82,9 +60,7 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
           if ($stateParams.id == childData.key) {
-            console.log(childData.key);
             $scope.rug = childData;
-
           }
         });
       });
@@ -94,10 +70,8 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
 
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
         newChildRef.set(rug);
-
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
-        console.log(newChildRef.key())
         var audit = {};
         audit.key = newChildRef.key();
         audit.rugKey = rug.key;
@@ -108,10 +82,12 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
         var date = new Date();
         audit.time = date.toString();
         newChildRef.set(audit);
+
+
         console.log('editing rug rug')
+
         $scope.auditList = [];
         var ref = new Firebase(FURL + 'audits');
-        console.log('hi1')
 
         ref.once("value", function (snapshot) {
           snapshot.forEach(function (childSnapshot) {
@@ -119,28 +95,63 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
             var childData = childSnapshot.val();
             if ($stateParams.id == childData.rugKey) {
               $scope.auditList.push(childData)
-              //console.log('pushinig to auditylist')
             }
           });
-          $scope.$apply();
-          //TODO why does this not work? lol
-          $location.path('/home')
+          var contact = {};
+          var ref = new Firebase(FURL + 'contactEvents');
+          var newChildRef = ref.push();
+          contact.key = newChildRef.key();
+          contact.value = rug.contact;
+          contact.person = $localStorage.email;
+          var date = new Date();
+          contact.time = date.toString();
+          contact.rugKey = rug.key;
+          newChildRef.set(contact);
 
+          console.log('adding new rug')
+          $timeout(function () {
+            $location.path("/home");
+            console.log($location.path());
+          });
         });
+
 
       }
       $scope.deleteRug = function (rug) {
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
-        console.log(rug.orderNumber+rug.customer)
+        console.log(rug.orderNumber + rug.customer)
 
-        newChildRef.remove();
+        newChildRef.update({"deleted" : true});
+
+        //newChildRef.remove();
         console.log('deleting rug')
-        console.log('/ruglist/?id='+rug.orderNumber+'&customer='+rug.customer)
+        console.log('/ruglist/?id=' + rug.orderNumber + '&customer=' + rug.customer)
         //TODO fix me to go to rug list with proper customer
         //$location.path('#/ruglist/?id='+rug.orderNumber+'&customer='+rug.customer);
         $location.path('/home');
 
       }
+      //$scope.deleteRug = function (rug) {
+      //  var newChildRef = new Firebase(FURL + 'rugs/');
+      //  newChildRef.once("value", function (snapshot) {
+      //    snapshot.forEach(function (childSnapshot) {
+      //      var key = childSnapshot.key();
+      //      var childData = childSnapshot.val();
+      //      if ($stateParams.id == childData.orderNumber) {
+      //        console.log('deleting job ' + FURL + 'jobs/' + key)
+      //        var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+      //        newChildRef2.update({
+      //          "deleted": true
+      //        });
+      //      }
+      //    });
+      //    $timeout(function () {
+      //      $location.path("/home");
+      //      console.log($location.path());
+      //    });
+      //  });
+      //}
+
       $scope.auditList = [];
       var ref = new Firebase(FURL + 'audits');
       ref.once("value", function (snapshot) {
@@ -153,15 +164,26 @@ angular.module('App').controller('rugEditController', function ($scope, Camera, 
           }
         });
       });
-    }
+      $scope.contactList = [];
+      var ref = new Firebase(FURL + 'contactEvents');
 
+      ref.once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var key = childSnapshot.key();
+          var childData = childSnapshot.val();
+          if ($stateParams.id == childData.rugKey) {
+            $scope.contactList.push(childData)
+          }
+        });
+      });
+
+    }
 
 
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
     }
-
 
 
   }

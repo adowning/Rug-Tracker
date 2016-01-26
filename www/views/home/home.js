@@ -1,18 +1,34 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('homeController', function ($scope, $state, $timeout, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
     var ref = new Firebase(FURL);
 
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
     }
-    var jobList = function (){
-      var ref = new Firebase(FURL + 'jobs');
-      $scope.jobs = $firebaseArray(ref);
-      var query = ref.orderByChild("timestamp").limitToLast(35);
-      $scope.jobList = $firebaseArray(query);
-      console.log('reloaded')
-    }
+  //  var jobList = function (){
+  //    var ref = new Firebase(FURL + 'jobs');
+  //    $scope.jobs = $firebaseArray(ref);
+  //    var query = ref.orderByChild("timestamp").limitToLast(35);
+  //    $scope.jobList = $firebaseArray(query);
+  //    console.log('reloaded')
+  //  }
+  //jobList();
+  var jobList = function () {
+    $scope.jobList = [];
+    var ref = new Firebase(FURL + 'jobs');
+    ref.once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var key = childSnapshot.key();
+        var childData = childSnapshot.val();
+        if (!childData.deleted) {
+          //childData.customer = $scope.customer;
+          $scope.jobList.push(childData)
+        }
+      });
+    });
+
+  }
   jobList();
     var found = false;
     $scope.addJob = function (job) {
@@ -34,6 +50,10 @@ angular.module('App').controller('homeController', function ($scope, $state, $fi
             newChildRef.set($scope.newJob);
             console.log('adding 2')
           }
+          $timeout(function () {
+            $location.path("/home");
+            console.log($location.path());
+          });
         },
         success: function (json) {
           console.log(json.items[0]);

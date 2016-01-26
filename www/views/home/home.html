@@ -25,6 +25,7 @@
               <ion-item ng-repeat="item in jobList"
                         class="item-thumbnail-left" href="#/ruglist/?id={{item.orderNumber}}&customer={{item.accountName}}">
                 <h2>{{item.accountName}}</h2>
+                <h2>{{item.createdOn}}</h2>
 
                 <!--<img ng-src="{{item.img}}">
 

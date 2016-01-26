@@ -7,11 +7,20 @@
                 class="item-thumbnail-left" href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
         <h2>{{item.description}}</h2>
         <p>{{item.status}}</p>
+        <p>{{item.createdOn}}</p>
+        <p>{{item.elapsedTime}}</p>
+        <div ng-if="item.elapsedTime > 1">
+
+        <p class="bg-warning">adsfdasfadsfdasfdasfasdfdasf</p>
+          </div>
       </ion-item>
     </ion-list>
     <a href="#/rugedit/?id=newrug&jobID={{jobID}}&customer={{customer}}" class="button button-full button-positive">
       Add Rug
     </a>
+    <div ng-if="rugCount < 1">
+      <input ng-click="deleteJob(job)" class="button button-block button-positive" value="Remove Job">
+    </div>
     <a href="#/home" class="button button-full button-positive">
       Back
     </a>
