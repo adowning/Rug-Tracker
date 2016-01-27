@@ -1,78 +1,83 @@
 <ion-view view-title="Edit/Add Rug for {{customer}}" hide-back-button="true">
 
-<ion-nav-buttons side="right">
+  <ion-nav-buttons side="right">
     <button class="button button-icon icon ion-camera" ng-click="upload()"></button>
   </ion-nav-buttons>
   <!--<div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">-->
-    <!--<div class="col col-25" ng-if="$index < images.length">-->
-      <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" />-->
-    <!--</div>-->
-    <!--<div class="col col-25" ng-if="$index + 1 < images.length">-->
-      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%" />-->
-    <!--</div>-->
-    <!--<div class="col col-25" ng-if="$index + 2 < images.length">-->
-      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%" />-->
-    <!--</div>-->
-    <!--<div class="col col-25" ng-if="$index + 3 < images.length">-->
-      <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 3].image}}" width="100%" />-->
-    <!--</div>-->
+  <!--<div class="col col-25" ng-if="$index < images.length">-->
+  <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" />-->
+  <!--</div>-->
+  <!--<div class="col col-25" ng-if="$index + 1 < images.length">-->
+  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%" />-->
+  <!--</div>-->
+  <!--<div class="col col-25" ng-if="$index + 2 < images.length">-->
+  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%" />-->
+  <!--</div>-->
+  <!--<div class="col col-25" ng-if="$index + 3 < images.length">-->
+  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 3].image}}" width="100%" />-->
+  <!--</div>-->
   <!--</div>-->
   <ion-content class="padding-top">
     <form novalidate name="addRugForm" ng-submit="addRugForm.$valid && addRug(rug)">
       <div class="list">
+        <div ng-show="!isNewRug">
+          <span class="input-label">Rug Status</span>
+
+          <label class="item item-input item-floating-label"
+                 ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
+
+            <!-- <span class="input-label">Status</span> -->
+            <select name="singleSelect" ng-model="rug.status">
+              <option value="NotStarted">NotStarted</option>
+              <option value="Cleaned">Cleaned</option>
+              <option value="FailedInspection">FailedInspection</option>
+              <option value="PassedInspection">PassedInspection</option>
+              <option value="ReCleaned">ReCleaned</option>
+            </select>
+          </label>
+        </div>
         <span class="input-label">Description</span>
 
-        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
+        <label class="item item-input item-floating-label"
+               ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
           <input name="description" type="text" ng-model="rug.description" placeholder="{{rug.description}}"
                  required>
         </label>
         <div class="form-errors" ng-messages="addRugForm.description.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
+
         <span class="input-label">Damaged Areas</span>
 
-        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
+        <label class="item item-input item-floating-label"
+               ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
 
-        <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}" required>
+          <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}">
         </label>
         <div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">
-          <div class="form-error" ng-message="required">This field is required.</div>
+          <!--<div class="form-error" ng-message="required">This field is required.</div>-->
         </div>
-        <span class="input-label">Contact Discussion</span>
+        <!--<span class="input-label">Due Date</span>-->
 
-        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.contact.$invalid && addRugForm.$submitted }">
-          <input name="contact" type="text" ng-model="rug.contact" placeholder="Contact stuff" value="Contact Stuff"
-                 required>
-        </label>
-        <div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">
-          <div class="form-error" ng-message="required">This field is required.</div>
+        <!--<ionic-datepicker input-obj="datepickerObjectModal">-->
+          <!--<button class="button button-block button-positive">Due Date = {{datepickerObjectModal.inputDate | date:'dd - MMMM - yyyy'}}-->
+          <!--</button>-->
+        <!--</ionic-datepicker>-->
+        <div ng-show="newRug">
+
+          <span class="input-label">Discussion with customer</span>
+
+          <label class="item item-input item-floating-label"
+                 ng-class="{ 'has-error-lr' : addRugForm.contact.$invalid && addRugForm.$submitted }">
+            <input name="contact" type="text" ng-model="rug.contact" placeholder="Contact stuff" value="Contact Stuff"
+                   >
+          </label>
+          <div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">
+            <div class="form-error" ng-message="required">This field is required.</div>
+          </div>
         </div>
 
-    <ion-list>
-   <!-- TODO make me collapsable -->
-      <ion-item ng-repeat="item in contactList"
-                class="item-thumbnail-left">
-        <h2>{{item.value}}</h2>
-        <p>{{item.person}}</p>
-        <p>{{item.time}}</p>
-      </ion-item>
-    </ion-list>
 
-      <div ng-show="!isNewRug">
-        <span class="input-label">Rug Status</span>
-
-        <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
-
-          <!-- <span class="input-label">Status</span> -->
-          <select name="singleSelect" ng-model="rug.status">
-            <option value="NotStarted">NotStarted</option>
-            <option value="Cleaned">Cleaned</option>
-            <option value="FailedInspection">FailedInspection</option>
-            <option value="PassedInspection">PassedInspection</option>
-            <option value="ReCleaned">ReCleaned</option>
-          </select>
-        </label>
-      </div>
         <!--<input ng-click="getPhoto()" class="button button-block button-positive" value="Take Photo">-->
 
       </div>
@@ -84,27 +89,56 @@
           <input type="submit" class="button button-block button-positive" value="Edit">
         </div>
 
-        <div ng-if="!newRug">
-          <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Remove">
-
-        </div>
-        <a href="#/ruglist/?id={{rug.orderNumber}}&customer={{customer}}" class="button button-full button-positive">
-          Back
-        </a>
       </div>
     </form>
 
-    <ion-list>
-   <!-- TODO make me collapsable -->
-      <ion-item ng-repeat="item in auditList"
-                class="item-thumbnail-left">
-        <h2>{{item.status}}</h2>
-        <p>{{item.description}}</p>
-        <p>{{item.preDamage}}</p>
-        <p>{{item.person}}</p>
-        <p>{{item.time}}</p>
-      </ion-item>
-    </ion-list>
+    <div ng-if="!newRug">
+      <input  ng-click="showDiscussionsChange()" class="button button-block button-positive" value="Discussions">
 
+      <div ng-if="showDiscussions">
+
+        <!--<input class="item item-input item-floating-label" name="discussion" type="text" ng-model="discussion.value">-->
+        <label class="item item-input item-floating-label"
+               ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
+          <input name="discussion" type="text" ng-model="discussion.value"
+                 required>
+        </label>
+        <button ng-click="addDiscussion(discussion.value)" class="button button-block button-positive" value="Add Discussion">Add</button>
+        <ion-list>
+          <ion-item ng-repeat="item in contactList"
+                    class="item-thumbnail-left">
+            <h2>{{item.value}}</h2>
+            <p>{{item.person}}</p>
+            <p>{{item.time}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <div ng-if="!newRug">
+      <input ng-click="showAuditsChange()" class="button button-block button-positive" value="Audits">
+      <div ng-if="showAudits">
+        <ion-list>
+          <ion-item ng-repeat="item in auditList"
+                    class="item-thumbnail-left">
+            <h2>{{item.status}}</h2>
+            <p>{{item.description}}</p>
+            <p>{{item.preDamage}}</p>
+            <p>{{item.person}}</p>
+            <p>{{item.time}}</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    <div ng-if="!newRug">
+      <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Remove">
+
+    </div>
+
+
+
+
+    <a href="#/ruglist/?id={{rug.orderNumber}}&customer={{customer}}" class="button button-full button-positive">
+      Back
+    </a>
   </ion-content>
 </ion-view>

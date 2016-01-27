@@ -4,6 +4,9 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
+    $scope.discussion = null;
+
+  $scope.showDiscussions = false;
     if ($stateParams.id == 'newrug') {
       $scope.newRug = true;
       $scope.rug = {};
@@ -35,15 +38,18 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         audit.preDamage = rug.preDamage;
         newChildRef.set(audit);
 
-        var contact = {};
-        var ref = new Firebase(FURL + 'contactEvents');
-        var newChildRef = ref.push();
-        contact.key = newChildRef.key();
-        contact.value = rug.contact;
-        contact.person = $localStorage.email;
-        contact.time = date.toString();
-        contact.rugKey = rug.key;
-        newChildRef.set(contact);
+        if(rug.contact.length > 0){
+          var contact = {};
+          var ref = new Firebase(FURL + 'contactEvents');
+          var newChildRef = ref.push();
+          contact.key = newChildRef.key();
+          contact.value = rug.contact;
+          contact.person = $localStorage.email;
+          contact.time = date.toString();
+          contact.rugKey = rug.key;
+          newChildRef.set(contact);
+        }
+
 
         console.log('adding new rug')
         $timeout(function () {
@@ -64,11 +70,13 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
           }
         });
       });
-
+      console.log('editing a rug')
       $scope.addRug = function (rug) {
+        console.log('alfjka;lfjkakakljljakadfklafjlafjfk')
         rug.orderNumber = $stateParams.jobID;
-
+        console.log('editing')
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
+        rug.contact = null;
         newChildRef.set(rug);
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
@@ -97,18 +105,19 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
               $scope.auditList.push(childData)
             }
           });
-          var contact = {};
-          var ref = new Firebase(FURL + 'contactEvents');
-          var newChildRef = ref.push();
-          contact.key = newChildRef.key();
-          contact.value = rug.contact;
-          contact.person = $localStorage.email;
-          var date = new Date();
-          contact.time = date.toString();
-          contact.rugKey = rug.key;
-          newChildRef.set(contact);
+          //if(discussion){
+          //  var contact = {};
+          //  var ref = new Firebase(FURL + 'contactEvents');
+          //  var newChildRef = ref.push();
+          //  contact.key = newChildRef.key();
+          //  contact.value = discussion;
+          //  contact.person = $localStorage.email;
+          //  var date = new Date();
+          //  contact.time = date.toString();
+          //  contact.rugKey = rug.key;
+          //  newChildRef.set(contact);
+          //}
 
-          console.log('adding new rug')
           $timeout(function () {
             $location.path("/home");
             console.log($location.path());
@@ -160,7 +169,6 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
           var childData = childSnapshot.val();
           if ($stateParams.id == childData.rugKey) {
             $scope.auditList.push(childData)
-            console.log('pushinig to auditylist')
           }
         });
       });
@@ -179,12 +187,60 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
 
     }
 
-
+  $scope.addDiscussion = function (disc) {
+    console.log(disc)
+  }
+    $scope.showAuditsChange = function () {
+      $scope.showAudits ^= true;
+    }
+  $scope.showDiscussionsChange = function () {
+    $scope.showDiscussions ^= true;
+  }
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
     }
 
+
+  var disabledDates = [
+    new Date(1437719836326),
+    new Date(2015, 7, 10), //months are 0-based, this is August, 10th!
+    new Date('Wednesday, August 12, 2015'), //Works with any valid Date formats like long format
+    new Date("08-14-2015"), //Short format
+    new Date(1439676000000) //UNIX format
+  ];
+  var monthList = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  $scope.datepickerObject = {};
+  $scope.datepickerObject.inputDate = new Date();
+
+  $scope.datepickerObjectModal = {
+    titleLabel: 'Ionic-Datepicker', //Optional
+    todayLabel: 'Today', //Optional
+    closeLabel: 'Close', //Optional
+    setLabel: 'Set', //Optional
+    errorMsgLabel : 'Please select time.', //Optional
+    setButtonType : 'button-assertive', //Optional
+    modalHeaderColor:'bar-positive', //Optional
+    modalFooterColor:'bar-positive', //Optional
+    templateType:'modal', //Optional
+    inputDate: $scope.datepickerObject.inputDate, //Optional
+    mondayFirst: true, //Optional
+    disabledDates:disabledDates, //Optional
+    monthList:monthList, //Optional
+    from: new Date(2012, 5, 1), //Optional
+    to: new Date(2016, 7, 1), //Optional
+    callback: function (val) { //Optional
+      datePickerCallbackModal(val);
+    }
+  };
+  var datePickerCallbackModal = function (val) {
+    if (typeof(val) === 'undefined') {
+      console.log('No date selected');
+    } else {
+      $scope.datepickerObjectModal.inputDate = val;
+      console.log('Selected date is : ', val)
+    }
+  };
 
   }
 );
