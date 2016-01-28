@@ -31,10 +31,16 @@ angular.module('App').controller('rugListController', function ($scope, $timeout
         var key = childSnapshot.key();
         var childData = childSnapshot.val();
         if ($stateParams.id == childData.orderNumber && !childData.deleted) {
-          var date = new Date().getTime();
-          var thisDate = new Date(childData.createdOn).getTime();
-          var daysSince = ((date - thisDate) / 1000) / 86400;
-          childData.elapsedTime = Math.round(daysSince);
+          //var date = new Date().getTime();
+          //var thisDate = new Date(childData.createdOn).getTime();
+          //var daysSince = ((date - thisDate) / 1000) / 86400;
+          //childData.elapsedTime = Math.round(daysSince);
+          var dueDate = new Date(childData.dueDate).getTime();
+          var creationDate = new Date(childData.createdOn).getTime();
+          var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
+          console.log((daysTillDue))
+          childData.dueIn = Math.round(daysTillDue)
+          //childData.elapsedTime = Math.round(daysSince);
           //truncating start date
           var sd = childData.createdOn.substring(0, 16);
           childData.createdOn = sd;
