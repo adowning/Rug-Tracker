@@ -39,6 +39,51 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
   $scope.showDiscussions = false;
   //TODO this if/then should basically just include whether to download or start new rug instead of duplicating
   //the add function the add function
+  $scope.addAudit = function (rug){
+    var audit = {};
+    var ref = new Firebase(FURL + 'audits');
+    var newChildRef = ref.push();
+    audit.key = newChildRef.key();
+    audit.person = $localStorage.email;
+    var date = new Date();
+    audit.time = date.toString();
+    audit.rugKey = rug.key;
+    audit.status = 'NotStarted';
+    audit.description = rug.description;
+    audit.preDamage = rug.preDamage;
+    audit.photosTaken = rug.photosTaken;
+    audit.urine = rug.urine;
+    audit.dueDate = rug.dueDate;
+    try {
+      audit.preDamage = rug.preDamage;
+    }catch(err){
+      audit.preDamage = 'none';
+    }
+    if(!rug.preDamage){
+      audit.preDamage = 'none';
+    }
+    newChildRef.set(audit);
+
+
+
+    //var audit = {};
+    //var ref = new Firebase(FURL + 'audits');
+    //var newChildRef = ref.push();
+    //audit.key = newChildRef.key();
+    //audit.rugKey = $scope.rug.key;
+    //audit.status = $scope.rug.status;
+    //audit.description = $scope.rug.description;
+    //audit.preDamage = $scope.rug.preDamage;
+    //audit.person = $localStorage.email;
+    //audit.discussion = true;
+    //audit.discussionValue = disc;
+    //audit.dueDate = $scope.rug.dueDate;
+    //
+    //var date = new Date();
+    //audit.time = date.toString();
+    //newChildRef.set(audit);
+
+  }
     if ($stateParams.id == 'newrug') {
       $scope.newRug = true;
       $scope.rug = {};
@@ -48,9 +93,16 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
       var milliseconds = Date.parse(newDateObj);
       $scope.rug.dueDate = new Date(milliseconds);
 
+
       $scope.addRug = function (rug) {
         var date = new Date();
+        if(rug.length < rug.width){
+          var l = rug.length;
+          var w = rug.width;
+          rug.length = w;
+          rug.width = l;
 
+        }
         rug.orderNumber = $stateParams.jobID;
         var ref = new Firebase(FURL + 'rugs');
         var newChildRef = ref.push();
@@ -64,20 +116,9 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         //var oldDateObj = new Date();
         //var newDateObj = new Date(oldDateObj.getTime() + diff*1814400000);
         //rug.dueDate = newDateObj;
-        var audit = {};
-        var ref = new Firebase(FURL + 'audits');
-        var newChildRef = ref.push();
-        audit.key = newChildRef.key();
-        audit.person = $localStorage.email;
-        audit.time = date.toString();
-        audit.rugKey = rug.key;
-        audit.status = 'NotStarted';
-        audit.description = rug.description;
-        audit.preDamage = rug.preDamage;
-        audit.photosTaken = rug.photosTaken;
-        audit.urine = rug.urine;
-        audit.dueDate = rug.dueDate;
-        newChildRef.set(audit);
+        $scope.addAudit(rug);
+
+
         try{
           if(rug.contact.length > 0){
             var contact = {};
@@ -131,20 +172,28 @@ console.log('no contact discussion to add')
 
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
-        var audit = {};
-        audit.key = newChildRef.key();
-        audit.rugKey = rug.key;
-        audit.status = rug.status;
-        audit.description = rug.description;
-        audit.preDamage = rug.preDamage;
-        audit.person = $localStorage.email;
-        audit.photosTaken = rug.photosTaken;
-        audit.urine = rug.urine;
-        audit.dueDate = rug.dueDate;
-        var date = new Date();
-        audit.time = date.toString();
-        newChildRef.set(audit);
-
+        //var audit = {};
+        //audit.key = newChildRef.key();
+        //audit.rugKey = rug.key;
+        //audit.status = rug.status;
+        //audit.description = rug.description;
+        //try {
+        //  audit.preDamage = rug.preDamage;
+        //}catch(err){
+        //  audit.preDamage = 'none';
+        //}
+        //if(!rug.preDamage){
+        //  audit.preDamage = 'none';
+        //}
+        //audit.person = $localStorage.email;
+        //audit.photosTaken = rug.photosTaken;
+        //audit.urine = rug.urine;
+        //audit.dueDate = rug.dueDate;
+        //var date = new Date();
+        //audit.time = date.toString();
+        //console.log(audit.preDamage)
+        //newChildRef.set(audit);
+        $scope.addAudit(rug);
 
         console.log('editing rug rug')
 
@@ -182,26 +231,6 @@ console.log('no contact discussion to add')
         $location.path('/home');
 
       }
-      //$scope.deleteRug = function (rug) {
-      //  var newChildRef = new Firebase(FURL + 'rugs/');
-      //  newChildRef.once("value", function (snapshot) {
-      //    snapshot.forEach(function (childSnapshot) {
-      //      var key = childSnapshot.key();
-      //      var childData = childSnapshot.val();
-      //      if ($stateParams.id == childData.orderNumber) {
-      //        console.log('deleting job ' + FURL + 'jobs/' + key)
-      //        var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
-      //        newChildRef2.update({
-      //          "deleted": true
-      //        });
-      //      }
-      //    });
-      //    $timeout(function () {
-      //      $location.path("/home");
-      //      console.log($location.path());
-      //    });
-      //  });
-      //}
 
       $scope.auditList = [];
       var ref = new Firebase(FURL + 'audits');
@@ -242,22 +271,24 @@ console.log('no contact discussion to add')
     contact.rugKey = $scope.rug.key;
     newChildRef.set(contact);
     $scope.contactList = [];
-    var audit = {};
-    var ref = new Firebase(FURL + 'audits');
-    var newChildRef = ref.push();
-    audit.key = newChildRef.key();
-    audit.rugKey = $scope.rug.key;
-    audit.status = $scope.rug.status;
-    audit.description = $scope.rug.description;
-    audit.preDamage = $scope.rug.preDamage;
-    audit.person = $localStorage.email;
-    audit.discussion = true;
-    audit.discussionValue = disc;
-    audit.dueDate = $scope.rug.dueDate;
+    //var audit = {};
+    //var ref = new Firebase(FURL + 'audits');
+    //var newChildRef = ref.push();
+    //audit.key = newChildRef.key();
+    //audit.rugKey = $scope.rug.key;
+    //audit.status = $scope.rug.status;
+    //audit.description = $scope.rug.description;
+    //audit.preDamage = $scope.rug.preDamage;
+    //audit.person = $localStorage.email;
+    //audit.discussion = true;
+    //audit.discussionValue = disc;
+    //audit.dueDate = $scope.rug.dueDate;
+    //
+    //var date = new Date();
+    //audit.time = date.toString();
+    //newChildRef.set(audit);
+    $scope.addAudit($scop.rug);
 
-    var date = new Date();
-    audit.time = date.toString();
-    newChildRef.set(audit);
     ref.once("value", function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
         var key = childSnapshot.key();
@@ -299,38 +330,7 @@ console.log('no contact discussion to add')
     new Date("08-14-2015"), //Short format
     new Date(1439676000000) //UNIX format
   ];
-  var monthList = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-  $scope.datepickerObject = {};
-  $scope.datepickerObject.inputDate = new Date();
 
-  $scope.datepickerObjectModal = {
-    titleLabel: 'Ionic-Datepicker', //Optional
-    todayLabel: 'Today', //Optional
-    closeLabel: 'Close', //Optional
-    setLabel: 'Set', //Optional
-    errorMsgLabel : 'Please select time.', //Optional
-    setButtonType : 'button-assertive', //Optional
-    modalHeaderColor:'bar-positive', //Optional
-    modalFooterColor:'bar-positive', //Optional
-    templateType:'modal', //Optional
-    inputDate: $scope.datepickerObject.inputDate, //Optional
-    mondayFirst: true, //Optional
-    disabledDates:disabledDates, //Optional
-    monthList:monthList, //Optional
-    from: new Date(2012, 5, 1), //Optional
-    to: new Date(2016, 7, 1), //Optional
-    callback: function (val) { //Optional
-      datePickerCallbackModal(val);
-    }
-  };
-  var datePickerCallbackModal = function (val) {
-    if (typeof(val) === 'undefined') {
-      console.log('No date selected');
-    } else {
-      $scope.datepickerObjectModal.inputDate = val;
-      console.log('Selected date is : ', val)
-    }
-  };
 
   }
 );

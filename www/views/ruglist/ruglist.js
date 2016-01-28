@@ -35,13 +35,13 @@ angular.module('App').controller('rugListController', function ($scope, $timeout
 
             var date = new Date();
             var thisDate = new Date(childData.createdOn);
-            console.log(date + ' ' + thisDate)
             var date = new Date().getTime();
             var thisDate = new Date(childData.createdOn).getTime();
-            console.log(((date - thisDate) / 1000) / 86400);
             var daysSince = ((date - thisDate) / 1000) / 86400;
-            console.log(Math.round(daysSince));
             childData.elapsedTime = Math.round(daysSince);
+            //truncating start date
+            var sd = childData.createdOn.substring(0, 16);
+            childData.createdOn = sd;
             $scope.rugList.push(childData)
             $scope.rugCount ++;
           }
