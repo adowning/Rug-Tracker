@@ -8,6 +8,21 @@ angular.module('App').controller('rugListController', function ($scope, $timeout
       Auth.logout();
       $location.path("/login");
     }
+  $scope.doRefresh = function() {
+    $http.get('/#/home')
+      .success(function () {
+        //$scope.items = newItems;
+      })
+      .finally(function () {
+        // Stop the ion-refresher from spinning
+        console.log('refreshed')
+        $timeout(function () {
+          $location.path('/home');
+          console.log($location.path());
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+  };
     var rugList = function () {
       $scope.rugList = [];
       var ref = new Firebase(FURL + 'rugs');

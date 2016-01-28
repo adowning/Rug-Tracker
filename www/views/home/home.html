@@ -1,5 +1,9 @@
 <ion-view view-title="Job List" hide-back-button="true">
         <ion-content class="padding-top">
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+          </ion-refresher>
           <form novalidate name="addJobForm" ng-submit="addJobForm.$valid && addJob(job)">
             <div class="list">
               <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addJobForm.id.$invalid && addJobForm.$submitted }">

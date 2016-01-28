@@ -1,6 +1,9 @@
 <ion-view view-title="Rug List for {{customer}}" hide-back-button="true">
   <ion-content class="padding-top">
-
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
     <ion-list>
       <!--<ion-item ng-repeat="job in jobList">-->
       <ion-item ng-repeat="item in rugList"

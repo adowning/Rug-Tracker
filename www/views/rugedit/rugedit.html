@@ -18,13 +18,18 @@
   <!--</div>-->
   <!--</div>-->
   <ion-content class="padding-top">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <!-- TODO put basic stuff in dropdown? -->
     <form novalidate name="addRugForm" ng-submit="addRugForm.$valid && addRug(rug)">
       <div class="list">
         <div ng-show="!isNewRug">
-          <span class="input-label">Rug Status</span>
 
-          <label class="item item-input item-floating-label"
+          <label class="input-label"
                  ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
+            <span class="input-label">Rug Status</span>
 
             <!-- <span class="input-label">Status</span> -->
             <select name="singleSelect" ng-model="rug.status">
@@ -36,32 +41,70 @@
             </select>
           </label>
         </div>
-        <span class="input-label">Description</span>
 
-        <label class="item item-input item-floating-label"
+        <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
+          <span class="input-label">Description</span>
+
           <input name="description" type="text" ng-model="rug.description" placeholder="{{rug.description}}"
                  required>
         </label>
         <div class="form-errors" ng-messages="addRugForm.description.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
+        <label class="item-stacked-label"
+               ng-class="{ 'has-error-lr' : addRugForm.length.$invalid && addRugForm.$submitted }">
+          <span class="input-label">Length</span>
 
-        <span class="input-label">Damaged Areas</span>
+          <input name="length" type="number" ng-model="rug.length" placeholder="{{rug.length}}"
+                 required>
 
-        <label class="item item-input item-floating-label"
+        </label>
+        <label class="item-stacked-label"
+               ng-class="{ 'has-error-lr' : addRugForm.width.$invalid && addRugForm.$submitted }">
+          <span class="input-label">Width</span>
+          <input name="width" type="number" ng-model="rug.width" placeholder="{{rug.width}}"
+                 required>
+        </label>
+
+
+        <label class="item-stacked-label">
+
+          <span class="input-label">Inspection Photos {{rug.photosTaken}}</span>
+          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'false'" required>No</ion-radio>
+          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'true'" required>Yes</ion-radio>
+
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.photosTaken.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
+        <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
+          <span class="input-label">Damaged Areas</span>
 
           <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}">
         </label>
-        <div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">
-          <!--<div class="form-error" ng-message="required">This field is required.</div>-->
+        <!--<div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">-->
+        <!--&lt;!&ndash;<div class="form-error" ng-message="required">This field is required.</div>&ndash;&gt;-->
+        <!--</div>-->
+        <label class="item-stacked-label">
+
+          <span class="input-label">Urine in rug? {{rug.urine}}</span>
+          <ion-radio name="urine" ng-model="rug.urine" ng-value="'false'">No</ion-radio>
+          <ion-radio name="urine" ng-model="rug.urine" ng-value="'true'">Yes</ion-radio>
+        </label>
+        <label class="item-stacked-label">
+          <span class="input-label">Due Date</span>
+          <input name="dueDate" type="date" ng-model="rug.dueDate" ng-value="rug.dueDate" required>
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.dueDate.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
         </div>
         <!--<span class="input-label">Due Date</span>-->
 
         <!--<ionic-datepicker input-obj="datepickerObjectModal">-->
-          <!--<button class="button button-block button-positive">Due Date = {{datepickerObjectModal.inputDate | date:'dd - MMMM - yyyy'}}-->
-          <!--</button>-->
+        <!--<button class="button button-block button-positive">Due Date = {{datepickerObjectModal.inputDate | date:'dd - MMMM - yyyy'}}-->
+        <!--</button>-->
         <!--</ionic-datepicker>-->
         <div ng-show="newRug">
 
@@ -70,11 +113,11 @@
           <label class="item item-input item-floating-label"
                  ng-class="{ 'has-error-lr' : addRugForm.contact.$invalid && addRugForm.$submitted }">
             <input name="contact" type="text" ng-model="rug.contact" placeholder="Contact stuff" value="Contact Stuff"
-                   >
+            >
           </label>
-          <div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">
-            <div class="form-error" ng-message="required">This field is required.</div>
-          </div>
+          <!--<div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">-->
+          <!--<div class="form-error" ng-message="required">This field is required.</div>-->
+          <!--</div>-->
         </div>
 
 
@@ -93,17 +136,19 @@
     </form>
 
     <div ng-if="!newRug">
-      <input  ng-click="showDiscussionsChange()" class="button button-block button-positive" value="Discussions">
+      <input ng-click="showDiscussionsChange()" class="button button-block button-positive" value="Discussions">
 
       <div ng-if="showDiscussions">
 
         <!--<input class="item item-input item-floating-label" name="discussion" type="text" ng-model="discussion.value">-->
         <label class="item item-input item-floating-label"
                ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
-          <input name="discussion" type="text" ng-model="discussion.value"
+          <input name="discussion" type="text" ng-change="valueEnteredChanged()" ng-model="discussion"
                  required>
         </label>
-        <button ng-click="addDiscussion(discussion.value)" class="button button-block button-positive" value="Add Discussion">Add</button>
+        <button ng-click="addDiscussion(discussion)" class="button button-block button-positive" value="Add Discussion">
+          Add
+        </button>
         <ion-list>
           <ion-item ng-repeat="item in contactList"
                     class="item-thumbnail-left">
@@ -120,11 +165,16 @@
         <ion-list>
           <ion-item ng-repeat="item in auditList"
                     class="item-thumbnail-left">
-            <h2>{{item.status}}</h2>
-            <p>{{item.description}}</p>
-            <p>{{item.preDamage}}</p>
-            <p>{{item.person}}</p>
-            <p>{{item.time}}</p>
+            <!--TODO make false and trues to yes and nos -->
+            <h2>Status: {{item.status}}</h2>
+            <p>Description: {{item.description}}</p>
+            <p>Photos Taken: {{item.photosTaken}}</p>
+            <p>Pre-Damage: {{item.preDamage}}</p>
+            <p>Urine: {{item.urine}}</p>
+            <p>Due Date: {{item.dueDate}}</p>
+            <p ng-if="item.discussion">User added discussion {{item.discussionValue}}</p>
+            <p>Updated by: {{item.person}}</p>
+            <p>Time: {{item.time}}</p>
           </ion-item>
         </ion-list>
       </div>
@@ -133,8 +183,6 @@
       <input ng-click="deleteRug(rug)" class="button button-block button-positive" value="Remove">
 
     </div>
-
-
 
 
     <a href="#/ruglist/?id={{rug.orderNumber}}&customer={{customer}}" class="button button-full button-positive">

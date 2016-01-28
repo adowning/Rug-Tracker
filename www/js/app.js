@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App', ['ionic', 'ionic-datepicker', 'ngStorage', 'ngCordova','firebase','ngMessages'])
+angular.module('App', ['ionic',  'ngStorage', 'ngCordova','firebase','ngMessages'])
 .config(function($stateProvider, $urlRouterProvider) {
 $stateProvider
     .state('login', {
@@ -42,7 +42,8 @@ $stateProvider
 $urlRouterProvider.otherwise("/login");
 })
 // Changue this for your Firebase App URL.
-.constant('FURL', 'https://cctools.firebaseio.com/')
+  .constant('FURL', 'https://cfbuilder.firebaseio.com/') // developer
+//  .constant('FURL', 'https://cctools.firebaseio.com/') // live
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

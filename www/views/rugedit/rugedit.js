@@ -1,16 +1,52 @@
 'Use Strict';
-angular.module('App').controller('rugEditController', function ($scope, $timeout, $rootScope, Camera, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('rugEditController', function ($scope, $timeout, $window, $rootScope, Camera, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
 
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
-    $scope.discussion = null;
+    $scope.discussion = "";
+    //$scope.discussion.value = "asdf";
+
+  //$scope.valueEnteredChanged = function () {
+  //  // more robust logic here
+  //  //$scope.value = $scope.valueEntered * 100;
+  //  console.log('hi')
+  //  $scope.discussion = "asdf";
+  //  $timeout(function () {
+  //    $scope.discussion = '';
+  //    $scope.$apply();
+  //    //console.log($location.path());
+  //  });
+  //
+  //}
+
+  $scope.doRefresh = function() {
+    $http.get('/#/home')
+      .success(function (newItems) {
+        $scope.items = newItems;
+      })
+      .finally(function () {
+        // Stop the ion-refresher from spinning
+        console.log('refreshed')
+        $timeout(function () {
+          $location.path('/home');
+          console.log($location.path());
+        });
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+  };
 
   $scope.showDiscussions = false;
+  //TODO this if/then should basically just include whether to download or start new rug instead of duplicating
+  //the add function the add function
     if ($stateParams.id == 'newrug') {
       $scope.newRug = true;
       $scope.rug = {};
       $scope.isNewRug = true;
+      var oldDateObj = new Date();
+      var newDateObj = new Date(oldDateObj.getTime() + 1814400000);
+      var milliseconds = Date.parse(newDateObj);
+      $scope.rug.dueDate = new Date(milliseconds);
 
       $scope.addRug = function (rug) {
         var date = new Date();
@@ -22,10 +58,12 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         rug.createdOn = date.toString();
         rug.status = 'NotStarted';
         rug.customer = $stateParams.customer;
-
-
+        var s = rug.dueDate.toString();
+        rug.dueDate = s;
         newChildRef.set(rug);
-
+        //var oldDateObj = new Date();
+        //var newDateObj = new Date(oldDateObj.getTime() + diff*1814400000);
+        //rug.dueDate = newDateObj;
         var audit = {};
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
@@ -36,19 +74,27 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         audit.status = 'NotStarted';
         audit.description = rug.description;
         audit.preDamage = rug.preDamage;
+        audit.photosTaken = rug.photosTaken;
+        audit.urine = rug.urine;
+        audit.dueDate = rug.dueDate;
         newChildRef.set(audit);
-
-        if(rug.contact.length > 0){
-          var contact = {};
-          var ref = new Firebase(FURL + 'contactEvents');
-          var newChildRef = ref.push();
-          contact.key = newChildRef.key();
-          contact.value = rug.contact;
-          contact.person = $localStorage.email;
-          contact.time = date.toString();
-          contact.rugKey = rug.key;
-          newChildRef.set(contact);
+        try{
+          if(rug.contact.length > 0){
+            var contact = {};
+            var ref = new Firebase(FURL + 'contactEvents');
+            var newChildRef = ref.push();
+            contact.key = newChildRef.key();
+            contact.value = rug.contact;
+            contact.person = $localStorage.email;
+            contact.time = date.toString();
+            contact.rugKey = rug.key;
+            newChildRef.set(contact);
+          }
         }
+        catch(e){
+console.log('no contact discussion to add')
+        }
+
 
 
         console.log('adding new rug')
@@ -61,23 +107,28 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
       }
     } else {
       var ref = new Firebase(FURL + 'rugs');
+      console.log('loading rug')
       ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
           if ($stateParams.id == childData.key) {
+            var milliseconds = Date.parse(childData.dueDate);
+            childData.dueDate = new Date(milliseconds);
+            console.log('converting to date from string')
             $scope.rug = childData;
+
           }
         });
       });
-      console.log('editing a rug')
       $scope.addRug = function (rug) {
-        console.log('alfjka;lfjkakakljljakadfklafjlafjfk')
         rug.orderNumber = $stateParams.jobID;
-        console.log('editing')
+        console.log('editing ' + rug.dueDate)
+        rug.dueDate = rug.dueDate.toString();
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
         rug.contact = null;
         newChildRef.set(rug);
+
         var ref = new Firebase(FURL + 'audits');
         var newChildRef = ref.push();
         var audit = {};
@@ -87,6 +138,9 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         audit.description = rug.description;
         audit.preDamage = rug.preDamage;
         audit.person = $localStorage.email;
+        audit.photosTaken = rug.photosTaken;
+        audit.urine = rug.urine;
+        audit.dueDate = rug.dueDate;
         var date = new Date();
         audit.time = date.toString();
         newChildRef.set(audit);
@@ -105,18 +159,6 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
               $scope.auditList.push(childData)
             }
           });
-          //if(discussion){
-          //  var contact = {};
-          //  var ref = new Firebase(FURL + 'contactEvents');
-          //  var newChildRef = ref.push();
-          //  contact.key = newChildRef.key();
-          //  contact.value = discussion;
-          //  contact.person = $localStorage.email;
-          //  var date = new Date();
-          //  contact.time = date.toString();
-          //  contact.rugKey = rug.key;
-          //  newChildRef.set(contact);
-          //}
 
           $timeout(function () {
             $location.path("/home");
@@ -189,6 +231,54 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
 
   $scope.addDiscussion = function (disc) {
     console.log(disc)
+    var contact = {};
+    var ref = new Firebase(FURL + 'contactEvents');
+    var newChildRef = ref.push();
+    contact.key = newChildRef.key();
+    contact.value = disc;
+    contact.person = $localStorage.email;
+    var date = new Date();
+    contact.time = date.toString();
+    contact.rugKey = $scope.rug.key;
+    newChildRef.set(contact);
+    $scope.contactList = [];
+    var audit = {};
+    var ref = new Firebase(FURL + 'audits');
+    var newChildRef = ref.push();
+    audit.key = newChildRef.key();
+    audit.rugKey = $scope.rug.key;
+    audit.status = $scope.rug.status;
+    audit.description = $scope.rug.description;
+    audit.preDamage = $scope.rug.preDamage;
+    audit.person = $localStorage.email;
+    audit.discussion = true;
+    audit.discussionValue = disc;
+    audit.dueDate = $scope.rug.dueDate;
+
+    var date = new Date();
+    audit.time = date.toString();
+    newChildRef.set(audit);
+    ref.once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var key = childSnapshot.key();
+        var childData = childSnapshot.val();
+        if ($stateParams.id == childData.rugKey) {
+          $scope.contactList.push(childData)
+        }
+      });
+      //$scope.discussion = '';
+
+      $window.location.reload();
+    });
+    //$scope.$apply(function(){$scope.discussion.value = '';});
+    //$scope.discussion = '';
+    //
+    //$timeout(function () {
+    //  $scope.discussion = '';
+    //  $scope.$apply();
+    //  //console.log($location.path());
+    //});
+    //console.log($scope.discussion)
   }
     $scope.showAuditsChange = function () {
       $scope.showAudits ^= true;
