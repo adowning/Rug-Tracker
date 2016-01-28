@@ -9,8 +9,8 @@
               <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : addJobForm.id.$invalid && addJobForm.$submitted }">
                 <span class="input-label">Job #</span>
                 <input name="id" type="text" ng-model="job.id" placeholder="Job Number"
-                       ng-minlength="5"
-                       ng-maxlength="5"
+                       ng-minlength="3"
+                       ng-maxlength="6"
                        required>
               </label>
               <div class="form-errors" ng-messages="addJobForm.id.$error" ng-if="addJobForm.$submitted">
