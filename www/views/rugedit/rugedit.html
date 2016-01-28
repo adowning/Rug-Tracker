@@ -60,27 +60,30 @@
                  required>
 
         </label>
+        <div class="form-errors" ng-messages="addRugForm.length.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
         <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.width.$invalid && addRugForm.$submitted }">
           <span class="input-label">Width</span>
           <input name="width" type="number" ng-model="rug.width" placeholder="{{rug.width}}"
                  required>
         </label>
-
+        <div class="form-errors" ng-messages="addRugForm.width.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
 
         <label class="item-stacked-label">
 
           <span class="input-label">Inspection Photos {{rug.photosTaken}}</span>
-          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'false'" required>No</ion-radio>
-          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'true'" required>Yes</ion-radio>
+          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'false'" >No</ion-radio>
+          <ion-radio name="photosTaken" ng-model="rug.photosTaken" ng-value="'true'" >Yes</ion-radio>
 
         </label>
-        <div class="form-errors" ng-messages="addRugForm.photosTaken.$error" ng-if="addRugForm.$submitted">
-          <div class="form-error" ng-message="required">This field is required.</div>
-        </div>
+
         <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
-          <span class="input-label">Damaged Areas</span>
+          <span class="input-label">Damaged Areas or Special Instructions</span>
 
           <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}">
         </label>
@@ -100,12 +103,6 @@
         <div class="form-errors" ng-messages="addRugForm.dueDate.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
-        <!--<span class="input-label">Due Date</span>-->
-
-        <!--<ionic-datepicker input-obj="datepickerObjectModal">-->
-        <!--<button class="button button-block button-positive">Due Date = {{datepickerObjectModal.inputDate | date:'dd - MMMM - yyyy'}}-->
-        <!--</button>-->
-        <!--</ionic-datepicker>-->
         <div ng-show="newRug">
 
           <span class="input-label">Discussion with customer</span>
@@ -115,9 +112,6 @@
             <input name="contact" type="text" ng-model="rug.contact" placeholder="Contact stuff" value="Contact Stuff"
             >
           </label>
-          <!--<div class="form-errors" ng-messages="addRugForm.contact.$error" ng-if="addRugForm.$submitted">-->
-          <!--<div class="form-error" ng-message="required">This field is required.</div>-->
-          <!--</div>-->
         </div>
 
 

@@ -1,29 +1,22 @@
 'Use Strict';
 angular.module('App').controller('homeController', function ($scope, $window, $state, $timeout, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
-    var ref = new Firebase(FURL);
+
+    //TODO get phone number from SM
 
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
     }
-    //  var jobList = function (){
-    //    var ref = new Firebase(FURL + 'jobs');
-    //    $scope.jobs = $firebaseArray(ref);
-    //    var query = ref.orderByChild("timestamp").limitToLast(35);
-    //    $scope.jobList = $firebaseArray(query);
-    //    console.log('reloaded')
-    //  }
-    //jobList();
-  $scope.doRefresh = function() {
-    $http.get('/#/home')
-      .success(function () {
-        //$scope.items = newItems;
-      })
-      .finally(function () {
-        // Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-  };
+    $scope.doRefresh = function () {
+      $http.get('/#/home')
+        .success(function () {
+          //$scope.items = newItems;
+        })
+        .finally(function () {
+          // Stop the ion-refresher from spinning
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
     var jobList = function () {
       $scope.jobList = [];
       var ref = new Firebase(FURL + 'jobs');

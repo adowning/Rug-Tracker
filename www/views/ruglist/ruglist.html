@@ -7,15 +7,14 @@
     <ion-list>
       <!--<ion-item ng-repeat="job in jobList">-->
       <ion-item ng-repeat="item in rugList"
-                class="item-thumbnail-left" href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
+                class="item-thumbnail-left ion-home "
+                href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
         <h2>{{item.description}}</h2>
         <p>{{item.status}}</p>
         <p>Length: {{item.length}} Width: {{item.width}} Urine: {{item.urine}}</p>
-        <p>Start Date: {{item.createdOn}} Days in System: {{item.elapsedTime}}</p>
-        <div ng-if="item.elapsedTime > 17">
+        <p>Start Date: {{item.createdOn}} </p>
+        <p>Days in System: {{item.elapsedTime}}</p>
 
-        <p class="bg-warning">adsfdasfadsfdasfdasfasdfdasf</p>
-          </div>
       </ion-item>
     </ion-list>
     <a href="#/rugedit/?id=newrug&jobID={{jobID}}&customer={{customer}}" class="button button-full button-positive">
