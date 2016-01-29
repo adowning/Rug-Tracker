@@ -1,14 +1,17 @@
 'Use Strict';
-angular.module('App').controller('loginController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+angular.module('App').controller('loginController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location,
+                                                              $http, $ionicPopup, $firebaseObject, Auth, Utils) {
   var ref = new Firebase($rootScope.FURL);
   var userkey = "";
+  console.log($rootScope.FURL);
   $scope.signIn = function (user) {
     console.log("Welcome");
     if (angular.isDefined(user)) {
+      console.log('w2');
       Utils.show();
       Auth.login(user)
         .then(function (authData) {
-          //console.log("id del usuario:" + JSON.stringify(authData));
+          console.log("id del usuario:" + JSON.stringify(authData));
 
           ref.child('profile').orderByChild("id").equalTo(authData.uid).on("child_added", function (snapshot) {
             console.log(snapshot.key());
@@ -17,7 +20,7 @@ angular.module('App').controller('loginController', function ($scope, $rootScope
 
             obj.$loaded()
               .then(function (data) {
-                //console.log(data === obj); // true
+                console.log(data === obj); // true
                 //console.log(obj.email);
                 $localStorage.email = obj.email;
                 $localStorage.userkey = userkey;

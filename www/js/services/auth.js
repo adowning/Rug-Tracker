@@ -1,6 +1,7 @@
 angular.module('App').factory('Auth', function ($firebaseAuth, $rootScope, $firebaseArray, $firebaseObject, Utils) {
   var FURL = $rootScope.FURL;
 	var ref = new Firebase(FURL);
+  console.log(ref);
 	var auth = $firebaseAuth(ref);
 
 	var Auth = {
@@ -43,14 +44,14 @@ angular.module('App').factory('Auth', function ($firebaseAuth, $rootScope, $fire
 
     logout: function() {
       auth.$unauth();
-			console.log("Usuario Sale.");
+      console.log("Later");
     },
 
 		resetpassword: function(user) {
 			return auth.$resetPassword({
 				  email: user.email
 				}).then(function() {
-					Utils.alertshow("Exito.","La clave fue enviada a su correo.");
+        Utils.alertshow("Leaving");
 				  //console.log("Password reset email sent successfully!");
 				}).catch(function(error) {
 					Utils.errMessage(error);

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('registerController', function ($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('registerController', function ($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
 
     $scope.register = function (user) {
       if (angular.isDefined(user)) {

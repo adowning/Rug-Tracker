@@ -1,5 +1,7 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $rootScope, $window, $state, $timeout, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+angular.module('App').controller('homeController', function ($scope, $rootScope, $window, $state, $timeout, $firebaseArray,
+                                                             $cordovaOauth, $localStorage, $location, $http, $ionicPopup,
+                                                             $firebaseObject, Auth, Utils) {
 
     //TODO get phone number from SM
   var FURL = $rootScope.FURL;
@@ -20,7 +22,8 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
     var jobList = function () {
       $scope.jobList = [];
       var ref = new Firebase(FURL + 'jobs');
-      ref.once("value", function (snapshot) {
+
+      ref.orderByChild("dateCreated").on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
@@ -51,8 +54,11 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           if (!found) {
             var ref = new Firebase(FURL + 'jobs');
             var newChildRef = ref.push();
+            var time = new Date().getTime();
+            $scope.newJob.dateCreated = time;
+
             newChildRef.set($scope.newJob);
-            console.log('adding 2')
+            console.log('adding 2 ' + time)
           }
           $timeout(function () {
             $location.path('/home');
