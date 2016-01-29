@@ -37,14 +37,38 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       audit.status = rug.status;
       audit.description = rug.description;
       audit.preDamage = rug.preDamage;
-      audit.photosTaken = rug.photosTaken;
-      audit.urine = rug.urine;
       audit.dueDate = rug.dueDate;
+
       try {
         audit.preDamage = rug.preDamage;
       } catch (err) {
         audit.preDamage = 'none';
       }
+
+      try {
+        audit.photosTaken = rug.photosTaken;
+        console.log('2');
+        if (!rug.photosTaken) {
+          console.log('3');
+          audit.photosTaken = false;
+        }
+      } catch (err) {
+        console.log(err);
+        console.log('4');
+        audit.photosTaken = 'none';
+      }
+
+      try {
+        audit.urine = rug.urine;
+        if (!rug.urine) {
+          console.log('3');
+          audit.urine = false;
+        }
+      } catch (err) {
+        console.log(err);
+        audit.urine = false;
+      }
+
       if (!rug.preDamage) {
         audit.preDamage = 'none';
       }
@@ -99,8 +123,10 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         }
         console.log('adding new rug');
         $timeout(function () {
+          console.log('new rug added tranfering now ');
           Utils.hide();
-          $location.path("/home");
+          $window.location.assign('/#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+
           console.log($location.path());
         });
 
@@ -131,7 +157,11 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         $scope.addAudit(rug);
         $timeout(function () {
           Utils.hide();
-          $location.path("/home");
+          //$location.path('/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
+          //$window.location.assign('/#/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
+          $window.location.assign('/#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+
+
           console.log($location.path());
         });
 

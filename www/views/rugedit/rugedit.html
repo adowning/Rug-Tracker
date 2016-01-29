@@ -29,7 +29,7 @@
 
           <label class="input-label"
                  ng-class="{ 'has-error-lr' : addRugForm.status.$invalid && addRugForm.$submitted }">
-            <span class="input-label">Rug Status</span>
+            <span class="item-stacked-label">Rug Status</span>
 
             <!-- <span class="input-label">Status</span> -->
             <select name="singleSelect" ng-model="rug.status">
@@ -98,7 +98,7 @@
         </label>
         <label class="item-stacked-label">
           <span class="input-label">Due Date</span>
-          <input name="dueDate" type="date" ng-model="rug.dueDate" ng-value="rug.dueDate" required>
+          <input name="dueDate" type="date" ng-model="rug.dueDate" ng-value="rug.dueDate">
         </label>
         <div class="form-errors" ng-messages="addRugForm.dueDate.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>

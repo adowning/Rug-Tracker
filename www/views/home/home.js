@@ -4,6 +4,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
                                                              $firebaseObject, Auth, Utils) {
 
     //TODO get phone number from SM
+
   var FURL = $rootScope.FURL;
     $scope.logOut = function () {
       Auth.logout();
@@ -13,6 +14,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
       $http.get('/#/home')
         .success(function () {
           //$scope.items = newItems;
+          $scope.apply();
         })
         .finally(function () {
           // Stop the ion-refresher from spinning
@@ -20,6 +22,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         });
     };
     var jobList = function () {
+      console.log('refreshing job list');
       Utils.show();
       $scope.jobList = [];
       var ref = new Firebase(FURL + 'jobs');
