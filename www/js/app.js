@@ -46,7 +46,6 @@ $urlRouterProvider.otherwise("/login");
 //  .constant('FURL', 'https://cctools.firebaseio.com/') // live
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    this.constant('FURL', 'https://cfbuilder.firebaseio.com/') // developer
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
