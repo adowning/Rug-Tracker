@@ -3,7 +3,7 @@ angular.module('App').controller('loginController', function ($scope, $state, $c
   var ref = new Firebase(FURL);
   var userkey = "";
   $scope.signIn = function (user) {
-    console.log("Enviado");
+    console.log("Welcome");
     if (angular.isDefined(user)) {
       Utils.show();
       Auth.login(user)
