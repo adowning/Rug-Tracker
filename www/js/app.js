@@ -52,7 +52,7 @@ $urlRouterProvider.otherwise("/login");
     if (location.host.toString().indexOf('localhost') > -1) {
       $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
     } else {
-      $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
+      $rootScope.FURL = 'https://cctools.firebaseio.com/';
 
     }
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -62,61 +62,5 @@ $urlRouterProvider.otherwise("/login");
       StatusBar.styleDefault();
     }
   });
-}).service('env', function env() {
-
-  var _environments = {
-      local: {
-        host: 'localhost:3000',
-        config: {
-          apiroot: 'http://localhost:3000'
-        }
-      },
-      dev: {
-        host: 'dev.com',
-        config: {
-          apiroot: 'http://localhost:3000'
-        }
-      },
-      test: {
-        host: 'test.com',
-        config: {
-          apiroot: 'http://localhost:3000'
-        }
-      },
-      stage: {
-        host: 'stage.com',
-        config: {
-          apiroot: 'staging'
-        }
-      },
-      prod: {
-        host: 'production.com',
-        config: {
-          apiroot: 'production'
-        }
-      }
-    },
-    _environment;
-
-  return {
-    getEnvironment: function () {
-      var host = window.location.host;
-      if (_environment) {
-        return _environment;
-      }
-
-      for (var environment in _environments) {
-        if (typeof _environments[environment].host && _environments[environment].host == host) {
-          _environment = environment;
-          return _environment;
-        }
-      }
-
-      return null;
-    },
-    get: function (property) {
-      return _environments[this.getEnvironment()].config[property];
-    }
-  }
 });
 
