@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="think db fixed still fuckd on users">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" afterPath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -441,7 +440,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454035183648</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="think db fixed still fuckd on users">
+      <created>1454035764364</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1454035764364</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
