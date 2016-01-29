@@ -26,6 +26,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       });
   };
   var rugList = function () {
+    Utils.show();
     $scope.rugList = [];
     var ref = new Firebase(FURL + 'rugs');
     ref.once("value", function (snapshot) {
@@ -53,11 +54,13 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           $scope.rugCount++;
         }
       });
+      Utils.hide();
     });
 
   };
   rugList();
   $scope.deleteJob = function (job) {
+    Utils.show();
     var newChildRef = new Firebase(FURL + 'jobs/');
     newChildRef.once("value", function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
@@ -71,6 +74,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           });
         }
       });
+      Utils.hide();
       $timeout(function () {
         $location.path("/home");
         console.log($location.path());

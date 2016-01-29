@@ -61,6 +61,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       $scope.rug.dueDate = new Date(milliseconds);
 
       $scope.addRug = function (rug) {
+        Utils.show();
         var date = new Date();
         if (rug.length < rug.width) {
           var l = rug.length;
@@ -98,6 +99,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         }
         console.log('adding new rug');
         $timeout(function () {
+          Utils.hide();
           $location.path("/home");
           console.log($location.path());
         });
@@ -106,6 +108,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       }
     } else {
       var ref = new Firebase(FURL + 'rugs');
+      Utils.show();
       console.log('loading rug');
       ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
@@ -127,6 +130,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         newChildRef.set(rug);
         $scope.addAudit(rug);
         $timeout(function () {
+          Utils.hide();
           $location.path("/home");
           console.log($location.path());
         });
@@ -144,6 +148,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
 
       $scope.auditList = [];
       var ref = new Firebase(FURL + 'audits');
+      Utils.show();
       ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var key = childSnapshot.key();
@@ -152,24 +157,27 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             $scope.auditList.push(childData)
           }
         });
-      });
-      $scope.contactList = [];
-      var ref = new Firebase(FURL + 'contactEvents');
+        $scope.contactList = [];
+        var ref = new Firebase(FURL + 'contactEvents');
 
-      ref.once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-          var key = childSnapshot.key();
-          var childData = childSnapshot.val();
-          if ($stateParams.id == childData.rugKey) {
-            $scope.contactList.push(childData)
-          }
+        ref.once("value", function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            var key = childSnapshot.key();
+            var childData = childSnapshot.val();
+            if ($stateParams.id == childData.rugKey) {
+              $scope.contactList.push(childData)
+            }
+          });
+          Utils.hide();
         });
       });
+
 
     }
 
     $scope.addDiscussion = function (disc) {
       console.log(disc);
+      Utils.show();
       var contact = {};
       var ref = new Firebase(FURL + 'contactEvents');
       var newChildRef = ref.push();
@@ -191,6 +199,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             $scope.contactList.push(childData)
           }
         });
+        Utils.hide();
         $window.location.reload();
       });
     };
