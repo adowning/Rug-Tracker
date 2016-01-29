@@ -1,12 +1,12 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($scope, $window, $state, $timeout, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('homeController', function ($scope, $rootScope, $window, $state, $timeout, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
 
     //TODO get phone number from SM
-
+  var FURL = $rootScope.FURL;
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
-    }
+    };
     $scope.doRefresh = function () {
       $http.get('/#/home')
         .success(function () {
@@ -31,7 +31,7 @@ angular.module('App').controller('homeController', function ($scope, $window, $s
         });
       });
 
-    }
+    };
     jobList();
     var found = false;
 

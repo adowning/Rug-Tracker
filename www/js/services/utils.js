@@ -1,5 +1,5 @@
-angular.module('App').factory('Utils', function($ionicLoading,$ionicPopup) {
-
+angular.module('App').factory('Utils', function ($ionicLoading, $ionicPopup, $rootScope) {
+  var FURL = $rootScope.FURL;
 	var Utils = {
 
     show: function() {

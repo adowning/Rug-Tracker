@@ -1,6 +1,6 @@
 'Use Strict';
-angular.module('App').controller('rugEditController', function ($scope, $timeout, $window, $rootScope, Camera, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
-
+angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+  var FURL = $rootScope.FURL;
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
@@ -13,7 +13,7 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         })
         .finally(function () {
           // Stop the ion-refresher from spinning
-          console.log('refreshed')
+          console.log('refreshed');
           $timeout(function () {
             $location.path('/home');
             console.log($location.path());
@@ -25,7 +25,7 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
     $scope.showDiscussions = false;
 
     $scope.addAudit = function (rug) {
-      console.log('adding audit ' + rug.key)
+      console.log('adding audit ' + rug.key);
       var audit = {};
       var ref = new Firebase(FURL + 'audits');
       var newChildRef = ref.push();
@@ -96,7 +96,7 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         catch (e) {
           console.log('no contact discussion to add')
         }
-        console.log('adding new rug')
+        console.log('adding new rug');
         $timeout(function () {
           $location.path("/home");
           console.log($location.path());
@@ -106,14 +106,14 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
       }
     } else {
       var ref = new Firebase(FURL + 'rugs');
-      console.log('loading rug')
+      console.log('loading rug');
       ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var childData = childSnapshot.val();
           if ($stateParams.id == childData.key) {
             var milliseconds = Date.parse(childData.dueDate);
             childData.dueDate = new Date(milliseconds);
-            console.log('converting to date from string')
+            console.log('converting to date from string');
             $scope.rug = childData;
 
           }
@@ -140,7 +140,7 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         //$location.path('#/ruglist/?id='+rug.orderNumber+'&customer='+rug.customer);
         $location.path('/home');
 
-      }
+      };
 
       $scope.auditList = [];
       var ref = new Firebase(FURL + 'audits');
@@ -169,7 +169,7 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
     }
 
     $scope.addDiscussion = function (disc) {
-      console.log(disc)
+      console.log(disc);
       var contact = {};
       var ref = new Firebase(FURL + 'contactEvents');
       var newChildRef = ref.push();
@@ -193,17 +193,17 @@ angular.module('App').controller('rugEditController', function ($scope, $timeout
         });
         $window.location.reload();
       });
-    }
+    };
     $scope.showAuditsChange = function () {
       $scope.showAudits ^= true;
-    }
+    };
     $scope.showDiscussionsChange = function () {
       $scope.showDiscussions ^= true;
-    }
+    };
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
-    }
+    };
 
 
     var disabledDates = [

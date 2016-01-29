@@ -43,7 +43,7 @@ $urlRouterProvider.otherwise("/login");
 })
 // Changue this for your Firebase App URL.
 //  .constant('FURL', 'https://cfbuilder.firebaseio.com/') // developer
-  .constant('FURL', 'https://cctools.firebaseio.com/') // live
+//  .constant('FURL', 'https://cctools.firebaseio.com/') // live
   .run(function ($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

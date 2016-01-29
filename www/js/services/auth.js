@@ -1,5 +1,5 @@
-angular.module('App').factory('Auth', function(FURL, $firebaseAuth, $firebaseArray, $firebaseObject, Utils) {
-
+angular.module('App').factory('Auth', function ($firebaseAuth, $rootScope, $firebaseArray, $firebaseObject, Utils) {
+  var FURL = $rootScope.FURL;
 	var ref = new Firebase(FURL);
 	var auth = $firebaseAuth(ref);
 
