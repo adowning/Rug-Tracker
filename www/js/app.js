@@ -44,11 +44,17 @@ $urlRouterProvider.otherwise("/login");
 // Changue this for your Firebase App URL.
 //  .constant('FURL', 'https://cfbuilder.firebaseio.com/') // developer
   .constant('FURL', 'https://cctools.firebaseio.com/') // live
-.run(function($ionicPlatform) {
+  .run(function ($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    //hi
+    console.log(location.host);
+    if (location.host.toString().indexOf('localhost') > -1) {
+      $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
+    } else {
+      $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
+
+    }
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }

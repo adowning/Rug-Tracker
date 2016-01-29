@@ -1,6 +1,6 @@
 'Use Strict';
-angular.module('App').controller('loginController', function ($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
-  var ref = new Firebase(FURL);
+angular.module('App').controller('loginController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+  var ref = new Firebase($rootScope.FURL);
   var userkey = "";
   $scope.signIn = function (user) {
     console.log("Welcome");
