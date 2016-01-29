@@ -7,23 +7,26 @@
     <ion-list>
       <!--TODO will ahve to be changed to thumbnail-left when we get pics -->
       <a ng-repeat="item in rugList"
-                class="item item-icon-left item-icon-right"
-                href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
+         class="item item-icon-left item-icon-right"
+         href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
 
-          <i class="icon ion-email"></i>
-          <h2>{{item.status}}</h2>
+        <i class="icon ion-email"></i>
+        <h2>{{item.status}}</h2>
 
-          <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}} days.</b></h2>
-          <h2 ng-if="item.dueIn <= 15 && item.dueIn >= 10 && item.status != 'PassedInspection' " style="color:orange">
-            <b>Due in {{item.dueIn}} days.</b></h2>
-          <p ng-if="item.dueIn > 15  ">Due in {{item.dueIn}} days.</p>
-          <p>{{item.description}}</p>
-          <p>{{item.preDamage}}</p>
-          <p>{{item.length}}x{{item.width}} Urine: {{item.urine}} Created: {{item.createdOn}}</p>
-          <!--<p>Started: {{item.createdOn}} </p>-->
+        <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+          days.</b></h2>
+        <h2 ng-if="item.dueIn <= 15 && item.dueIn >= 10 && item.status != 'PassedInspection' " style="color:orange"><b>Due
+          in {{item.dueIn}} days.</b></h2>
+        <h2 ng-if="item.dueIn > 15 && item.status != 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
+          days.</b></h2>
 
-        <span class="badge badge-assertive">0</span>
-        <i class="icon icon-right ion-ios-telephone-outline"></i>
+        <p>{{item.description}}</p>
+        <p>{{item.preDamage}}</p>
+        <p>{{item.length}}x{{item.width}} Urine: {{item.urine}} Created: {{item.createdOn}}</p>
+        <!--<p>Started: {{item.createdOn}} </p>-->
+
+        <!--<span class="badge badge-assertive">0</span>-->
+        <!--<i class="icon icon-right ion-ios-telephone-outline"></i>-->
 
       </a>
 

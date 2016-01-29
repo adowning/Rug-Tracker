@@ -20,6 +20,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         });
     };
     var jobList = function () {
+      Utils.show();
       $scope.jobList = [];
       var ref = new Firebase(FURL + 'jobs');
 
@@ -29,7 +30,8 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           var childData = childSnapshot.val();
           if (!childData.deleted) {
             //childData.customer = $scope.customer;
-            $scope.jobList.push(childData)
+            $scope.jobList.push(childData);
+            Utils.hide();
           }
         });
       });
@@ -39,6 +41,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
     var found = false;
 
     $scope.addJob = function (job) {
+      Utils.show();
       $.ajax({
         type: "GET",
         url: "https://api.servicemonster.net/v1/orders?q=" + job.id,
@@ -55,15 +58,17 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
             var ref = new Firebase(FURL + 'jobs');
             var newChildRef = ref.push();
             var time = new Date().getTime();
+
             $scope.newJob.dateCreated = time;
 
             newChildRef.set($scope.newJob);
             console.log('adding 2 ' + time)
           }
+          Utils.hide();
           $timeout(function () {
-            $location.path('/home');
+            //$location.path('/home');
             console.log($location.path());
-            $window.location.reload();
+            //$window.location.reload();
           });
         },
         success: function (json) {
@@ -75,6 +80,10 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
               var childData = childSnapshot.val();
               if (json.items[0].orderNumber == childData.orderNumber) {
                 console.log(found);
+                if (childData.deleted) {
+                  console.log('deleted fool');
+                  return;
+                }
                 found = true;
               }
             });

@@ -1,5 +1,7 @@
 'Use Strict';
-angular.module('App').controller('rugListController', function ($scope, $rootScope, $timeout, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+angular.module('App').controller('rugListController', function ($scope, $rootScope, $timeout, $stateParams, $state,
+                                                                $firebaseArray, $cordovaOauth, $localStorage, $location, $http,
+                                                                $ionicPopup, $firebaseObject, Auth, Utils) {
   var FURL = $rootScope.FURL;
   $scope.rugCount = 0;
   $scope.jobID = $stateParams.id;
@@ -36,7 +38,10 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           //var daysSince = ((date - thisDate) / 1000) / 86400;
           //childData.elapsedTime = Math.round(daysSince);
           var dueDate = new Date(childData.dueDate).getTime();
+          console.log(dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
+          console.log(creationDate);
+
           var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
           console.log((daysTillDue));
           childData.dueIn = Math.round(daysTillDue);
