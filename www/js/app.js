@@ -46,6 +46,7 @@ $urlRouterProvider.otherwise("/login");
 //  .constant('FURL', 'https://cctools.firebaseio.com/') // live
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    this.constant('FURL', 'https://cfbuilder.firebaseio.com/') // developer
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -55,21 +56,61 @@ $urlRouterProvider.otherwise("/login");
       StatusBar.styleDefault();
     }
   });
-})
-  .factory('Camera', ['$q', function($q) {
+}).service('env', function env() {
 
-    return {
-      getPicture: function(options) {
-        var q = $q.defer();
-
-        navigator.camera.getPicture(function(result) {
-          // Do any magic you need
-          q.resolve(result);
-        }, function(err) {
-          q.reject(err);
-        }, options);
-
-        return q.promise;
+  var _environments = {
+      local: {
+        host: 'localhost:3000',
+        config: {
+          apiroot: 'http://localhost:3000'
+        }
+      },
+      dev: {
+        host: 'dev.com',
+        config: {
+          apiroot: 'http://localhost:3000'
+        }
+      },
+      test: {
+        host: 'test.com',
+        config: {
+          apiroot: 'http://localhost:3000'
+        }
+      },
+      stage: {
+        host: 'stage.com',
+        config: {
+          apiroot: 'staging'
+        }
+      },
+      prod: {
+        host: 'production.com',
+        config: {
+          apiroot: 'production'
+        }
       }
-    }}]);
-;
+    },
+    _environment;
+
+  return {
+    getEnvironment: function () {
+      var host = window.location.host;
+      if (_environment) {
+        return _environment;
+      }
+
+      for (var environment in _environments) {
+        if (typeof _environments[environment].host && _environments[environment].host == host) {
+          _environment = environment;
+          return _environment;
+        }
+      }
+
+      return null;
+    },
+    get: function (property) {
+      return _environments[this.getEnvironment()].config[property];
+    }
+  }
+});
+
