@@ -50,8 +50,11 @@ $urlRouterProvider.otherwise("/login");
     // for form inputs)
     console.log(location.host);
     if (location.host.toString().indexOf('localhost') > -1) {
+      console.log('Setting local database');
       $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
     } else {
+      console.log('Setting remote database');
+
       $rootScope.FURL = 'https://cctools.firebaseio.com/';
 
     }
