@@ -64,6 +64,7 @@ $urlRouterProvider.otherwise("/login");
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    console.log('FURL = ' + $rootScope.FURL);
   });
 });
 

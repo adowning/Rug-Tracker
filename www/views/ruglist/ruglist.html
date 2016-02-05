@@ -35,6 +35,28 @@
     <a href="#/rugedit/?id=newrug&jobID={{jobID}}&customer={{customer}}" class="button button-full button-positive">
       Add Rug
     </a>
+    <input ng-click="showDiscussionsChange()" class="button button-block button-positive" value="Discussions">
+
+    <div ng-if="showDiscussions">
+
+      <!--<input class="item item-input item-floating-label" name="discussion" type="text" ng-model="discussion.value">-->
+      <label class="item item-input item-floating-label"
+             ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
+        <input name="discussion" type="text" ng-change="valueEnteredChanged()" ng-model="discussion"
+               required>
+      </label>
+      <button ng-click="addDiscussion(discussion)" class="button button-block button-positive" value="Add Discussion">
+        Add
+      </button>
+      <ion-list>
+        <ion-item ng-repeat="item in contactList"
+                  class="item-thumbnail-left">
+          <h2>{{item.value}}</h2>
+          <p>{{item.person}}</p>
+          <p>{{item.time}}</p>
+        </ion-item>
+      </ion-list>
+    </div>
     <div ng-if="rugCount < 1">
       <input ng-click="deleteJob(job)" class="button button-block button-positive" value="Remove Job">
     </div>

@@ -1,5 +1,16 @@
 /* Empty. Add your own CSS if you like */
 
+#mainContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .larger {
     font-size: 120px;
 }

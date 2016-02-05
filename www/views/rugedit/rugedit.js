@@ -1,6 +1,18 @@
 'Use Strict';
 angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
   var FURL = $rootScope.FURL;
+  console.log(FURL);
+
+  if (!FURL) {
+    if (location.host.toString().indexOf('localhost') > -1) {
+      console.log('Setting local database');
+      FURL = 'https://cfbuilder.firebaseio.com/';
+    } else {
+      console.log('Setting remote database');
+
+      FURL = 'https://cctools.firebaseio.com/';
+    }
+  }
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
@@ -214,6 +226,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       contact.key = newChildRef.key();
       contact.value = disc;
       contact.person = $localStorage.email;
+      contact.customer = $scope.customer;
       var date = new Date();
       contact.time = date.toString();
       contact.rugKey = $scope.rug.key;
@@ -236,23 +249,15 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     $scope.showAuditsChange = function () {
       $scope.showAudits ^= true;
     };
-    $scope.showDiscussionsChange = function () {
+
+
+  $scope.showDiscussionsChange = function () {
       $scope.showDiscussions ^= true;
     };
     $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
     };
-
-
-    var disabledDates = [
-      new Date(1437719836326),
-      new Date(2015, 7, 10), //months are 0-based, this is August, 10th!
-      new Date('Wednesday, August 12, 2015'), //Works with any valid Date formats like long format
-      new Date("08-14-2015"), //Short format
-      new Date(1439676000000) //UNIX format
-    ];
-
 
   }
 );
