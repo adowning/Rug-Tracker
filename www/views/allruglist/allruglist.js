@@ -33,43 +33,44 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         });
     };
 
-  $scope.sortList = function (value) {
+    $scope.sortList = function (value) {
 //console.log('v ' + value);
 
-    switch(value) {
-      case 'By Due Date':
-        $scope.rugList.sort(function(a, b){
-          if(!isFinite(a.dueIn - b.dueIn))
-            return !isFinite(a.dueIn) ? 1 : -1;
-          else
-            return a.dueIn - b.dueIn;
-        });
-        //console.table( $scope.rugList);
-        break;
-      case n:
-        //code block
-        break;
-      default:
+      switch (value) {
+        case 'By Due Date':
+          $scope.rugList.sort(function (a, b) {
+            if (!isFinite(a.dueIn - b.dueIn))
+              return !isFinite(a.dueIn) ? 1 : -1;
+            else
+              return a.dueIn - b.dueIn;
+          });
+          //console.table( $scope.rugList);
+          break;
+        case n:
+          //code block
+          break;
+        default:
 
-    }
+      }
 
-    $scope.rugList.sort(function(a, b){
-      if(!isFinite(a.dueIn - b.dueIn))
-        return !isFinite(a.dueIn) ? 1 : -1;
-      else
-        return a.dueIn - b.dueIn;
-    });
-    //console.table( $scope.rugList);
+      $scope.rugList.sort(function (a, b) {
+        if (!isFinite(a.dueIn - b.dueIn))
+          return !isFinite(a.dueIn) ? 1 : -1;
+        else
+          return a.dueIn - b.dueIn;
+      });
+      //console.table( $scope.rugList);
 
-    //function sortNumber(a,b)
-    //{
-    //  return a.dueIn - b.dueIn;
-    //}
-    //
-    //$scope.rugList = $scope.rugList.sort(sortNumber);
-    //console.table( $scope.rugList);
+      //function sortNumber(a,b)
+      //{
+      //  return a.dueIn - b.dueIn;
+      //}
+      //
+      //$scope.rugList = $scope.rugList.sort(sortNumber);
+      //console.table( $scope.rugList);
 
-  };;
+    };
+    ;
     var rugList = function () {
       console.log('refreshing job list');
       Utils.show();

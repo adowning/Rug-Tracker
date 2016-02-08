@@ -4,18 +4,18 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
                                                              $firebaseObject, Auth, Utils, $cordovaCamera) {
 
     //TODO get phone number from SM
-    var FURL = $rootScope.FURL;
-    console.log(FURL);
-    var Camera = navigator.camera;
-    if (!FURL) {
-      if (location.host.toString().indexOf('localhost') > -1) {
-        console.log('Setting local database');
-        FURL = 'https://cfbuilder.firebaseio.com/';
-      } else {
-        console.log('Setting remote database');
+  var FURL = $rootScope.FURL;
+  console.log(FURL);
+  var Camera = navigator.camera;
+  if (!FURL) {
+    if (location.host.toString().indexOf('localhost') > -1) {
+      console.log('Setting local database');
+      FURL = 'https://cfbuilder.firebaseio.com/';
+    } else {
+      console.log('Setting remote database');
 
-        FURL = 'https://cctools.firebaseio.com/';
-      }
+      FURL = 'https://cctools.firebaseio.com/';
+    }
     }
 
     $scope.logOut = function () {
@@ -111,37 +111,37 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
       });
     };
 
-    //$ionicHistory.clearHistory();
+  //$ionicHistory.clearHistory();
 
-    $scope.images = [];
+  $scope.images = [];
 
-    var ref = new Firebase(FURL);
+  var ref = new Firebase(FURL);
 
-    var userReference = ref.child("images");
-    var syncArray = $firebaseArray(userReference.child("images"));
-    $scope.images = syncArray;
+  var userReference = ref.child("images");
+  var syncArray = $firebaseArray(userReference.child("images"));
+  $scope.images = syncArray;
 
 
-    $scope.upload = function () {
-      var options = {
-        quality: 75,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        popoverOptions: CameraPopoverOptions,
-        targetWidth: 500,
-        targetHeight: 500,
-        saveToPhotoAlbum: false
-      };
-      $cordovaCamera.getPicture(options).then(function (imageData) {
-        syncArray.$add({image: imageData}).then(function () {
-          alert("Image has been uploaded");
-        });
-      }, function (error) {
-        console.error(error);
+  $scope.upload = function () {
+    var options = {
+      quality: 75,
+      destinationType: Camera.DestinationType.DATA_URL,
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      popoverOptions: CameraPopoverOptions,
+      targetWidth: 500,
+      targetHeight: 500,
+      saveToPhotoAlbum: false
+    };
+    $cordovaCamera.getPicture(options).then(function (imageData) {
+      syncArray.$add({image: imageData}).then(function () {
+        alert("Image has been uploaded");
       });
-    }
+    }, function (error) {
+      console.error(error);
+      });
+  }
 
 
   }

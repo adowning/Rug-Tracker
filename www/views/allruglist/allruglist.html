@@ -1,8 +1,9 @@
 <ion-view view-title="Rug List" hide-back-button="true">
   <ion-nav-buttons side="primary">
     <!--<a class="button button-outline icon-right ion-navicon button-balanced">Reorder</a>-->
-    <select class="button button-outline icon-right ion-navicon button-balanced"  ng-model="sortType" ng-change="sortList(sortType)" >
-      <option selected >By Due Date</option>
+    <select class="button button-outline icon-right ion-navicon button-balanced" ng-model="sortType"
+            ng-change="sortList(sortType)">
+      <option selected>By Due Date</option>
       <option>Customer</option>
       <option>Urine</option>
     </select>
@@ -14,7 +15,7 @@
       on-refresh="doRefresh()">
     </ion-refresher>
 
-    <ion-list  show-reorder="shouldShowReorder">
+    <ion-list show-reorder="shouldShowReorder">
 
       <a ng-repeat="item in rugList"
          class="item item-icon-left item-icon-right"
@@ -27,6 +28,10 @@
         <h2 ng-if="item.dueIn <= 15 && item.dueIn >= 10 && item.status != 'PassedInspection' " style="color:orange"><b>Due
           in {{item.dueIn}} days.</b></h2>
         <h2 ng-if="item.dueIn > 15 && item.status != 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
+          days.</b></h2>
+           <h2 ng-if="item.dueIn < 4 && item.status = 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+          days.</b></h2>
+           <h2 ng-if="item.dueIn => 4 && item.status = 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
         {{item.dueIn}}
         <p>{{item.description}}</p>

@@ -13302,7 +13302,8 @@
     Firebase.Context = fb.core.RepoManager;
     Firebase.TEST_ACCESS = fb.api.TEST_ACCESS;
 
-  };;
+  };
+  ;
   ns.wrapper(ns.goog, ns.fb);
 }({goog: {}, fb: {}}));
 Firebase.SDK_VERSION = '2.2.7';

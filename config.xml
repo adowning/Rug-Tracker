@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.ionicframework.cfbuilder125314" version="0.0.2" xmlns="http://www.w3.org/ns/widgets">
+<widget xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.ionicframework.cfbuilder125314" version="0.0.2"
+        xmlns="http://www.w3.org/ns/widgets">
   <name>Rug Tracker</name>
   <description>
         Tracking Rugs for Cleaning Companies.
@@ -20,8 +21,8 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
   <feature name="Camera">
-    <param name="ios-package" value="CDVCamera" />
-    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    <param name="ios-package" value="CDVCamera"/>
+    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
   </feature>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>

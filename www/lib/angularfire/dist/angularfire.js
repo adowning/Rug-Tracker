@@ -1526,7 +1526,7 @@
               rec.$$scopeUpdated(scopeData)
                 ['finally'](function () {
                   sending = false;
-                  if (!scopeData.hasOwnProperty('$value')) {
+                if (!scopeData.hasOwnProperty('$value')) {
                     delete rec.$value;
                     delete parsed(scope).$value;
                   }

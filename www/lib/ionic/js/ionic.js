@@ -248,7 +248,8 @@
           do {
             curtop += el.offsetTop;
             el = el.offsetParent;
-          } while (el);;
+          } while (el);
+          ;
           return curtop;
         }
       },
