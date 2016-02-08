@@ -29,9 +29,9 @@
           in {{item.dueIn}} days.</b></h2>
         <h2 ng-if="item.dueIn > 15 && item.status != 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
-           <h2 ng-if="item.dueIn < 4 && item.status = 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+           <h2 ng-if="item.dueIn < 4 && item.status == 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
-           <h2 ng-if="item.dueIn => 4 && item.status = 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
+           <h2 ng-if="item.dueIn => 4 && item.status == 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
         {{item.dueIn}}
         <p>{{item.description}}</p>
