@@ -1,4 +1,3 @@
-
 $ViewProvider.$inject = [];
 function $ViewProvider() {
 
@@ -14,7 +13,7 @@ function $ViewProvider() {
    *
    */
   $get.$inject = ['$rootScope', '$templateFactory'];
-  function $get(   $rootScope,   $templateFactory) {
+  function $get($rootScope, $templateFactory) {
     return {
       // $view.load('full.viewName', { template: ..., controller: ..., resolve: ..., async: false, params: ... })
       /**
@@ -37,29 +36,29 @@ function $ViewProvider() {
           result = $templateFactory.fromConfig(options.view, options.params, options.locals);
         }
         if (result && options.notify) {
-        /**
-         * @ngdoc event
-         * @name ui.router.state.$state#$viewContentLoading
-         * @eventOf ui.router.state.$view
-         * @eventType broadcast on root scope
-         * @description
-         *
-         * Fired once the view **begins loading**, *before* the DOM is rendered.
-         *
-         * @param {Object} event Event object.
-         * @param {Object} viewConfig The view config properties (template, controller, etc).
-         *
-         * @example
-         *
-         * <pre>
-         * $scope.$on('$viewContentLoading',
-         * function(event, viewConfig){
+          /**
+           * @ngdoc event
+           * @name ui.router.state.$state#$viewContentLoading
+           * @eventOf ui.router.state.$view
+           * @eventType broadcast on root scope
+           * @description
+           *
+           * Fired once the view **begins loading**, *before* the DOM is rendered.
+           *
+           * @param {Object} event Event object.
+           * @param {Object} viewConfig The view config properties (template, controller, etc).
+           *
+           * @example
+           *
+           * <pre>
+           * $scope.$on('$viewContentLoading',
+           * function(event, viewConfig){
          *     // Access to all the view config properties.
          *     // and one special property 'targetView'
          *     // viewConfig.targetView
          * });
-         * </pre>
-         */
+           * </pre>
+           */
           $rootScope.$broadcast('$viewContentLoading', options);
         }
         return result;

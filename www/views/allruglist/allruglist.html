@@ -1,0 +1,44 @@
+<ion-view view-title="Rug List" hide-back-button="true">
+  <ion-nav-buttons side="primary">
+    <!--<a class="button button-outline icon-right ion-navicon button-balanced">Reorder</a>-->
+    <select class="button button-outline icon-right ion-navicon button-balanced"  ng-model="sortType" ng-change="sortList(sortType)" >
+      <option selected >By Due Date</option>
+      <option>Customer</option>
+      <option>Urine</option>
+    </select>
+  </ion-nav-buttons>
+  <ion-content class="padding-top">
+
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <ion-list  show-reorder="shouldShowReorder">
+
+      <a ng-repeat="item in rugList"
+         class="item item-icon-left item-icon-right"
+         href="#/rugedit/?id={{item.key}}&jobID={{item.orderNumber}}&customer={{customer}}">
+        <i class="icon ion-image"></i>
+        <h2>{{item.customer}}</h2>
+        <h2>{{item.status}}</h2>
+        <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+          days.</b></h2>
+        <h2 ng-if="item.dueIn <= 15 && item.dueIn >= 10 && item.status != 'PassedInspection' " style="color:orange"><b>Due
+          in {{item.dueIn}} days.</b></h2>
+        <h2 ng-if="item.dueIn > 15 && item.status != 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
+          days.</b></h2>
+        {{item.dueIn}}
+        <p>{{item.description}}</p>
+        <p>{{item.preDamage}}</p>
+        <p ng-if="item.urine == 'true'"><b>has urine</b> {{item.length}}x{{item.width}} In: {{item.createdOn}}</p>
+        <p ng-if="item.urine == 'false'"><b>no urine</b> {{item.length}}x{{item.width}} In : {{item.createdOn}}</p>
+      </a>
+
+    </ion-list>
+    <a href="#/homne" class="button button-full button-positive">
+      Job List
+    </a>
+    <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
+  </ion-content>
+</ion-view>

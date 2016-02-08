@@ -1,18 +1,18 @@
 'Use Strict';
 angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
-  var FURL = $rootScope.FURL;
-  console.log(FURL);
+    var FURL = $rootScope.FURL;
+    console.log(FURL);
 
-  if (!FURL) {
-    if (location.host.toString().indexOf('localhost') > -1) {
-      console.log('Setting local database');
-      FURL = 'https://cfbuilder.firebaseio.com/';
-    } else {
-      console.log('Setting remote database');
+    if (!FURL) {
+      if (location.host.toString().indexOf('localhost') > -1) {
+        console.log('Setting local database');
+        FURL = 'https://cfbuilder.firebaseio.com/';
+      } else {
+        console.log('Setting remote database');
 
-      FURL = 'https://cctools.firebaseio.com/';
+        FURL = 'https://cctools.firebaseio.com/';
+      }
     }
-  }
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
@@ -251,7 +251,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     };
 
 
-  $scope.showDiscussionsChange = function () {
+    $scope.showDiscussionsChange = function () {
       $scope.showDiscussions ^= true;
     };
     $scope.logOut = function () {

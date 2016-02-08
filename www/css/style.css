@@ -12,9 +12,8 @@
 }
 
 .larger {
-    font-size: 120px;
+  font-size: 120px;
 }
-
 
 /** Error Messages **/
 
@@ -38,6 +37,7 @@ label.item.valid-lr {
 .form-errors {
   margin: 5px 0
 }
+
 .form-error {
   padding: 2px 0 2px 16px;
   color: red;

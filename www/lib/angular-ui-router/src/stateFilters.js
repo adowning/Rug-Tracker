@@ -31,7 +31,7 @@ function $IncludedByStateFilter($state) {
     return $state.includes(state);
   };
   includesFilter.$stateful = true;
-  return  includesFilter;
+  return includesFilter;
 }
 
 angular.module('ui.router.state')

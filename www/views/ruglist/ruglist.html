@@ -4,6 +4,9 @@
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
+    <a href="#/allruglist" class="button button-full button-positive">
+      All Rugs
+    </a>
     <ion-list>
       <!--TODO will ahve to be changed to thumbnail-left when we get pics -->
       <a ng-repeat="item in rugList"
@@ -24,11 +27,6 @@
         <p>{{item.preDamage}}</p>
         <p ng-if="item.urine == 'true'"><b>has urine</b> {{item.length}}x{{item.width}} In: {{item.createdOn}}</p>
         <p ng-if="item.urine == 'false'"><b>no urine</b> {{item.length}}x{{item.width}} In : {{item.createdOn}}</p>
-        <!--<p>Started: {{item.createdOn}} </p>-->
-
-        <!--<span class="badge badge-assertive">0</span>-->
-        <!--<i class="icon icon-right ion-ios-telephone-outline"></i>-->
-
       </a>
 
     </ion-list>

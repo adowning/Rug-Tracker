@@ -4,6 +4,9 @@
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
+    <a href="#/allruglist" class="button button-full button-positive">
+      All Rugs
+    </a>
     <form novalidate name="addJobForm" ng-submit="addJobForm.$valid && addJob(job)">
       <div class="list">
         <label class="item item-input item-floating-label"
@@ -25,8 +28,9 @@
         <p class="text-center padding-top">
       </div>
     </form>
+
     <ion-list>
-      <!--<ion-item ng-repeat="job in jobList">-->
+      <!--<ion-item ng-repeat="job in rugList">-->
       <ion-item ng-repeat="item in jobList"
                 class="item-thumbnail-left" href="#/ruglist/?id={{item.orderNumber}}&customer={{item.accountName}}">
         <h2>{{item.accountName}}</h2>
@@ -54,6 +58,8 @@
       <!--</ion-item>-->
     </ion-list>
     <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
+
+    <button class="button button-icon icon ion-camera" ng-click="upload()"></button>
 
     <div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">
       <div class="col col-25" ng-if="$index < images.length">
