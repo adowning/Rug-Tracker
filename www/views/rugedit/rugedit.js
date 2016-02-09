@@ -13,7 +13,8 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       FURL = 'https://cctools.firebaseio.com/';
     }
   }
-    $scope.isNewRug = false;
+
+  $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
     $scope.discussion = "";

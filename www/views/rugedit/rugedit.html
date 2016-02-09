@@ -34,6 +34,7 @@
             <!-- <span class="input-label">Status</span> -->
             <select name="singleSelect" ng-model="rug.status">
               <option value="NotStarted">NotStarted</option>
+              <option value="NotStarted">Started</option>
               <option value="Cleaned">Cleaned</option>
               <option value="FailedInspection">FailedInspection</option>
               <option value="PassedInspection">PassedInspection</option>
@@ -41,7 +42,11 @@
             </select>
           </label>
         </div>
-
+        <div ng-if="rug.status == 'PassedInspection'">
+          <span class="input-label">Initials</span>
+          <input name="initials" type="text" ng-model="rug.initials" placeholder=""
+          >
+        </div>
         <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
           <span class="input-label">Description</span>
