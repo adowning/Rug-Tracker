@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="added all rug list">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" afterPath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rugedit.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rugedit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
               <folding />
             </state>
@@ -80,14 +79,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58816963">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="99" column="38" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
               <folding>
                 <element signature="e#782#1212#0" expanded="false" />
-                <element signature="e#5154#5801#0" expanded="false" />
+                <element signature="e#5147#5794#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -537,7 +536,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455053028802</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added all rug list">
+      <created>1455053221755</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1455053221755</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -658,8 +663,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#782#1212#0" expanded="false" />
-            <element signature="e#2698#4567#0" expanded="false" />
-            <element signature="e#5154#5801#0" expanded="false" />
+            <element signature="e#2691#4560#0" expanded="false" />
+            <element signature="e#5147#5794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -718,8 +723,8 @@
           <caret line="94" column="41" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
           <folding>
             <element signature="e#782#1212#0" expanded="false" />
-            <element signature="e#2698#4567#0" expanded="false" />
-            <element signature="e#5154#5801#0" expanded="false" />
+            <element signature="e#2691#4560#0" expanded="false" />
+            <element signature="e#5147#5794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -770,8 +775,8 @@
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
           <folding>
             <element signature="e#782#1212#0" expanded="false" />
-            <element signature="e#2698#4567#0" expanded="false" />
-            <element signature="e#5154#5801#0" expanded="false" />
+            <element signature="e#2691#4560#0" expanded="false" />
+            <element signature="e#5147#5794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -835,8 +840,8 @@
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
           <folding>
             <element signature="e#782#1212#0" expanded="false" />
-            <element signature="e#2698#4567#0" expanded="false" />
-            <element signature="e#5154#5801#0" expanded="false" />
+            <element signature="e#2691#4560#0" expanded="false" />
+            <element signature="e#5147#5794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1018,22 +1023,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="38" selection-start-line="99" selection-start-column="38" selection-end-line="99" selection-end-column="38" />
+          <folding>
+            <element signature="e#782#1212#0" expanded="false" />
+            <element signature="e#5147#5794#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58816963">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
-          <folding>
-            <element signature="e#782#1212#0" expanded="false" />
-            <element signature="e#5154#5801#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
