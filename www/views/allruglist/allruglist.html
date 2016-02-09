@@ -3,7 +3,7 @@
     <!--<a class="button button-outline icon-right ion-navicon button-balanced">Reorder</a>-->
     <select class="button button-outline icon-right ion-navicon button-balanced" ng-model="sortType"
             ng-change="sortList(sortType)">
-      <option selected>By Due Date x</option>
+      <option selected>By Due Date</option>
       <option>Customer</option>
       <option>Urine</option>
     </select>
@@ -24,24 +24,24 @@
         <h2>{{item.customer}}</h2>
         <h2>{{item.status}}</h2>
 
-        // passed inspection but no deliver set in next 3 days so set to red
+        <!--// passed inspection but no deliver set in next 3 days so set to red-->
           <h2 ng-if="item.dueIn < 4 && item.status == 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
 
-        // between 3 and 15 day but has passed so set to green
+        <!--// between 3 and 15 day but has passed so set to green-->
         <h2 ng-if="item.dueIn > 3 && item.dueIn < 15 && item.status == 'PassedInspection' " style="color:green"><b>Due
           in {{item.dueIn}}
           days.</b></h2>
 
-        // not passed and 9 days until due date
+        <!--// not passed and 9 days until due date-->
         <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
 
-        // due in between 10 and 15 days and not passed
+        <!--// due in between 10 and 15 days and not passed-->
         <h2 ng-if="item.dueIn <= 15 && item.dueIn >= 10 && item.status != 'PassedInspection' " style="color:orange"><b>Due
           in {{item.dueIn}} days.</b></h2>
 
-        // rug not due for over 15 days
+        <!--// rug not due for over 15 days-->
         <h2 ng-if="item.dueIn > 15" style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
 
