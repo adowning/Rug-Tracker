@@ -25,7 +25,7 @@
         <h2>{{item.status}}</h2>
           <h2 ng-if="item.dueIn < 4 && item.status == 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
-           <h2 ng-if="item.dueIn => 4 && item.status == 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
+           <h2 ng-if="item.dueIn > 3 && item.status == 'PassedInspection' " style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
         <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
@@ -33,7 +33,7 @@
           in {{item.dueIn}} days.</b></h2>
         <h2 ng-if="item.dueIn > 15" style="color:green"><b>Due in {{item.dueIn}}
           days.</b></h2>
-         
+
         {{item.dueIn}}
         <p>{{item.description}}</p>
         <p>{{item.preDamage}}</p>
