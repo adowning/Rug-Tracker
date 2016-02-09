@@ -47,6 +47,15 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var date = new Date();
       audit.time = date.toString();
       audit.rugKey = rug.key;
+
+      try {
+        audit.intials = rug.initials;
+      }
+      catch (err) {
+        console.log('no iontials ');
+
+      }
+
       audit.status = rug.status;
       audit.description = rug.description;
       audit.preDamage = rug.preDamage;
