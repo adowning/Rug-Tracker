@@ -44,21 +44,64 @@ angular.module('App').controller('allRugListController', function ($scope, $root
             else
               return a.dueIn - b.dueIn;
           });
-          //console.table( $scope.rugList);
           break;
-        case n:
-          //code block
+        case 'Status':
+          //$scope.rugList.sort(function (a, b) {
+          //  if (!isFinite(a.urine - b.urine))
+          //    return !isFinite(a.urine) ? 1 : -1;
+          //  else
+          //    return a.urine - b.urine;
+          //});
+          //sort($scope.rugList, 'status');
+          //function sort(arr) {
+          //  arr.sort(function(a, b) {
+          //    console.table(a)
+          //    var nameA=a.status.toLowerCase(), nameB=b.status.toLowerCase();
+          //    if (nameA < nameB) //sort string ascending
+          //      return -1;
+          //    if (nameA > nameB)
+          //      return 1;
+          //    return 0; //default return value (no sorting)
+          //  });
+          //}
+        function keysrt(key) {
+          return function (a, b) {
+            if (a[key] > b[key]) return 1;
+            if (a[key] < b[key]) return -1;
+            return 0;
+          }
+        }
+
+          $scope.rugList.sort(keysrt('status'));
+          break;
+        case 'Urine':
+
+        function keysrt(key) {
+          return function (a, b) {
+            if (a[key] > b[key]) return 1;
+            if (a[key] < b[key]) return -1;
+            return 0;
+          }
+        }
+
+          $scope.rugList.sort(keysrt('urine'));
+          break;
+        case 'Customer':
+          console.log('cust ');
+        function keysrt(key) {
+          return function (a, b) {
+            if (a[key] > b[key]) return 1;
+            if (a[key] < b[key]) return -1;
+            return 0;
+          }
+        }
+
+          $scope.rugList.sort(keysrt('customer'));
           break;
         default:
 
       }
 
-      $scope.rugList.sort(function (a, b) {
-        if (!isFinite(a.dueIn - b.dueIn))
-          return !isFinite(a.dueIn) ? 1 : -1;
-        else
-          return a.dueIn - b.dueIn;
-      });
       //console.table( $scope.rugList);
 
       //function sortNumber(a,b)
