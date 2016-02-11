@@ -74,16 +74,17 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
           $scope.rugList.sort(keysrt('status'));
           break;
+        //TODO fix urine to urine first
         case 'Urine':
 
         function keysrt(key) {
           return function (a, b) {
-            if (a[key] > b[key]) return 1;
-            if (a[key] < b[key]) return -1;
+            if (a[key] < b[key]) return 1;
+            if (a[key] > b[key]) return -1;
             return 0;
           }
         }
-
+          console.log('urine ');
           $scope.rugList.sort(keysrt('urine'));
           break;
         case 'Customer':
