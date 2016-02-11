@@ -4,7 +4,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
                                                                 $ionicPopup, $firebaseObject, $window, Auth, Utils) {
   var FURL = $rootScope.FURL;
   console.log(FURL);
-
+  $scope.notAllPassed = false;
   if (!FURL) {
     if (location.host.toString().indexOf('localhost') > -1) {
       console.log('Setting local database');
@@ -15,6 +15,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       FURL = 'https://cctools.firebaseio.com/';
     }
   }
+  $scope.deliveryObject = {};
   $scope.rugCount = 0;
   $scope.jobID = $stateParams.id;
   $scope.customer = $stateParams.customer;
@@ -75,15 +76,30 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           //truncating start date
           var sd = childData.createdOn.substring(0, 16);
           childData.createdOn = sd;
+          checkIfPassed(childData);
           $scope.rugList.push(childData);
           $scope.rugCount++;
         }
       });
       Utils.hide();
+      console.log('allpassed '+$scope.notAllPassed);
     });
 
   };
+  var checkIfPassed = function (rug) {
+    console.log('rs  '+rug.status);
+    if(rug.status !== 'PassedInspection'){
+      $scope.notAllPassed = true;
+
+    }
+  }
   rugList();
+
+  $scope.showDeliveryForm = false;
+  $scope.showDeliveryFormChange = function () {
+    console.log('asdfg ');
+    $scope.showDeliveryForm ^= true;
+  };
 
   $scope.contactList = [];
   var ref = new Firebase(FURL + 'contactEvents');
@@ -127,6 +143,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       });
       Utils.hide();
       $window.location.reload();
+
     });
   };
 
@@ -157,4 +174,35 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       });
     });
   }
+
+  //TODO remove me not really needed just use complete function
+  $scope.setDeliveryDate = function (deliveryObject){
+    console.log('deliveryObject '+deliveryObject.deliveryDate);
+    $scope.completeJob(deliveryObject);
+  }
+  $scope.completeJob = function (deliveryObject) {
+    Utils.show();
+    var newChildRef = new Firebase(FURL + 'jobs/');
+    newChildRef.once("value", function (snapshot) {
+      snapshot.forEach(function (childSnapshot) {
+        var key = childSnapshot.key();
+        var childData = childSnapshot.val();
+        if ($stateParams.id == childData.orderNumber) {
+          console.log('deleting job ' + FURL + 'jobs/' + key);
+          var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+          newChildRef2.update({
+            "completed": true,
+            "deliveryDate": deliveryObject.deliveryDate,
+            "deliveryNotes": deliveryObject.deliveryNotes
+          });
+        }
+      });
+      Utils.hide();
+      $timeout(function () {
+        $location.path("/home");
+        console.log($location.path());
+      });
+    });
+  }
+
 });

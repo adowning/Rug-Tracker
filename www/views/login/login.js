@@ -2,6 +2,7 @@
 angular.module('App').controller('loginController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location,
                                                               $http, $ionicPopup, $firebaseObject, Auth, Utils) {
   var FURL = $rootScope.FURL;
+  console.log('a ');
   if (!FURL) {
     if (location.host.toString().indexOf('localhost') > -1) {
       console.log('Setting local database');
@@ -12,6 +13,7 @@ angular.module('App').controller('loginController', function ($scope, $rootScope
       var FURL = 'https://cctools.firebaseio.com/';
     }
   }
+  console.log('b ');
   var ref = new Firebase(FURL);
 
   var userkey = "";

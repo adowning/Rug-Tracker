@@ -43,8 +43,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         snapshot.forEach(function (childSnapshot) {
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
-          if (!childData.deleted) {
-            //childData.customer = $scope.customer;
+          if (!childData.deleted && !childData.completed) {
             $scope.jobList.push(childData);
             Utils.hide();
           }

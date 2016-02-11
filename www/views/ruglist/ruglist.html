@@ -4,9 +4,9 @@
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
-    <a href="#/allruglist" class="button button-full button-positive">
-      All Rugs
-    </a>
+    <!--<a href="#/allruglist" class="button button-full button-positive">-->
+      <!--All Rugs-->
+    <!--</a>-->
     <ion-list>
       <!--TODO will ahve to be changed to thumbnail-left when we get pics -->
       <a ng-repeat="item in rugList"
@@ -57,6 +57,39 @@
     </div>
     <div ng-if="rugCount < 1">
       <input ng-click="deleteJob(job)" class="button button-block button-positive" value="Remove Job">
+    </div>
+    <div ng-if="!notAllPassed">
+      <input ng-click="showDeliveryFormChange()" class="button button-block button-positive" value="Set Delivery">
+    </div>
+    <div ng-if="showDeliveryForm">
+        <form novalidate name="setDeliveryDateForm" ng-submit="setDeliveryDateForm.$valid && setDeliveryDate(deliveryObject)">
+          <div class="list">
+
+            <label class="item-stacked-label">
+              <span class="input-label">Delivery Date</span>
+              <input name="deliveryDate" type="date" ng-model="deliveryObject.deliveryDate" ng-value="deliveryObject.deliveryDate">
+            </label>
+            <div class="form-errors" ng-messages="setDeliveryDateForm.dueDate.$error"
+                 ng-if="setDeliveryDateForm.$submitted">
+              <div class="form-error" ng-message="required">This field is required.</div>
+            </div>
+
+            <span class="input-label">Delivery Notes</span>
+            <label class="item item-input item-floating-label"
+                   ng-class="{ 'has-error-lr' : setDeliveryDateForm.contact.$invalid && setDeliveryDateForm.$submitted }">
+              <input name="deliveryNotes" type="text" ng-model="deliveryObject.deliveryNotes" placeholder="Delivery Notes"
+                     value="Delivery Notes"
+              >
+            </label>
+
+
+          </div>
+          <div class="padding-top">
+
+            <input type="submit" class="button button-block button-positive" value="Set Date & Close out Job">
+          </div>
+
+      </form>
     </div>
     <a href="#/home" class="button button-full button-positive">
       Back

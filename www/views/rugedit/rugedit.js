@@ -47,15 +47,18 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var date = new Date();
       audit.time = date.toString();
       audit.rugKey = rug.key;
-
+      if(!rug.initials){
+        rug.initials = 'none';
+      }
       try {
         audit.intials = rug.initials;
+        console.log('set equals '+ audit.initials);
       }
       catch (err) {
         console.log('no iontials ');
-
+        audit.intials = 'none';
       }
-
+      console.log('inti '+audit.initials);
       audit.status = rug.status;
       audit.description = rug.description;
       audit.preDamage = rug.preDamage;
@@ -66,6 +69,8 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       } catch (err) {
         audit.preDamage = 'none';
       }
+
+
 
       try {
         audit.photosTaken = rug.photosTaken;
@@ -115,6 +120,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           rug.length = w;
           rug.width = l;
         }
+        console.log('spji '+$stateParams.jobID);
         rug.orderNumber = $stateParams.jobID;
         var ref = new Firebase(FURL + 'rugs');
         var newChildRef = ref.push();
@@ -147,8 +153,9 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         $timeout(function () {
           console.log('new rug added tranfering now ');
           Utils.hide();
-          $window.location.assign('/#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
-
+          //TODO fix me adn dont send to home
+          $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+          //$window.location.assign('/home');
           console.log($location.path());
         });
 
@@ -181,7 +188,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           Utils.hide();
           //$location.path('/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
           //$window.location.assign('/#/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
-          $window.location.assign('/#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+          $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
 
 
           console.log($location.path());
