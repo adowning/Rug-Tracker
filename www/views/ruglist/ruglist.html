@@ -30,7 +30,9 @@
       </a>
 
     </ion-list>
-
+    <a href="#/rugedit/?id=newrug&jobID={{jobID}}&customer={{customer}}" class="button button-full button-positive">
+      Add Rug
+    </a>
     <input ng-click="showDiscussionsChange()" class="button button-block button-positive" value="Discussions">
 
     <div ng-if="showDiscussions">
@@ -56,10 +58,10 @@
     <div ng-if="rugCount < 1">
       <input ng-click="deleteJob(job)" class="button button-block button-positive" value="Remove Job">
     </div>
-    <div ng-if="!notAllPassed">
+    <div ng-if="!notAllPassed && rugCount > 0">
       <input ng-click="showDeliveryFormChange()" class="button button-block button-positive" value="Set Delivery">
     </div>
-    <div ng-if="showDeliveryForm">
+    <div ng-if="showDeliveryForm ">
         <form novalidate name="setDeliveryDateForm" ng-submit="setDeliveryDateForm.$valid && setDeliveryDate(deliveryObject)">
           <div class="list">
 

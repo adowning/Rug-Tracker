@@ -182,27 +182,113 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
   }
   $scope.completeJob = function (deliveryObject) {
     Utils.show();
-    var newChildRef = new Firebase(FURL + 'jobs/');
-    newChildRef.once("value", function (snapshot) {
-      snapshot.forEach(function (childSnapshot) {
-        var key = childSnapshot.key();
-        var childData = childSnapshot.val();
-        if ($stateParams.id == childData.orderNumber) {
-          console.log('deleting job ' + FURL + 'jobs/' + key);
-          var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
-          newChildRef2.update({
-            "completed": true,
-            "deliveryDate": deliveryObject.deliveryDate,
-            "deliveryNotes": deliveryObject.deliveryNotes
-          });
-        }
-      });
+    // Thu Feb 18 2016 00:00:00 GMT-0600 (CST)
+      console.log(deliveryObject.deliveryDate)
+    var date = new Date(deliveryObject.deliveryDate)
+    console.log(date)
+
+    $scope.devliveryNotes = deliveryObject.deliveryNotes;
+    $scope.deliveryDate = deliveryObject.deliveryDate;
+    if(!deliveryObject.deliveryDate){
+      alert('need a date')
       Utils.hide();
-      $timeout(function () {
-        $location.path("/home");
-        console.log($location.path());
-      });
+      return;
+    }
+    if(!deliveryObject.deliveryNotes){
+      console.log('here')
+      $scope.deliveryNotes = "none";
+    }
+    var day = date.getDate();
+    var monthIndex = date.getMonth() + 1;
+    console.log(monthIndex)
+    var year = date.getFullYear();
+
+    console.log(day+'-'+monthIndex+'-'+year);
+    var dateString = day+'-'+monthIndex+'-'+year;
+    var endDateString = (day+1)+'-'+monthIndex+'-'+year;
+    var dateString2 = monthIndex+'-'+day + '-'+year;
+    var endDateString2 = monthIndex+'-'+ (day+1)+'-'+year;
+    console.log(dateString)
+    console.log(endDateString)
+    $.ajax({
+      type: "GET",
+      url: "https://api.servicemonster.net/v1/scheduleItems?startDate="+dateString2+"&endDate="+endDateString2,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      error: function (error) {
+        console.log(error)
+      },
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
+      },
+      complete: function (json) {
+
+
+      },
+      success: function (json) {
+        var nameArray = [];
+        for(var i = 0; i < json.length; i++){
+           console.log(json[i].item.name)
+          nameArray.push(json[i].item.accountName)
+        }
+        var newChildRef = new Firebase(FURL + 'jobs/');
+        newChildRef.once("value", function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            var key = childSnapshot.key();
+            var childData = childSnapshot.val();
+
+              if ($stateParams.id == childData.orderNumber ) {
+                console.log(childData.accountName)
+                console.log(nameArray.indexOf(childData.accountName) > -1)
+
+                if (nameArray.indexOf(childData.accountName) > -1) {
+                  console.log('BAHMNMAMDFMASDF ' + $scope.deliveryNotes)
+                  console.log('removing job ' + FURL + 'jobs/' + key);
+                  var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+                  // newChildRef2.deliveryDate = "none";
+                  // newChildRef2.deliveryNotes = "none";
+                  newChildRef2.update({
+                    "completed": true,
+                    "deliveryDate": $scope.deliveryDate,
+                    "deliveryNotes": $scope.deliveryNotes
+                  });
+                }
+              }
+
+          });
+          Utils.hide();
+          $timeout(function () {
+            $location.path("/home");
+            console.log($location.path());
+          });
+        });
+        // console.table(json[0].item)
+
+      }
     });
+
+
+    // var newChildRef = new Firebase(FURL + 'jobs/');
+    // newChildRef.once("value", function (snapshot) {
+    //   snapshot.forEach(function (childSnapshot) {
+    //     var key = childSnapshot.key();
+    //     var childData = childSnapshot.val();
+    //     if ($stateParams.id == childData.orderNumber) {
+    //       console.log('deleting job ' + FURL + 'jobs/' + key);
+    //       var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+    //       newChildRef2.update({
+    //         "completed": true,
+    //         "deliveryDate": deliveryObject.deliveryDate,
+    //         "deliveryNotes": deliveryObject.deliveryNotes
+    //       });
+    //     }
+    //   });
+    //   Utils.hide();
+    //   $timeout(function () {
+    //     $location.path("/home");
+    //     console.log($location.path());
+    //   });
+    // });
   }
 
 });

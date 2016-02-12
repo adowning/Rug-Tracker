@@ -53,7 +53,68 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
     };
     jobList();
     var found = false;
+    $scope.addPhone = function (job){
+      $.ajax({
+        type: "GET",
+        url: "https://api.servicemonster.net/v1/accounts?q=" + job.accountID,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        error: function (error) {
+          console.log(error)
+        },
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
+        },
+        complete: function (json) {
+            // var ref = new Firebase(FURL + 'jobs');
+            // var newChildRef = ref.push();
+            // var time = new Date().getTime();
+            //
+            // $scope.newJob.dateCreated = time;
+            // newChildRef.set($scope.newJob);
+            // console.log('adding 2 ' + time);
+            //get phone number
+            // $scope.addPhone($scope.newJob)
 
+          Utils.hide();
+          $timeout(function () {
+            //$location.path('/home');
+            console.log($location.path());
+            //$window.location.reload();
+          });
+        },
+        success: function (json) {
+          console.log(json.items[0]);
+          var phone = json.items[0].phone1;
+          var ref = new Firebase(FURL + 'jobs');
+          var newChildRef = ref.push();
+          var time = new Date().getTime();
+          $scope.newJob.phone = phone;
+          console.log(phone)
+          $scope.newJob.dateCreated = time;
+          newChildRef.set($scope.newJob);
+          // var ref = new Firebase(FURL + 'jobs');
+          // ref.once("value", function (snapshot) {
+          //   snapshot.forEach(function (childSnapshot) {
+          //     var key = childSnapshot.key();
+          //     var childData = childSnapshot.val();
+          //     if (json.items[0].orderNumber == childData.orderNumber) {
+          //       console.log(found);
+          //       if (childData.deleted) {
+          //         console.log('deleted fool');
+          //         return;
+          //       }
+          //       found = true;
+          //     }
+          //   });
+          // });
+          // if (!found) {
+          //   $scope.newJob = json.items[0];
+          //   console.log('adding 1')
+          // }
+        }
+      });
+    }
     $scope.addJob = function (job) {
       Utils.show();
       $.ajax({
@@ -69,14 +130,16 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         },
         complete: function (json) {
           if (!found) {
-            var ref = new Firebase(FURL + 'jobs');
-            var newChildRef = ref.push();
-            var time = new Date().getTime();
+            // var ref = new Firebase(FURL + 'jobs');
+            // var newChildRef = ref.push();
+            // var time = new Date().getTime();
 
-            $scope.newJob.dateCreated = time;
+            // $scope.newJob.dateCreated = time;
+            //newChildRef.set($scope.newJob);
+            // console.log('adding 2 ' + time);
+            //get phone number
+            $scope.addPhone($scope.newJob)
 
-            newChildRef.set($scope.newJob);
-            console.log('adding 2 ' + time)
           }
           Utils.hide();
           $timeout(function () {
@@ -105,6 +168,8 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           if (!found) {
             $scope.newJob = json.items[0];
             console.log('adding 1')
+          }else{
+            alert('job exists');
           }
         }
       });

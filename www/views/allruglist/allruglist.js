@@ -46,24 +46,6 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           });
           break;
         case 'Status':
-          //$scope.rugList.sort(function (a, b) {
-          //  if (!isFinite(a.urine - b.urine))
-          //    return !isFinite(a.urine) ? 1 : -1;
-          //  else
-          //    return a.urine - b.urine;
-          //});
-          //sort($scope.rugList, 'status');
-          //function sort(arr) {
-          //  arr.sort(function(a, b) {
-          //    console.table(a)
-          //    var nameA=a.status.toLowerCase(), nameB=b.status.toLowerCase();
-          //    if (nameA < nameB) //sort string ascending
-          //      return -1;
-          //    if (nameA > nameB)
-          //      return 1;
-          //    return 0; //default return value (no sorting)
-          //  });
-          //}
         function keysrt(key) {
           return function (a, b) {
             if (a[key] > b[key]) return 1;
@@ -103,15 +85,6 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
       }
 
-      //console.table( $scope.rugList);
-
-      //function sortNumber(a,b)
-      //{
-      //  return a.dueIn - b.dueIn;
-      //}
-      //
-      //$scope.rugList = $scope.rugList.sort(sortNumber);
-      //console.table( $scope.rugList);
 
     };
     ;
