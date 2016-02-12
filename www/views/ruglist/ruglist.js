@@ -252,6 +252,8 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
                     "deliveryDate": $scope.deliveryDate,
                     "deliveryNotes": $scope.deliveryNotes
                   });
+                }else{
+                  alert('Cannot find a deliver for that person in servicemonster on that day')
                 }
               }
 
