@@ -1,22 +1,15 @@
 'Use Strict';
 angular.module('App').controller('homeController', function ($scope, $rootScope, $window, $state, $timeout, $firebaseArray,
                                                              $cordovaOauth, $localStorage, $location, $http, $ionicPopup,
-                                                             $firebaseObject, Auth, Utils, $cordovaCamera) {
+                                                             $firebaseObject, Auth, Utils) {
 
-    //TODO get phone number from SM
-  var FURL = $rootScope.FURL;
-  console.log(FURL);
-  var Camera = navigator.camera;
-  if (!FURL) {
-    if (location.host.toString().indexOf('localhost') > -1) {
-      console.log('Setting local database');
-      FURL = 'https://cfbuilder.firebaseio.com/';
-    } else {
-      console.log('Setting remote database');
-
-      FURL = 'https://cctools.firebaseio.com/';
-    }
-    }
+  if ((location.host.toString().indexOf('localhost') > -1 || location.host.toString().indexOf('192.168') > -1 ) && !location.host.toString().indexOf('rugtracker') > -1) {
+    console.log('Setting local database');
+    var FURL = 'https://cfbuilder.firebaseio.com/';
+  } else {
+    console.log('Setting remote database');
+    var FURL = 'https://cctools.firebaseio.com/';
+  }
 
     $scope.logOut = function () {
       Auth.logout();
@@ -90,7 +83,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           var newChildRef = ref.push();
           var time = new Date().getTime();
           $scope.newJob.phone = phone;
-          console.log(phone)
+          console.log(phone);
           $scope.newJob.dateCreated = time;
           newChildRef.set($scope.newJob);
           // var ref = new Firebase(FURL + 'jobs');
@@ -114,7 +107,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           // }
         }
       });
-    }
+    };
     $scope.addJob = function (job) {
       Utils.show();
       $.ajax({

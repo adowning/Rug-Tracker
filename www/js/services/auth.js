@@ -1,16 +1,11 @@
 angular.module('App').factory('Auth', function ($firebaseAuth, $rootScope, $firebaseArray, $firebaseObject, Utils) {
-  var FURL = $rootScope.FURL;
-  console.log(FURL);
 
-  if (!FURL) {
-    if (location.host.toString().indexOf('localhost') > -1) {
-      console.log('Setting local database');
-      FURL = 'https://cfbuilder.firebaseio.com/';
-    } else {
-      console.log('Setting remote database');
-
-      FURL = 'https://cctools.firebaseio.com/';
-    }
+  if ((location.host.toString().indexOf('localhost') > -1 || location.host.toString().indexOf('192.168') > -1 ) && !location.host.toString().indexOf('rugtracker') > -1) {
+    console.log('Setting local database');
+    var FURL = 'https://cfbuilder.firebaseio.com/';
+  } else {
+    console.log('Setting remote database');
+    var FURL = 'https://cctools.firebaseio.com/';
   }
 
 

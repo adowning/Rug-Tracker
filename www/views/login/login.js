@@ -1,19 +1,15 @@
 'Use Strict';
 angular.module('App').controller('loginController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location,
                                                               $http, $ionicPopup, $firebaseObject, Auth, Utils) {
-  var FURL = $rootScope.FURL;
-  console.log('a ');
-  if (!FURL) {
-    if (location.host.toString().indexOf('localhost') > -1) {
+
+  if ((location.host.toString().indexOf('localhost') > -1 || location.host.toString().indexOf('192.168') > -1 ) && !location.host.toString().indexOf('rugtracker') > -1) {
       console.log('Setting local database');
       var FURL = 'https://cfbuilder.firebaseio.com/';
     } else {
       console.log('Setting remote database');
-
       var FURL = 'https://cctools.firebaseio.com/';
     }
-  }
-  console.log('b ');
+
   var ref = new Firebase(FURL);
 
   var userkey = "";

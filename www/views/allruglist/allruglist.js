@@ -1,11 +1,8 @@
 'Use Strict';
 angular.module('App').controller('allRugListController', function ($scope, $rootScope, $window, $state, $timeout, $firebaseArray,
                                                                    $cordovaOauth, $localStorage, $location, $http, $ionicPopup,
-                                                                   $firebaseObject, Auth, Utils, $cordovaCamera) {
+                                                                   $firebaseObject, Auth, Utils) {
 
-    //TODO get phone number from SM
-    var FURL = $rootScope.FURL;
-    if (!FURL) {
       if (location.host.toString().indexOf('localhost') > -1) {
         console.log('Setting local database');
         FURL = 'https://cfbuilder.firebaseio.com/';
@@ -14,7 +11,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
         FURL = 'https://cctools.firebaseio.com/';
       }
-    }
+
 
     $scope.logOut = function () {
       Auth.logout();
@@ -87,7 +84,6 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
 
     };
-    ;
     var rugList = function () {
       console.log('refreshing job list');
       Utils.show();

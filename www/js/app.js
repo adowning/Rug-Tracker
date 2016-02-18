@@ -54,16 +54,14 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      console.log(location.host);
-      if (location.host.toString().indexOf('localhost') > -1) {
+      if ((location.host.toString().indexOf('localhost') > -1 || location.host.toString().indexOf('192.168') > -1 ) && !location.host.toString().indexOf('rugtracker') > -1) {
         console.log('Setting local database');
         $rootScope.FURL = 'https://cfbuilder.firebaseio.com/';
       } else {
         console.log('Setting remote database');
-
         $rootScope.FURL = 'https://cctools.firebaseio.com/';
-
       }
+
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }

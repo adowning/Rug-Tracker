@@ -150,6 +150,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           console.log('no contact discussion to add')
         }
         console.log('adding new rug');
+        $scope.addDiscussion(rug.contact);
         $timeout(function () {
           console.log('new rug added tranfering now ');
           Utils.hide();
@@ -286,16 +287,17 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     snapshot.forEach(function (childSnapshot) {
       var key = childSnapshot.key();
       var childData = childSnapshot.val();
-      console.log(key)
+      console.log(key);
       // if ($stateParams.id == key) {
-        imageList.push(childData)
+      imageList.push(childData);
       // }
     });
-    console.log(imageList.length)
+    console.log(imageList.length);
+    //TODO load a group then iterate
     $scope.loadimage = function () {
-      console.log(imageList.length)
+      console.log(imageList.length);
       for(var x = 0; x < imageList.length; x++) {
-        console.log(x)
+        console.log(x);
         var refImg = new Firebase(FURL + '/images/' + $stateParams.id + x);
         var ImgObj = $firebaseObject(refImg);
         ImgObj.$loaded().then(function (obj) {
@@ -315,7 +317,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
   function saveimage(e1) {
     var refImg = new Firebase(FURL + '/images/' + $stateParams.id+imageList.length);
     var ImgObj = $firebaseObject(refImg);
-    console.log('svaing')
+    console.log('svaing');
     var filename = e1.target.files[0];
     var fr = new FileReader();
     fr.onload = function (res) {
