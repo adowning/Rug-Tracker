@@ -270,27 +270,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
     });
 
 
-    // var newChildRef = new Firebase(FURL + 'jobs/');
-    // newChildRef.once("value", function (snapshot) {
-    //   snapshot.forEach(function (childSnapshot) {
-    //     var key = childSnapshot.key();
-    //     var childData = childSnapshot.val();
-    //     if ($stateParams.id == childData.orderNumber) {
-    //       console.log('deleting job ' + FURL + 'jobs/' + key);
-    //       var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
-    //       newChildRef2.update({
-    //         "completed": true,
-    //         "deliveryDate": deliveryObject.deliveryDate,
-    //         "deliveryNotes": deliveryObject.deliveryNotes
-    //       });
-    //     }
-    //   });
-    //   Utils.hide();
-    //   $timeout(function () {
-    //     $location.path("/home");
-    //     console.log($location.path());
-    //   });
-    // });
+
   }
 
 });

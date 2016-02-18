@@ -61,6 +61,7 @@
     <div ng-if="!notAllPassed && rugCount > 0">
       <input ng-click="showDeliveryFormChange()" class="button button-block button-positive" value="Set Delivery">
     </div>
+
     <div ng-if="showDeliveryForm ">
         <form novalidate name="setDeliveryDateForm" ng-submit="setDeliveryDateForm.$valid && setDeliveryDate(deliveryObject)">
           <div class="list">

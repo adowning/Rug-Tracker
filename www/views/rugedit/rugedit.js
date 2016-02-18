@@ -276,5 +276,69 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       $location.path("/login");
     };
 
+  //
+  //IMAGES
+  //
+
+  var ref = new Firebase(FURL + '/images/');
+  var imageList = [];
+  ref.once("value", function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var key = childSnapshot.key();
+      var childData = childSnapshot.val();
+      console.log(key)
+      // if ($stateParams.id == key) {
+        imageList.push(childData)
+      // }
+    });
+    console.log(imageList.length)
+    $scope.loadimage = function () {
+      console.log(imageList.length)
+      for(var x = 0; x < imageList.length; x++) {
+        console.log(x)
+        var refImg = new Firebase(FURL + '/images/' + $stateParams.id + x);
+        var ImgObj = $firebaseObject(refImg);
+        ImgObj.$loaded().then(function (obj) {
+          $scope.profileImage = obj.image;
+          console.log("loaded"+x);
+          document.getElementById("profileImage"+x).src = obj.image;
+        }, function (error) {
+          console.log("ERROR", error);
+        });
+      }
+    };
+    $scope.loadimage();
+  });
+
+
+
+  function saveimage(e1) {
+    var refImg = new Firebase(FURL + '/images/' + $stateParams.id+imageList.length);
+    var ImgObj = $firebaseObject(refImg);
+    console.log('svaing')
+    var filename = e1.target.files[0];
+    var fr = new FileReader();
+    fr.onload = function (res) {
+      $scope.image = res.target.result;
+      ImgObj.image = res.target.result;
+      ImgObj.$save().then(function (val) {
+      }, function (error) {
+        console.log("ERROR", error);
+      })
+    };
+    fr.readAsDataURL(filename);
+    $timeout(function () {
+      console.log('new rug added tranfering now ');
+      Utils.hide();
+      //TODO fix me adn dont send to home
+      $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+      //$window.location.assign('/home');
+      console.log($location.path());
+    });
+  }
+
+  document.getElementById("file-upload").addEventListener('change', saveimage, false);
+
+
   }
 );
