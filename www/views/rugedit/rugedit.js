@@ -38,6 +38,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     $scope.showDiscussions = false;
 
     $scope.addAudit = function (rug) {
+      Utils.show();
       console.log('adding audit ' + rug.key);
       var audit = {};
       var ref = new Firebase(FURL + 'audits');
@@ -99,6 +100,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         audit.preDamage = 'none';
       }
       newChildRef.set(audit);
+      Utils.hide();
     };
 
     if ($stateParams.id == 'newrug') {
@@ -173,11 +175,13 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             childData.dueDate = new Date(milliseconds);
             console.log('converting to date from string');
             $scope.rug = childData;
+            Utils.hide();
 
           }
         });
       });
       $scope.addRug = function (rug) {
+        Utils.show();
         rug.orderNumber = $stateParams.jobID;
         rug.dueDate = rug.dueDate.toString();
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
@@ -287,6 +291,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       Utils.show();
       // document.getElementById("file-upload").addEventListener('change', saveimage, false);
 
+      //TODO this loads every single freaking image and needs to be changed!
       var ref = new Firebase(FURL + '/images/');
       $scope.imageList = [];
       ref.once("value", function (snapshot) {
