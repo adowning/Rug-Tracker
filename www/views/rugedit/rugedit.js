@@ -1,20 +1,20 @@
 'Use Strict';
 angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
-  var FURL = $rootScope.FURL;
-  console.log(FURL);
+    var FURL = $rootScope.FURL;
+    console.log(FURL);
 
-  if (!FURL) {
-    if (location.host.toString().indexOf('localhost') > -1) {
-      console.log('Setting local database');
-      FURL = 'https://cfbuilder.firebaseio.com/';
-    } else {
-      console.log('Setting remote database');
+    if (!FURL) {
+      if (location.host.toString().indexOf('localhost') > -1) {
+        console.log('Setting local database');
+        FURL = 'https://cfbuilder.firebaseio.com/';
+      } else {
+        console.log('Setting remote database');
 
-      FURL = 'https://cctools.firebaseio.com/';
+        FURL = 'https://cctools.firebaseio.com/';
+      }
     }
-  }
 
-  $scope.isNewRug = false;
+    $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
     $scope.newRug = false;
     $scope.discussion = "";
@@ -47,18 +47,18 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var date = new Date();
       audit.time = date.toString();
       audit.rugKey = rug.key;
-      if(!rug.initials){
+      if (!rug.initials) {
         rug.initials = 'none';
       }
       try {
         audit.intials = rug.initials;
-        console.log('set equals '+ audit.initials);
+        console.log('set equals ' + audit.initials);
       }
       catch (err) {
         console.log('no iontials ');
         audit.intials = 'none';
       }
-      console.log('inti '+audit.initials);
+      console.log('inti ' + audit.initials);
       audit.status = rug.status;
       audit.description = rug.description;
       audit.preDamage = rug.preDamage;
@@ -69,7 +69,6 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       } catch (err) {
         audit.preDamage = 'none';
       }
-
 
 
       try {
@@ -120,7 +119,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           rug.length = w;
           rug.width = l;
         }
-        console.log('spji '+$stateParams.jobID);
+        console.log('spji ' + $stateParams.jobID);
         rug.orderNumber = $stateParams.jobID;
         var ref = new Firebase(FURL + 'rugs');
         var newChildRef = ref.push();
@@ -269,7 +268,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     };
 
 
-  $scope.showDiscussionsChange = function () {
+    $scope.showDiscussionsChange = function () {
       $scope.showDiscussions ^= true;
     };
     $scope.logOut = function () {
@@ -277,69 +276,101 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       $location.path("/login");
     };
 
-  //
-  //IMAGES
-  //
+    //
+    //IMAGES
+    //
 
-  var ref = new Firebase(FURL + '/images/');
-  var imageList = [];
-  ref.once("value", function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-      var key = childSnapshot.key();
-      var childData = childSnapshot.val();
-      console.log(key);
-      // if ($stateParams.id == key) {
-      imageList.push(childData);
-      // }
-    });
-    console.log(imageList.length);
-    //TODO load a group then iterate
-    $scope.loadimage = function () {
-      console.log(imageList.length);
-      for(var x = 0; x < imageList.length; x++) {
-        console.log(x);
-        var refImg = new Firebase(FURL + '/images/' + $stateParams.id + x);
-        var ImgObj = $firebaseObject(refImg);
-        ImgObj.$loaded().then(function (obj) {
-          $scope.profileImage = obj.image;
-          console.log("loaded"+x);
-          document.getElementById("profileImage"+x).src = obj.image;
-        }, function (error) {
-          console.log("ERROR", error);
-        });
-      }
-    };
-    $scope.loadimage();
-  });
+  $scope.showImages = false;
 
+    $scope.showImagesChange = function () {
+      $scope.showImages ^= true;
+      Utils.show();
+      // document.getElementById("file-upload").addEventListener('change', saveimage, false);
 
+      var ref = new Firebase(FURL + '/images/');
+      $scope.imageList = [];
+      ref.once("value", function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+          var key = childSnapshot.key();
+          var childData = childSnapshot.val();
+          console.log(key);
+          // console.log('image ' + childData.image);
+          // if ($stateParams.id == key) {
+          if (key.toString().indexOf($scope.rug.key) > -1) {
+            var number = key.substr(key.length - 1);
+            console.log('number ' + number);
+            document.getElementById("profileImage" + number).src = childData.image;
+            $scope.imageList.push(childData);
+            Utils.hide();
 
-  function saveimage(e1) {
-    var refImg = new Firebase(FURL + '/images/' + $stateParams.id+imageList.length);
-    var ImgObj = $firebaseObject(refImg);
-    console.log('svaing');
-    var filename = e1.target.files[0];
-    var fr = new FileReader();
-    fr.onload = function (res) {
-      $scope.image = res.target.result;
-      ImgObj.image = res.target.result;
-      ImgObj.$save().then(function (val) {
-      }, function (error) {
-        console.log("ERROR", error);
+          }
+
+          // }
+        })
+
       })
     };
-    fr.readAsDataURL(filename);
-    $timeout(function () {
-      console.log('new rug added tranfering now ');
-      Utils.hide();
-      //TODO fix me adn dont send to home
-      $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
-      //$window.location.assign('/home');
-      console.log($location.path());
-    });
-  }
 
-  document.getElementById("file-upload").addEventListener('change', saveimage, false);
+
+    $scope.loadimage = function () {
+      console.log(imageList.length);
+      // for (i = 0; i < imageList.length; i++) {
+      //     var refImg = new Firebase(FURL + '/images/' + $stateParams.id + i);
+      //   var ImgObj = $firebaseObject(refImg);
+      //     ImgObj.$loaded().then(function (obj) {
+      //       // $scope.profileImage = obj.image;
+      //       console.log("loaded" + obj);
+      //       document.getElementById("profileImage" + i).src = obj.image;
+      //     }, function (error) {
+      //       console.log("ERROR", error);
+      //     }).bind(null, i);
+      //   // asycronouseProcess(function (i) {
+      //   //   alert(i);
+      //   // }.bind(null, i));
+      // }
+      // for (var x = 0; x < imageList.length; x++) {
+      //   console.log(x);
+      //   var refImg = new Firebase(FURL + '/images/' + $stateParams.id + x);
+      //   var ImgObj = $firebaseObject(refImg);
+      //   ImgObj.$loaded().then(function (obj) {
+      //     $scope.profileImage = obj.image;
+      //     console.log("loaded" + x);
+      //     document.getElementById("profileImage" + x).src = obj.image;
+      //   }, function (error) {
+      //     console.log("ERROR", error);
+      //   });
+      // }
+    };
+    // $scope.loadimage();
+    // });
+
+
+    $scope.saveImage = function (e1) {
+      console.log('asdf ');
+      var refImg = new Firebase(FURL + '/images/' + $stateParams.id + $scope.imageList.length);
+      var ImgObj = $firebaseObject(refImg);
+      console.log('svaing');
+      var filename = e1.files[0];
+      var fr = new FileReader();
+      fr.onload = function (res) {
+        $scope.image = res.target.result;
+        ImgObj.image = res.target.result;
+        ImgObj.$save().then(function (val) {
+        }, function (error) {
+          console.log("ERROR", error);
+        })
+      };
+      fr.readAsDataURL(filename);
+      $timeout(function () {
+        console.log('new rug added tranfering now ');
+        Utils.hide();
+        //TODO fix me adn dont send to home
+        $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+        //$window.location.assign('/home');
+        console.log($location.path());
+      });
+    }
+
 
 
   }

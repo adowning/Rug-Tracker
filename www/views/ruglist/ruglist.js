@@ -223,7 +223,42 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       },
       complete: function (json) {
 
+        //
+        //SET NOTE TO JOB
+        //
+        // console.log('staring to update sm with job ' + $stateParams.id);
+        // $.ajax({
+        //   type: "GET",
+        //   url: "https://api.servicemonster.net/v1/orders?q=" + $stateParams.id,
+        //   contentType: "application/json; charset=utf-8",
+        //   dataType: "PATCH",
+        //   error: function (error) {
+        //     console.log(error)
+        //   },
+        //   beforeSend: function (xhr) {
+        //     xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
+        //   },
+        //   data: {note: "howdy"}
+        // });
 
+        // var req = {
+        //   method: 'PATCH',
+        //   url: 'https://api.servicemonster.net/v1/orders?q=' + $stateParams.id,
+        //   headers: {
+        //     'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
+        //     'Content-Type': "application/json"
+        //   },
+        //   data: {
+        //     note: "hai2u"
+        //   }
+        // }
+        //
+        // $http(req).success(function () {
+        //   // $location.path("/view/" + id);
+        // }).error(function (error) {
+        //   console.log(error)
+        //   // $location.path("/view/" + id);
+        // });
       },
       success: function (json) {
         var nameArray = [];

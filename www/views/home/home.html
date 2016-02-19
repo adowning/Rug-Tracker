@@ -4,12 +4,6 @@
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
-    <!--<input type="filepicker" data-fp-apikey="ANWhCxoG1T9mQwPabdaUHz"-->
-           <!--onchange="alert(event.fpfile.url)">-->
-    <!--<input type="filepicker" name="myName" />-->
-    <!--<input type="filepicker" data-fp-apikey="ANWhCxoG1T9mQwPabdaUHz" data-fp-mimetypes="image/*"-->
-           <!--data-fp-container="modal" data-fp-store-location="dropbox" onchange="alert(event.fpfile.url)">-->
-
     <a href="#/allruglist" class="button button-full button-positive">
       All Rugs
     </a>
@@ -36,51 +30,15 @@
     </form>
 
     <ion-list>
-      <!--<ion-item ng-repeat="job in rugList">-->
       <ion-item ng-repeat="item in jobList"
                 class="item-thumbnail-left" href="#/ruglist/?id={{item.orderNumber}}&customer={{item.accountName}}">
         <h2>{{item.accountName}}</h2>
         <h2>{{item.createdOn.substring(0,10)}}</h2>
         <a href="tel:+1{item.phone}}">{{item.phone}}</a>
-        <!--<img ng-src="{{item.img}}">
-
-        <!--<p>{{item.description}}</p>-->
-        <!--<ion-option-button class="button-positive"-->
-        <!--ng-click="share(item)">-->
-        <!--Share-->
-        <!--</ion-option-button>-->
-        <!--<ion-option-button class="button-info"-->
-        <!--ng-click="edit(item)">-->
-        <!--Edit-->
-        <!--</ion-option-button>-->
-        <!--<ion-delete-button class="ion-minus-circled"-->
-        <!--ng-click="items.splice($index, 1)">-->
-        <!--</ion-delete-button>-->
-        <!--<ion-reorder-button class="ion-navicon"-->
-        <!--on-reorder="reorderItem(item, $fromIndex, $toIndex)">-->
-        <!--</ion-reorder-button>-->
-
+        <span name="{{item.orderNumber}}" id="{{item.orderNumber}}"></span>
       </ion-item>
-      <!--</ion-item>-->
     </ion-list>
     <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
-
-    <!--<button class="button button-icon icon ion-camera" ng-click="upload()"></button>-->
-
-    <!--<div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">-->
-      <!--<div class="col col-25" ng-if="$index < images.length">-->
-        <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%"/>-->
-      <!--</div>-->
-      <!--<div class="col col-25" ng-if="$index + 1 < images.length">-->
-        <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%"/>-->
-      <!--</div>-->
-      <!--<div class="col col-25" ng-if="$index + 2 < images.length">-->
-        <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%"/>-->
-      <!--</div>-->
-      <!--<div class="col col-25" ng-if="$index + 3 < images.length">-->
-        <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 3].image}}" width="100%"/>-->
-      <!--</div>-->
-    <!--</div>-->
 
   </ion-content>
 </ion-view>
