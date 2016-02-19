@@ -285,15 +285,15 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     //
 
   $scope.showImages = false;
-
+  $scope.imageList = [];
     $scope.showImagesChange = function () {
       $scope.showImages ^= true;
-      Utils.show();
+       Utils.show();
       // document.getElementById("file-upload").addEventListener('change', saveimage, false);
 
       //TODO this loads every single freaking image and needs to be changed!
-      var ref = new Firebase(FURL + '/images/');
-      $scope.imageList = [];
+      var ref = new Firebase(FURL + '/images/' + $stateParams.id);
+
       ref.once("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
           var key = childSnapshot.key();
@@ -301,58 +301,29 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           console.log(key);
           // console.log('image ' + childData.image);
           // if ($stateParams.id == key) {
-          if (key.toString().indexOf($scope.rug.key) > -1) {
+          // if (key.toString().indexOf($scope.rug.key) > -1) {
             var number = key.substr(key.length - 1);
-            console.log('number ' + number);
-            document.getElementById("profileImage" + number).src = childData.image;
+            console.log('number ' + $scope.imageList.length);
+            document.getElementById("profileImage" + $scope.imageList.length).src = childData.image;
             $scope.imageList.push(childData);
+          console.log('a ' +$scope.imageList.length);
 
-          }
+          // }
 
           // }
         })
+        console.log('a ' +$scope.imageList.length);
+
         Utils.hide();
 
       })
     };
 
 
-    $scope.loadimage = function () {
-      console.log(imageList.length);
-      // for (i = 0; i < imageList.length; i++) {
-      //     var refImg = new Firebase(FURL + '/images/' + $stateParams.id + i);
-      //   var ImgObj = $firebaseObject(refImg);
-      //     ImgObj.$loaded().then(function (obj) {
-      //       // $scope.profileImage = obj.image;
-      //       console.log("loaded" + obj);
-      //       document.getElementById("profileImage" + i).src = obj.image;
-      //     }, function (error) {
-      //       console.log("ERROR", error);
-      //     }).bind(null, i);
-      //   // asycronouseProcess(function (i) {
-      //   //   alert(i);
-      //   // }.bind(null, i));
-      // }
-      // for (var x = 0; x < imageList.length; x++) {
-      //   console.log(x);
-      //   var refImg = new Firebase(FURL + '/images/' + $stateParams.id + x);
-      //   var ImgObj = $firebaseObject(refImg);
-      //   ImgObj.$loaded().then(function (obj) {
-      //     $scope.profileImage = obj.image;
-      //     console.log("loaded" + x);
-      //     document.getElementById("profileImage" + x).src = obj.image;
-      //   }, function (error) {
-      //     console.log("ERROR", error);
-      //   });
-      // }
-    };
-    // $scope.loadimage();
-    // });
-
 
     $scope.saveImage = function (e1) {
-      console.log('asdf ');
-      var refImg = new Firebase(FURL + '/images/' + $stateParams.id + $scope.imageList.length);
+      console.log('b ' +$scope.imageList.length);
+      var refImg = new Firebase(FURL + '/images/' + $stateParams.id +'/' + $scope.imageList.length);
       var ImgObj = $firebaseObject(refImg);
       console.log('svaing');
       var filename = e1.files[0];
