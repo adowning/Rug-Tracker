@@ -303,10 +303,10 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             $scope.imageList.push(childData);
 
           }
-          Utils.hide();
 
           // }
         })
+        Utils.hide();
 
       })
     };
