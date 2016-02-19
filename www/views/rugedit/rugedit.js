@@ -301,9 +301,9 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             console.log('number ' + number);
             document.getElementById("profileImage" + number).src = childData.image;
             $scope.imageList.push(childData);
-            Utils.hide();
 
           }
+          Utils.hide();
 
           // }
         })
