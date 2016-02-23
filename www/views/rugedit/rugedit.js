@@ -167,19 +167,17 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var ref = new Firebase(FURL + 'rugs');
       Utils.show();
       console.log('loading rug');
-      ref.once("value", function (snapshot) {
-        snapshot.forEach(function (childSnapshot) {
-          var childData = childSnapshot.val();
-          if ($stateParams.id == childData.key) {
-            var milliseconds = Date.parse(childData.dueDate);
-            childData.dueDate = new Date(milliseconds);
-            console.log('converting to date from string');
-            $scope.rug = childData;
-            Utils.hide();
-
-          }
-        });
+      // var ref = new Firebase("https://dinosaur-facts.firebaseio.com/dinosaurs");
+      ref.orderByChild("key").equalTo($stateParams.id).on("child_added", function(snapshot) {
+        console.log(snapshot.key());
+        var childData = snapshot.val();
+              var milliseconds = Date.parse(childData.dueDate);
+              childData.dueDate = new Date(milliseconds);
+              console.log('converting to date from string');
+              $scope.rug = childData;
+              Utils.hide();
       });
+
       $scope.addRug = function (rug) {
         Utils.show();
         rug.orderNumber = $stateParams.jobID;

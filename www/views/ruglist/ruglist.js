@@ -39,6 +39,19 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       });
   };
 
+  $scope.getJob = function (id){
+    console.log('ahit sp id   ' + id);
+    var newChildRef = new Firebase(FURL + 'jobs/');
+    newChildRef.orderByChild("orderNumber").equalTo(13222).on("value", function(snapshot) {
+      var childData = snapshot.val();
+      console.log(childData.jobID)
+      console.log(childData.accountID)
+      console.log(childData.orderID)
+    });
+  }
+  $scope.getJob($stateParams.id)
+
+
   $scope.addAudit = function (customer) {
     var audit = {};
     var ref = new Firebase(FURL + 'audits');
@@ -57,7 +70,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
     var ref = new Firebase(FURL + 'rugs');
     ref.once("value", function (snapshot) {
       snapshot.forEach(function (childSnapshot) {
-        var key = childSnapshot.key();
+
         var childData = childSnapshot.val();
         if ($stateParams.id == childData.orderNumber && !childData.deleted) {
           //var date = new Date().getTime();
@@ -175,6 +188,8 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
     });
   }
 
+
+
   //TODO remove me not really needed just use complete function
   $scope.setDeliveryDate = function (deliveryObject){
     console.log('deliveryObject '+deliveryObject.deliveryDate);
@@ -222,14 +237,14 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
       },
       complete: function (json) {
-
+        console.log('completing ' );
         //
         //SET NOTE TO JOB
         //
         // console.log('staring to update sm with job ' + $stateParams.id);
         // $.ajax({
-        //   type: "GET",
-        //   url: "https://api.servicemonster.net/v1/orders?q=" + $stateParams.id,
+        //   type: "PATCH",
+        //   url: "https://api.servicemonster.net/vs/orders/" + $stateParams.id,
         //   contentType: "application/json; charset=utf-8",
         //   dataType: "PATCH",
         //   error: function (error) {
@@ -241,9 +256,27 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         //   data: {note: "howdy"}
         // });
 
+        var req = {
+          method: 'PATCH',
+          url: 'https://api.servicemonster.net/v1/orders/' + $stateParams.id,
+          headers: {
+            'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
+            'Content-Type': "application/json"
+          },
+          dataType: "PATCH",
+          data: {
+            notes: "adsf"
+          }
+        }
+
+        $http(req).success(function () {
+        }).error(function (error) {
+          console.log(error)
+        });
+
         // var req = {
         //   method: 'PATCH',
-        //   url: 'https://api.servicemonster.net/v1/orders?q=' + $stateParams.id,
+        //   url: 'https://api.servicemonster.net/vs/orders/' + $stateParams.id,
         //   headers: {
         //     'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
         //     'Content-Type': "application/json"
@@ -276,20 +309,20 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
                 console.log(childData.accountName)
                 console.log(nameArray.indexOf(childData.accountName) > -1)
 
-                if (nameArray.indexOf(childData.accountName) > -1) {
-                  console.log('BAHMNMAMDFMASDF ' + $scope.deliveryNotes)
-                  console.log('removing job ' + FURL + 'jobs/' + key);
-                  var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
-                  // newChildRef2.deliveryDate = "none";
-                  // newChildRef2.deliveryNotes = "none";
-                  newChildRef2.update({
-                    "completed": true,
-                    "deliveryDate": $scope.deliveryDate,
-                    "deliveryNotes": $scope.deliveryNotes
-                  });
-                }else{
-                  alert('Cannot find a deliver for that person in servicemonster on that day')
-                }
+                // if (nameArray.indexOf(childData.accountName) > -1) {
+                //   console.log('BAHMNMAMDFMASDF ' + $scope.deliveryNotes)
+                //   console.log('removing job ' + FURL + 'jobs/' + key);
+                //   var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+                //   // newChildRef2.deliveryDate = "none";
+                //   // newChildRef2.deliveryNotes = "none";
+                //   newChildRef2.update({
+                //     "completed": true,
+                //     "deliveryDate": $scope.deliveryDate,
+                //     "deliveryNotes": $scope.deliveryNotes
+                //   });
+                // }else{
+                //   alert('Cannot find a deliver for that person in servicemonster on that day')
+                // }
               }
 
           });
@@ -297,6 +330,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           $timeout(function () {
             $location.path("/home");
             console.log($location.path());
+            return;
           });
         });
         // console.table(json[0].item)
