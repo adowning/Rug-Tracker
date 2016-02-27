@@ -249,6 +249,8 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var date = new Date();
       contact.time = date.toString();
       contact.rugKey = $scope.rug.key;
+      console.log('here ' + $stateParams.jobID);
+      contact.jobOrderNumber = $stateParams.jobID;
       newChildRef.set(contact);
       $scope.contactList = [];
       $scope.addAudit($scope.rug);

@@ -44,7 +44,6 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           var childData = childSnapshot.val();
           if (!childData.deleted && !childData.completed) {
             $scope.jobList.push(childData);
-
           }
         });
         rugList();

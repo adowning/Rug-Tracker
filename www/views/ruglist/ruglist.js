@@ -19,6 +19,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
   $scope.rugCount = 0;
   $scope.jobID = $stateParams.id;
   $scope.customer = $stateParams.customer;
+  $scope.recID = $stateParams.recID
   $scope.logOut = function () {
     Auth.logout();
     $location.path("/login");
@@ -33,23 +34,22 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         console.log('refreshed');
         $timeout(function () {
           $location.path('/home');
-          console.log($location.path());
         });
         $scope.$broadcast('scroll.refreshComplete');
       });
   };
 
-  $scope.getJob = function (id){
-    console.log('ahit sp id   ' + id);
-    var newChildRef = new Firebase(FURL + 'jobs/');
-    newChildRef.orderByChild("orderNumber").equalTo(13222).on("value", function(snapshot) {
-      var childData = snapshot.val();
-      console.log(childData.jobID)
-      console.log(childData.accountID)
-      console.log(childData.orderID)
-    });
-  }
-  $scope.getJob($stateParams.id)
+  // $scope.getJob = function (id){
+  //   console.log('ahit sp id   ' + id);
+  //   var newChildRef = new Firebase(FURL + 'jobs/');
+  //   newChildRef.orderByChild("orderNumber").equalTo(13222).on("value", function(snapshot) {
+  //     var childData = snapshot.val();
+  //     console.log(childData.jobID)
+  //     console.log(childData.accountID)
+  //     console.log(childData.orderID)
+  //   });
+  // }
+  // $scope.getJob($stateParams.id)
 
 
   $scope.addAudit = function (customer) {
@@ -78,12 +78,9 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           //var daysSince = ((date - thisDate) / 1000) / 86400;
           //childData.elapsedTime = Math.round(daysSince);asdf
           var dueDate = new Date(childData.dueDate).getTime();
-          console.log(dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
-          console.log(creationDate);
 
           var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
-          console.log((daysTillDue));
           childData.dueIn = Math.round(daysTillDue);
           //childData.elapsedTime = Math.round(daysSince);
           //truncating start date
@@ -95,12 +92,10 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         }
       });
       Utils.hide();
-      console.log('allpassed '+$scope.notAllPassed);
     });
 
   };
   var checkIfPassed = function (rug) {
-    console.log('rs  '+rug.status);
     if(rug.status !== 'PassedInspection'){
       $scope.notAllPassed = true;
 
@@ -110,7 +105,6 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
 
   $scope.showDeliveryForm = false;
   $scope.showDeliveryFormChange = function () {
-    console.log('asdfg ');
     $scope.showDeliveryForm ^= true;
   };
 
@@ -130,7 +124,6 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
 
 
   $scope.addDiscussion = function (disc) {
-    console.log(disc);
     Utils.show();
     var contact = {};
     var ref = new Firebase(FURL + 'contactEvents');
@@ -142,6 +135,8 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
     var date = new Date();
     contact.time = date.toString();
     contact.rugKey = "general customer contact";
+    contact.jobOrderNumber = $scope.jobID;
+
     newChildRef.set(contact);
     $scope.contactList = [];
     $scope.addAudit($scope.customer);
@@ -173,7 +168,6 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         var key = childSnapshot.key();
         var childData = childSnapshot.val();
         if ($stateParams.id == childData.orderNumber) {
-          console.log('deleting job ' + FURL + 'jobs/' + key);
           var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
           newChildRef2.update({
             "deleted": true
@@ -183,7 +177,6 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
       Utils.hide();
       $timeout(function () {
         $location.path("/home");
-        console.log($location.path());
       });
     });
   }
@@ -192,42 +185,34 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
 
   //TODO remove me not really needed just use complete function
   $scope.setDeliveryDate = function (deliveryObject){
-    console.log('deliveryObject '+deliveryObject.deliveryDate);
     $scope.completeJob(deliveryObject);
   }
   $scope.completeJob = function (deliveryObject) {
     Utils.show();
     // Thu Feb 18 2016 00:00:00 GMT-0600 (CST)
-      console.log(deliveryObject.deliveryDate)
     var date = new Date(deliveryObject.deliveryDate)
-    console.log(date)
 
     $scope.devliveryNotes = deliveryObject.deliveryNotes;
     $scope.deliveryDate = deliveryObject.deliveryDate;
-    if(!deliveryObject.deliveryDate){
+    if (!deliveryObject.deliveryDate) {
       alert('need a date')
       Utils.hide();
       return;
     }
-    if(!deliveryObject.deliveryNotes){
-      console.log('here')
+    if (!deliveryObject.deliveryNotes) {
       $scope.deliveryNotes = "none";
     }
     var day = date.getDate();
     var monthIndex = date.getMonth() + 1;
-    console.log(monthIndex)
     var year = date.getFullYear();
 
-    console.log(day+'-'+monthIndex+'-'+year);
-    var dateString = day+'-'+monthIndex+'-'+year;
-    var endDateString = (day+1)+'-'+monthIndex+'-'+year;
-    var dateString2 = monthIndex+'-'+day + '-'+year;
-    var endDateString2 = monthIndex+'-'+ (day+1)+'-'+year;
-    console.log(dateString)
-    console.log(endDateString)
+    var dateString = day + '-' + monthIndex + '-' + year;
+    var endDateString = (day + 1) + '-' + monthIndex + '-' + year;
+    var dateString2 = monthIndex + '-' + day + '-' + year;
+    var endDateString2 = monthIndex + '-' + (day + 1) + '-' + year;
     $.ajax({
       type: "GET",
-      url: "https://api.servicemonster.net/v1/scheduleItems?startDate="+dateString2+"&endDate="+endDateString2,
+      url: "https://api.servicemonster.net/v1/scheduleItems?startDate=" + dateString2 + "&endDate=" + endDateString2,
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       error: function (error) {
@@ -237,66 +222,33 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
       },
       complete: function (json) {
-        console.log('completing ' );
-        //
-        //SET NOTE TO JOB
-        //
-        // console.log('staring to update sm with job ' + $stateParams.id);
-        // $.ajax({
-        //   type: "PATCH",
-        //   url: "https://api.servicemonster.net/vs/orders/" + $stateParams.id,
-        //   contentType: "application/json; charset=utf-8",
-        //   dataType: "PATCH",
-        //   error: function (error) {
-        //     console.log(error)
-        //   },
-        //   beforeSend: function (xhr) {
-        //     xhr.setRequestHeader("Authorization", "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv");
-        //   },
-        //   data: {note: "howdy"}
-        // });
-
-        var req = {
-          method: 'PATCH',
-          url: 'https://api.servicemonster.net/v1/orders/' + $stateParams.id,
-          headers: {
-            'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
-            'Content-Type': "application/json"
-          },
-          dataType: "PATCH",
-          data: {
-            notes: "adsf"
+        if ($scope.dateFound) {
+          var req = {
+            method: 'PATCH',
+            url: 'https://api.servicemonster.net/v1/orders/' + $stateParams.orderID,
+            headers: {
+              'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
+              'Content-Type': "application/json"
+            },
+            dataType: "PATCH",
+            data: {
+              note: $scope.noteForSM
+            }
           }
+          Utils.hide()
+          $http(req).success(function () {
+          }).error(function (error) {
+            console.log(error)
+            Utils.hide();
+          });
         }
-
-        $http(req).success(function () {
-        }).error(function (error) {
-          console.log(error)
-        });
-
-        // var req = {
-        //   method: 'PATCH',
-        //   url: 'https://api.servicemonster.net/vs/orders/' + $stateParams.id,
-        //   headers: {
-        //     'Authorization': "Basic ZTZleGc0Nkw6bUM0RHM5MXFnZXdPUzFv",
-        //     'Content-Type': "application/json"
-        //   },
-        //   data: {
-        //     note: "hai2u"
-        //   }
-        // }
-        //
-        // $http(req).success(function () {
-        //   // $location.path("/view/" + id);
-        // }).error(function (error) {
-        //   console.log(error)
-        //   // $location.path("/view/" + id);
-        // });
       },
       success: function (json) {
+        $scope.noteForSM = generateSMNote();
+
+        $scope.dateFound = true;
         var nameArray = [];
-        for(var i = 0; i < json.length; i++){
-           console.log(json[i].item.name)
+        for (var i = 0; i < json.length; i++) {
           nameArray.push(json[i].item.accountName)
         }
         var newChildRef = new Firebase(FURL + 'jobs/');
@@ -305,25 +257,21 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
             var key = childSnapshot.key();
             var childData = childSnapshot.val();
 
-              if ($stateParams.id == childData.orderNumber ) {
-                console.log(childData.accountName)
-                console.log(nameArray.indexOf(childData.accountName) > -1)
-
-                // if (nameArray.indexOf(childData.accountName) > -1) {
-                //   console.log('BAHMNMAMDFMASDF ' + $scope.deliveryNotes)
-                //   console.log('removing job ' + FURL + 'jobs/' + key);
-                //   var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
-                //   // newChildRef2.deliveryDate = "none";
-                //   // newChildRef2.deliveryNotes = "none";
-                //   newChildRef2.update({
-                //     "completed": true,
-                //     "deliveryDate": $scope.deliveryDate,
-                //     "deliveryNotes": $scope.deliveryNotes
-                //   });
-                // }else{
-                //   alert('Cannot find a deliver for that person in servicemonster on that day')
-                // }
+            if ($stateParams.id == childData.orderNumber) {
+              if (nameArray.indexOf(childData.accountName) > -1) {
+                var newChildRef2 = new Firebase(FURL + 'jobs/' + key);
+                newChildRef2.update({
+                  "completed": true,
+                  "deliveryDate": $scope.deliveryDate,
+                  "deliveryNotes": $scope.deliveryNotes
+                });
+              } else {
+                alert('Cannot find a deliver for that person in servicemonster on that day')
+                //TODO holy hell change me back
+                return;
+                $scope.dateFound = false;
               }
+            }
 
           });
           Utils.hide();
@@ -333,13 +281,40 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
             return;
           });
         });
-        // console.table(json[0].item)
+
+        // $scope.getJob($stateParams.id)
+        Utils.show();
 
       }
+
     });
 
 
-
   }
+  function generateSMNote (){
+    var newChildRef = new Firebase(FURL + 'contactEvents/');
+    newChildRef.once("value", function(snapshot) {
+      // The callback function will get called twice, once for "fred" and once for "barney"
+      snapshot.forEach(function(childSnapshot) {
 
+        // key will be "fred" the first time and "barney" the second time
+        var key = childSnapshot.key();
+        // childData will be the actual contents of the child
+        var childData = childSnapshot.val();
+
+      console.log('cd ' + childData);
+      });
+  })};
+//   function generateSMNote (){
+//     var newChildRef = new Firebase(FURL + 'contactEvents/');
+//     console.log('spid ' + $stateParams.id);
+//     var discList = "";
+//     var discArray = []
+//
+//     newChildRef.orderByChild("jobOrderNumber").equalTo($stateParams.id).on("value", function(snapshot) {
+//
+//       )}
+//
+//       }
+// }
 });

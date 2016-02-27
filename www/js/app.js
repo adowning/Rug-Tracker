@@ -33,7 +33,7 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
         controller: 'allRugListController'
       })
       .state('ruglist', {
-        url: '/ruglist/?/id/customer',
+        url: '/ruglist/?/id/customer/orderID',
         cache: false,
         templateUrl: 'views/ruglist/ruglist.html',
         controller: 'rugListController'
