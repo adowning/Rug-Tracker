@@ -250,7 +250,11 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var ref = new Firebase(FURL + 'contactEvents');
       var newChildRef = ref.push();
       contact.key = newChildRef.key();
+      if(!disc){
+        disc = "none";
+      }
       contact.value = disc;
+
       contact.person = $localStorage.email;
       contact.customer = $scope.customer;
       var date = new Date();
@@ -258,6 +262,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       contact.rugKey = $scope.rug.key;
       console.log('here ' + $stateParams.jobID);
       contact.jobOrderNumber = $stateParams.jobID;
+      console.table(contact)
       newChildRef.set(contact);
       $scope.contactList = [];
       $scope.addAudit($scope.rug);
