@@ -3,20 +3,6 @@
   <ion-nav-buttons side="right">
     <button class="button button-icon icon ion-camera" ng-click="upload()"></button>
   </ion-nav-buttons>
-  <!--<div class="row" ng-repeat="image in images" ng-if="$index % 4 === 0">-->
-  <!--<div class="col col-25" ng-if="$index < images.length">-->
-  <!--<img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" />-->
-  <!--</div>-->
-  <!--<div class="col col-25" ng-if="$index + 1 < images.length">-->
-  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%" />-->
-  <!--</div>-->
-  <!--<div class="col col-25" ng-if="$index + 2 < images.length">-->
-  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%" />-->
-  <!--</div>-->
-  <!--<div class="col col-25" ng-if="$index + 3 < images.length">-->
-  <!--<img ng-src="data:image/jpeg;base64,{{images[$index + 3].image}}" width="100%" />-->
-  <!--</div>-->
-  <!--</div>-->
   <ion-content class="padding-top">
     <ion-refresher
       pulling-text="Pull to refresh..."
@@ -58,6 +44,15 @@
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
         <label class="item-stacked-label"
+               ng-class="{ 'has-error-lr' : addRugForm.width.$invalid && addRugForm.$submitted }">
+          <span class="input-label">Width</span>
+          <input name="width" type="number" ng-model="rug.width" placeholder="{{rug.width}}"
+                 required>
+        </label>
+        <div class="form-errors" ng-messages="addRugForm.width.$error" ng-if="addRugForm.$submitted">
+          <div class="form-error" ng-message="required">This field is required.</div>
+        </div>
+        <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.length.$invalid && addRugForm.$submitted }">
           <span class="input-label">Length</span>
 
@@ -68,15 +63,7 @@
         <div class="form-errors" ng-messages="addRugForm.length.$error" ng-if="addRugForm.$submitted">
           <div class="form-error" ng-message="required">This field is required.</div>
         </div>
-        <label class="item-stacked-label"
-               ng-class="{ 'has-error-lr' : addRugForm.width.$invalid && addRugForm.$submitted }">
-          <span class="input-label">Width</span>
-          <input name="width" type="number" ng-model="rug.width" placeholder="{{rug.width}}"
-                 required>
-        </label>
-        <div class="form-errors" ng-messages="addRugForm.width.$error" ng-if="addRugForm.$submitted">
-          <div class="form-error" ng-message="required">This field is required.</div>
-        </div>
+
 
         <label class="item-stacked-label">
 

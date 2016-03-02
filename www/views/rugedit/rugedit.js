@@ -115,6 +115,13 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       $scope.addRug = function (rug) {
         Utils.show();
         var date = new Date();
+        if(!rug.length || !rug.width){
+          Utils.hide();
+          alert('you need a length and a width')
+          $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
+          console.log($location.path());
+          return;
+        }
         if (rug.length < rug.width) {
           var l = rug.length;
           var w = rug.width;
