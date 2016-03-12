@@ -63,7 +63,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         });
         combine();
       });
-    }
+    };
 
     var combine = function () {
       for (var x = 0; x < $scope.rugList.length; x++) {
@@ -73,14 +73,14 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           var span = document.getElementById($scope.jobList[y].orderNumber);
           if (span != null) {
             if (span.id === orderNumber) {
-              var status = $scope.rugList[x].status
+              var status = $scope.rugList[x].status;
               span.innerHTML += status + '/';
             }
           }
         }
       }
       Utils.hide();
-    }
+    };
     jobList();
 
     var found = false;
@@ -106,6 +106,12 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
         success: function (json) {
           console.log(json.items[0]);
           var phone = json.items[0].phone1;
+          if (!phone) {
+            phone = json.items[0].phone2;
+          }
+          if (!phone) {
+            phone = 'not found';
+          }
           var ref = new Firebase(FURL + 'jobs');
           var newChildRef = ref.push();
           var time = new Date().getTime();
