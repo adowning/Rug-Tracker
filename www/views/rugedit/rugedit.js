@@ -9,7 +9,6 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         FURL = 'https://cfbuilder.firebaseio.com/';
       } else {
         console.log('Setting remote database');
-
         FURL = 'https://cctools.firebaseio.com/';
       }
     }
@@ -115,9 +114,9 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       $scope.addRug = function (rug) {
         Utils.show();
         var date = new Date();
-        if(!rug.length || !rug.width){
+        if (!rug.length || !rug.width) {
           Utils.hide();
-          alert('you need a length and a width')
+          alert('you need a length and a width');
           $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
           console.log($location.path());
           return;
@@ -164,8 +163,6 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           Utils.hide();
           //TODO fix me adn dont send to home
           $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
-          //$window.location.assign('/home');
-          console.log($location.path());
         });
 
 
@@ -174,15 +171,14 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var ref = new Firebase(FURL + 'rugs');
       Utils.show();
       console.log('loading rug');
-      // var ref = new Firebase("https://dinosaur-facts.firebaseio.com/dinosaurs");
-      ref.orderByChild("key").equalTo($stateParams.id).on("child_added", function(snapshot) {
+      ref.orderByChild("key").equalTo($stateParams.id).on("child_added", function (snapshot) {
         console.log(snapshot.key());
         var childData = snapshot.val();
-              var milliseconds = Date.parse(childData.dueDate);
-              childData.dueDate = new Date(milliseconds);
-              console.log('converting to date from string');
-              $scope.rug = childData;
-              Utils.hide();
+        var milliseconds = Date.parse(childData.dueDate);
+        childData.dueDate = new Date(milliseconds);
+        console.log('converting to date from string');
+        $scope.rug = childData;
+        Utils.hide();
       });
 
       $scope.addRug = function (rug) {
@@ -195,12 +191,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         $scope.addAudit(rug);
         $timeout(function () {
           Utils.hide();
-          //$location.path('/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
-          //$window.location.assign('/#/ruglist/?id=15044&customer=GABRIEL,%20BARBARA');
           $window.location.assign('#/ruglist/?id=' + $stateParams.jobID + '&customer=' + $stateParams.customer);
-
-
-          console.log($location.path());
         });
 
       };
@@ -250,7 +241,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var ref = new Firebase(FURL + 'contactEvents');
       var newChildRef = ref.push();
       contact.key = newChildRef.key();
-      if(!disc){
+      if (!disc) {
         disc = "none";
       }
       contact.value = disc;
@@ -262,7 +253,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       contact.rugKey = $scope.rug.key;
       console.log('here ' + $stateParams.jobID);
       contact.jobOrderNumber = $stateParams.jobID;
-      console.table(contact)
+      console.table(contact);
       newChildRef.set(contact);
       $scope.contactList = [];
       $scope.addAudit($scope.rug);
@@ -300,7 +291,7 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
   $scope.imageList = [];
     $scope.showImagesChange = function () {
       $scope.showImages ^= true;
-       Utils.show();
+      Utils.show();
       // document.getElementById("file-upload").addEventListener('change', saveimage, false);
 
       //TODO this loads every single freaking image and needs to be changed!
@@ -314,17 +305,17 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           // console.log('image ' + childData.image);
           // if ($stateParams.id == key) {
           // if (key.toString().indexOf($scope.rug.key) > -1) {
-            var number = key.substr(key.length - 1);
-            console.log('number ' + $scope.imageList.length);
-            document.getElementById("profileImage" + $scope.imageList.length).src = childData.image;
-            $scope.imageList.push(childData);
-          console.log('a ' +$scope.imageList.length);
+          var number = key.substr(key.length - 1);
+          console.log('number ' + $scope.imageList.length);
+          document.getElementById("profileImage" + $scope.imageList.length).src = childData.image;
+          $scope.imageList.push(childData);
+          console.log('a ' + $scope.imageList.length);
 
           // }
 
           // }
-        })
-        console.log('a ' +$scope.imageList.length);
+        });
+        console.log('a ' + $scope.imageList.length);
 
         Utils.hide();
 
@@ -332,10 +323,9 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
     };
 
 
-
     $scope.saveImage = function (e1) {
-      console.log('b ' +$scope.imageList.length);
-      var refImg = new Firebase(FURL + '/images/' + $stateParams.id +'/' + $scope.imageList.length);
+      console.log('b ' + $scope.imageList.length);
+      var refImg = new Firebase(FURL + '/images/' + $stateParams.id + '/' + $scope.imageList.length);
       var ImgObj = $firebaseObject(refImg);
       console.log('svaing');
       var filename = e1.files[0];
@@ -358,7 +348,6 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
         console.log($location.path());
       });
     }
-
 
 
   }

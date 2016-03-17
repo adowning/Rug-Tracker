@@ -31,7 +31,6 @@ angular.module('App').controller('allRugListController', function ($scope, $root
     };
 
     $scope.sortList = function (value) {
-//console.log('v ' + value);
 
       switch (value) {
         case 'By Due Date':
@@ -95,9 +94,10 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
           var childData = childSnapshot.val();
           var dueDate = new Date(childData.dueDate).getTime();
-          //console.log('dd ' + dueDate);
+          console.log('dd ' + dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
-          //console.log('cd ' + creationDate);
+          console.log('cd ' + creationDate);
+          console.log('asdf ' + ((dueDate - creationDate) / 86400000));
           var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
           //console.log('dtd ' + daysTillDue);
           childData.dueIn = Math.round(daysTillDue);
