@@ -10,7 +10,8 @@
     </ion-refresher>
     <!-- TODO put basic stuff in dropdown? -->
     <form novalidate name="addRugForm" ng-submit="addRugForm.$valid && addRug(rug)">
-      <div class="list">
+      <div class="list" style="padding-left: 20px;"
+      >
         <div ng-show="!isNewRug">
 
           <label class="input-label"
@@ -37,7 +38,7 @@
                ng-class="{ 'has-error-lr' : addRugForm.description.$invalid && addRugForm.$submitted }">
           <span class="input-label">Description</span>
 
-          <input name="description" type="text" ng-model="rug.description" placeholder="{{rug.description}}"
+          <input name="description" type="text" size="60" ng-model="rug.description" placeholder="{{rug.description}}"
                  required>
         </label>
         <div class="form-errors" ng-messages="addRugForm.description.$error" ng-if="addRugForm.$submitted">
@@ -76,8 +77,10 @@
         <label class="item-stacked-label"
                ng-class="{ 'has-error-lr' : addRugForm.preDamage.$invalid && addRugForm.$submitted }">
           <span class="input-label">Damaged Areas or Special Instructions</span>
-
-          <input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}">
+<textarea id="preDamage" name="preDamage" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}"
+          rows="3"
+          cols="70"></textarea>
+          <!--<input name="preDamage" type="text" ng-model="rug.preDamage" placeholder="{{rug.preDamage}}">-->
         </label>
         <!--<div class="form-errors" ng-messages="addRugForm.preDamage.$error" ng-if="addRugForm.$submitted">-->
         <!--&lt;!&ndash;<div class="form-error" ng-message="required">This field is required.</div>&ndash;&gt;-->
