@@ -182,12 +182,16 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       });
 
       $scope.addRug = function (rug) {
+        console.log('here');
         Utils.show();
         rug.orderNumber = $stateParams.jobID;
         rug.dueDate = rug.dueDate.toString();
+        //rug.dueDate = new Date(rug.dueDate.toString());
         var newChildRef = new Firebase(FURL + 'rugs/' + rug.key);
         rug.contact = null;
+        console.log('key ' + rug.key);
         newChildRef.set(rug);
+
         $scope.addAudit(rug);
         $timeout(function () {
           Utils.hide();

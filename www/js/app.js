@@ -26,6 +26,12 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
         templateUrl: 'views/home/home.html',
         controller: 'homeController'
       })
+      .state('pricing', {
+        url: '/pricing',
+        cache: false,
+        templateUrl: 'views/pricing/pricing.html',
+        controller: 'pricingController'
+      })
       .state('allruglist', {
         url: '/allruglist',
         cache: false,

@@ -1,0 +1,37 @@
+<ion-view view-title="Andrews Pricing Calculator" hide-back-button="true">
+  <ion-content class="padding-top">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div ng-show="showZipCode" id="zipcode">
+      <form novalidate name="checkZipCodeForm" ng-submit="checkZipCodeForm.$valid && checkZip(zip)">
+        <div class="list">
+          <label class="item item-input item-floating-label"
+                 ng-class="{ 'has-error-lr' : checkZipCodeForm.id.$invalid && checkZipCodeForm.$submitted }">
+            <span class="input-label">Zipcode</span>
+            <input name="zip" type="text" ng-model="zip" placeholder="Zip Code"
+                   ng-minlength="5"
+                   ng-maxlength="5"
+                   required>
+          </label>
+          <div class="form-errors" ng-messages="checkZipCodeForm.id.$error" ng-if="checkZipCodeForm.$submitted">
+            <div class="form-error" ng-message="required">This field is required.</div>
+            <div class="form-error" ng-message="minlength">This is not a valid zipcode.</div>
+            <div class="form-error" ng-message="maxlength">This is not a valid zipcode.</div>
+          </div>
+          <div ng-show="invalidZip" id="invalidZip">
+            Sorry but we do not service that area.
+            If you feel this is in error please call 903-566-3068
+          </div>
+        </div>
+        <div class="padding-top">
+          <input type="submit" class="button button-block button-positive" value="Check Zipcode">
+          <p class="text-center padding-top">
+        </div>
+      </form>
+    </div>
+
+  </ion-content>
+</ion-view>
