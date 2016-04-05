@@ -93,6 +93,8 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         snapshot.forEach(function (childSnapshot) {
 
           var childData = childSnapshot.val();
+          // if (!childData.deleted) {
+
           var dueDate = new Date(childData.dueDate).getTime();
           console.log('dd ' + dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
@@ -102,11 +104,13 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           //console.log('dtd ' + daysTillDue);
           childData.dueIn = Math.round(daysTillDue);
           //console.log('di ' + childData.dueIn);
-          if (!childData.deleted) {
             //childData.customer = $scope.customer;
+          if (!childData.completed && !childData.deleted) {
             $scope.rugList.push(childData);
-            Utils.hide();
+
           }
+            Utils.hide();
+          // }
         });
       });
       //console.table($scope.rugList)

@@ -19,7 +19,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
   $scope.rugCount = 0;
   $scope.jobID = $stateParams.id;
   $scope.customer = $stateParams.customer;
-  $scope.recID = $stateParams.recID
+  $scope.recID = $stateParams.recID;
   $scope.logOut = function () {
     Auth.logout();
     $location.path("/login");
@@ -96,11 +96,11 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
 
   };
   var checkIfPassed = function (rug) {
-    if(rug.status !== 'PassedInspection'){
+    if (rug.status !== 'PassedInspection') {
       $scope.notAllPassed = true;
 
     }
-  }
+  };
   rugList();
 
   $scope.showDeliveryForm = false;
@@ -179,23 +179,22 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
         $location.path("/home");
       });
     });
-  }
-
+  };
 
 
   //TODO remove me not really needed just use complete function
-  $scope.setDeliveryDate = function (deliveryObject){
+  $scope.setDeliveryDate = function (deliveryObject) {
     $scope.completeJob(deliveryObject);
-  }
+  };
   $scope.completeJob = function (deliveryObject) {
     Utils.show();
     // Thu Feb 18 2016 00:00:00 GMT-0600 (CST)
-    var date = new Date(deliveryObject.deliveryDate)
+    var date = new Date(deliveryObject.deliveryDate);
 
     $scope.devliveryNotes = deliveryObject.deliveryNotes;
     $scope.deliveryDate = deliveryObject.deliveryDate;
     if (!deliveryObject.deliveryDate) {
-      alert('need a date')
+      alert('need a date');
       Utils.hide();
       return;
     }
@@ -234,11 +233,11 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
             data: {
               note: $scope.noteForSM
             }
-          }
-          Utils.hide()
+          };
+          Utils.hide();
           $http(req).success(function () {
           }).error(function (error) {
-            console.log(error)
+            console.log(error);
             Utils.hide();
           });
         }
@@ -265,8 +264,30 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
                   "deliveryDate": $scope.deliveryDate,
                   "deliveryNotes": $scope.deliveryNotes
                 });
+
+                var newChildRef = new Firebase(FURL + 'rugs/');
+                newChildRef.once("value", function (snapshot) {
+                  snapshot.forEach(function (childSnapshot) {
+                    var key = childSnapshot.key();
+                    var childData = childSnapshot.val();
+                    console.log($stateParams.id + ' ' + childData.orderNumber);
+                    if ($stateParams.id == childData.orderNumber) {
+                      console.log('found a rug with matching orderNumber');
+                      console.log(FURL + 'rugs/' + key);
+                      var newChildRef2 = new Firebase(FURL + 'rugs/' + key);
+                      newChildRef2.update({
+                        "completed": true,
+                        "deliveryDate": $scope.deliveryDate,
+                        "deliveryNotes": $scope.deliveryNotes
+                      });
+
+                    }
+                });
+                });
+
+
               } else {
-                alert('Cannot find a deliver for that person in servicemonster on that day')
+                alert('Cannot find a deliver for that person in servicemonster on that day');
                 //TODO holy hell change me back
                 return;
                 $scope.dateFound = false;
@@ -278,7 +299,7 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
           $timeout(function () {
             $location.path("/home");
             console.log($location.path());
-            return;
+
           });
         });
 
@@ -290,21 +311,22 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
     });
 
 
-  }
-  function generateSMNote (){
+  };
+  function generateSMNote() {
     var newChildRef = new Firebase(FURL + 'contactEvents/');
-    newChildRef.once("value", function(snapshot) {
+    newChildRef.once("value", function (snapshot) {
       // The callback function will get called twice, once for "fred" and once for "barney"
-      snapshot.forEach(function(childSnapshot) {
+      snapshot.forEach(function (childSnapshot) {
 
         // key will be "fred" the first time and "barney" the second time
         var key = childSnapshot.key();
         // childData will be the actual contents of the child
         var childData = childSnapshot.val();
 
-      console.log('cd ' + childData);
+        console.log('cd ' + childData);
       });
-  })};
+    })
+  }
 //   function generateSMNote (){
 //     var newChildRef = new Firebase(FURL + 'contactEvents/');
 //     console.log('spid ' + $stateParams.id);
