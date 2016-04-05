@@ -58,6 +58,7 @@ angular.module('App').controller('homeController', function ($scope, $rootScope,
           var key = childSnapshot.key();
           var childData = childSnapshot.val();
           if (!childData.deleted && !childData.completed) {
+            console.log(childData.customer);
             $scope.rugList.push(childData);
           }
         });
