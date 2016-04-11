@@ -15,7 +15,9 @@
       pulling-text="Pull to refresh..."
       on-refresh="doRefresh()">
     </ion-refresher>
-
+    <a href="#/homne" class="button button-full button-positive">
+      Job List
+    </a>
     <ion-list show-reorder="shouldShowReorder">
 
       <a ng-repeat="item in rugList"
@@ -54,9 +56,7 @@
       </a>
 
     </ion-list>
-    <a href="#/homne" class="button button-full button-positive">
-      Job List
-    </a>
+
     <button ng-click="logOut()" class="button button-clear button-positive">Logout</button>
   </ion-content>
 </ion-view>

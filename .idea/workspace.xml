@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="added log to print same">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/home/home.html" afterPath="$PROJECT_DIR$/www/views/home/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" afterPath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/ruglist/ruglist.js" afterPath="$PROJECT_DIR$/www/views/ruglist/ruglist.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" afterPath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ruglist.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ruglist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -41,6 +39,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="369">
               <caret line="264" column="55" selection-start-line="264" selection-start-column="55" selection-end-line="264" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -75,11 +83,11 @@
         <option value="$PROJECT_DIR$/www/views/home/home.js" />
         <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
         <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.html" />
-        <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.js" />
         <option value="$PROJECT_DIR$/www/views/home/home.html" />
         <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.js" />
         <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
+        <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
       </list>
     </option>
   </component>
@@ -369,7 +377,7 @@
       <workItem from="1457797303609" duration="360000" />
       <workItem from="1457816394108" duration="7124000" />
       <workItem from="1458932079496" duration="5278000" />
-      <workItem from="1459784882664" duration="9236000" />
+      <workItem from="1459784882664" duration="9800000" />
     </task>
     <task id="LOCAL-00001" summary="bitch hoe">
       <created>1454028836297</created>
@@ -630,11 +638,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460393493552</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="added log to print same">
+      <created>1460394057290</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1460394057290</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23024000" />
+    <option name="totallyTimeSpent" value="23588000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1052,14 +1067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1084,6 +1091,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="369">
@@ -1092,10 +1107,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
+    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="323">
+          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding />
         </state>
       </provider>
