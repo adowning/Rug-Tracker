@@ -130,6 +130,7 @@
       <div ng-if="showImages">
         <span id="images"><</span>
         <img id="profileImage0" src="profileImage1" style="max-width:200px; max-height:200px;">
+        <a href="#/largeImage/?id={{rug.key}}&customer={{customer}}&imageNumber=profileImage0">Large View</a>
         <img id="profileImage1" src="profileImage2" style="max-width:200px; max-height:200px;">
         <img id="profileImage2" src="profileImage3" style="max-width:200px; max-height:200px;">
         <input type="file" accept="image/*" capture="camera" id="file-upload" onchange="angular.element(this).scope().saveImage(this)">

@@ -51,7 +51,7 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
         controller: 'rugEditController'
       })
       .state('largeImage', {
-        url: '/largeImage/?/id/jobID/customer',
+        url: '/largeImage/?/id/rugKey/customer/imageNumber',
         cache: false,
         templateUrl: 'views/largeImage/largeImage.html',
         controller: 'largeImageController'
