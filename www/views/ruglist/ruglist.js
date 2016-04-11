@@ -267,12 +267,13 @@ angular.module('App').controller('rugListController', function ($scope, $rootSco
 
                 var newChildRef = new Firebase(FURL + 'rugs/');
                 newChildRef.once("value", function (snapshot) {
+                  console.log('job deleted now deleting these rugs: ');
                   snapshot.forEach(function (childSnapshot) {
                     var key = childSnapshot.key();
                     var childData = childSnapshot.val();
-                    console.log($stateParams.id + ' ' + childData.orderNumber);
+                    console.log('stateparms.id' + $stateParams.id + ' childdata.ordernumber ' + childData.orderNumber);
                     if ($stateParams.id == childData.orderNumber) {
-                      console.log('found a rug with matching orderNumber');
+                      console.log('found a rug with matching orderNumber, customer = ' + childData.customer);
                       console.log(FURL + 'rugs/' + key);
                       var newChildRef2 = new Firebase(FURL + 'rugs/' + key);
                       newChildRef2.update({

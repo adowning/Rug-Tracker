@@ -4,6 +4,8 @@
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="added log to print same">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/home/home.html" afterPath="$PROJECT_DIR$/www/views/home/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" afterPath="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/ruglist/ruglist.js" afterPath="$PROJECT_DIR$/www/views/ruglist/ruglist.js" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,31 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ruglist.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ruglist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="allruglist.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="98" column="12" selection-start-line="98" selection-start-column="12" selection-end-line="98" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+            <state relative-caret-position="153">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -57,48 +39,8 @@
       <file leaf-file-name="ruglist.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4522">
-              <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="181" column="31" selection-start-line="181" selection-start-column="30" selection-end-line="181" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rugedit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/home/home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/views/home/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+            <state relative-caret-position="369">
+              <caret line="264" column="55" selection-start-line="264" selection-start-column="55" selection-end-line="264" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -130,14 +72,14 @@
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/views/pricing/pricing.html" />
         <option value="$PROJECT_DIR$/www/views/pricing/pricing.js" />
-        <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.js" />
-        <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
         <option value="$PROJECT_DIR$/www/views/home/home.js" />
         <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
         <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.html" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.js" />
         <option value="$PROJECT_DIR$/www/views/home/home.html" />
+        <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.js" />
+        <option value="$PROJECT_DIR$/www/views/ruglist/ruglist.html" />
       </list>
     </option>
   </component>
@@ -427,7 +369,7 @@
       <workItem from="1457797303609" duration="360000" />
       <workItem from="1457816394108" duration="7124000" />
       <workItem from="1458932079496" duration="5278000" />
-      <workItem from="1459784882664" duration="8673000" />
+      <workItem from="1459784882664" duration="9236000" />
     </task>
     <task id="LOCAL-00001" summary="bitch hoe">
       <created>1454028836297</created>
@@ -681,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460393449043</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="added log to print same">
+      <created>1460393493552</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1460393493552</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22461000" />
+    <option name="totallyTimeSpent" value="23024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1087,22 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="52" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4522">
-          <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -1145,8 +1078,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/views/home/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+        <state relative-caret-position="289">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="264" column="55" selection-start-line="264" selection-start-column="55" selection-end-line="264" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/ruglist/ruglist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
           <folding />
         </state>
       </provider>
