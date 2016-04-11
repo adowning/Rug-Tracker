@@ -32,7 +32,7 @@
     <ion-list>
       <ion-item ng-repeat="item in jobList"
                 class="item-thumbnail-left" href="#/ruglist/?id={{item.orderNumber}}&customer={{item.accountName}}&orderID={{item.orderID}}">
-        <h2>{{item.accountName}}</h2>
+        <h2>{{item.accountName}}{{item.key}}</h2>
         <h2>{{item.createdOn.substring(0,10)}}</h2>
         <a href="tel:" {{item.phone}}>{{item.phone}}</a>
         <span name="{{item.orderNumber}}" id="{{item.orderNumber}}"></span>
