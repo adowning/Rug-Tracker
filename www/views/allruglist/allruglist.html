@@ -31,16 +31,19 @@
         </b></h2>
 
         <!--// passed inspection but no deliver set in next 3 days so set to red-->
-        <h2 ng-if="item.dueIn < 4 && item.dueIn >= 0   " style="color:red"><b>Due in {{item.dueIn}}
+        <h2 ng-if="item.dueIn < 4 && item.dueIn >= 0    && item.status != 'PassedInspection' " style="color:red"><b>Due
+          in {{item.dueIn}}
           days.</b></h2>
-
+        <h2 ng-if="item.dueIn < 4 && item.dueIn >= 0    && item.status == 'PassedInspection' " style="color:orange"><b>Due
+          in {{item.dueIn}}
+          days.</b></h2>
         <!--// between 3 and 15 day but has passed so set to green-->
-        <h2 ng-if="item.dueIn > 3 && item.dueIn < 15 && item.status == 'PassedInspection' " style="color:green"><b>a Due
+        <h2 ng-if="item.dueIn > 3 && item.dueIn < 15 && item.status == 'PassedInspection' " style="color:green"><b>Due
           in {{item.dueIn}}
           days.</b></h2>
 
         <!--// not passed and 9 days until due date-->
-        <h2 ng-if="item.dueIn < 10 && item.dueIn >= 4 && item.status != 'PassedInspection' " style="color:red"><b>b Due
+        <h2 ng-if="item.dueIn < 10 && item.dueIn >= 4 && item.status != 'PassedInspection' " style="color:red"><b>Due
           in
           {{item.dueIn}}
           days.</b></h2>

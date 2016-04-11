@@ -50,6 +50,12 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
         templateUrl: 'views/rugedit/rugedit.html',
         controller: 'rugEditController'
       })
+      .state('largeImage', {
+        url: '/largeImage/?/id/jobID/customer',
+        cache: false,
+        templateUrl: 'views/largeImage/largeImage.html',
+        controller: 'largeImageController'
+      })
     ;
     $urlRouterProvider.otherwise("/login");
   })
