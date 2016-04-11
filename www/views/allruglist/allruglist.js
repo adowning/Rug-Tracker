@@ -96,12 +96,12 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           // if (!childData.deleted) {
 
           var dueDate = new Date(childData.dueDate).getTime();
-          console.log('dd ' + dueDate);
+          //console.log('dd ' + dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
-          console.log('cd ' + creationDate);
-          console.log('asdf ' + ((dueDate - creationDate) / 86400000));
+          //console.log('cd ' + creationDate);
+          //console.log('asdf ' + ((dueDate - creationDate) / 86400000));
           var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
-          //console.log('dtd ' + daysTillDue);
+          console.log('dtd ' + daysTillDue);
           childData.dueIn = Math.round(daysTillDue);
           //console.log('di ' + childData.dueIn);
             //childData.customer = $scope.customer;
