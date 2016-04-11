@@ -100,11 +100,12 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           var creationDate = new Date(childData.createdOn).getTime();
           //console.log('cd ' + creationDate);
           //console.log('asdf ' + ((dueDate - creationDate) / 86400000));
-          var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
+          var today = new Date();
+          var daysTillDue = ((dueDate - today) / 1000) / 86400;
           console.log('dtd ' + daysTillDue);
           console.log('rug key ' + childData.key);
           childData.dueIn = Math.round(daysTillDue);
-          //console.log('di ' + childData.dueIn);
+          console.log('di ' + childData.dueIn);
             //childData.customer = $scope.customer;
           if (!childData.completed && !childData.deleted) {
             $scope.rugList.push(childData);
