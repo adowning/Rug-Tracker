@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="time verbiage">
+    <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="image large view">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/largeImage/largeImage.html" afterPath="$PROJECT_DIR$/www/views/largeImage/largeImage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/largeImage/largeImage.js" afterPath="$PROJECT_DIR$/www/views/largeImage/largeImage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/rugedit/rugedit.html" afterPath="$PROJECT_DIR$/www/views/rugedit/rugedit.html" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,9 +79,11 @@
       <file leaf-file-name="largeImage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="86" selection-start-line="20" selection-start-column="86" selection-end-line="20" selection-end-column="86" />
-              <folding />
+            <state relative-caret-position="408">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -495,7 +493,7 @@
       <workItem from="1457797303609" duration="360000" />
       <workItem from="1457816394108" duration="7124000" />
       <workItem from="1458932079496" duration="5278000" />
-      <workItem from="1459784882664" duration="14815000" />
+      <workItem from="1459784882664" duration="16057000" />
     </task>
     <task id="LOCAL-00001" summary="bitch hoe">
       <created>1454028836297</created>
@@ -826,11 +824,18 @@
       <option name="project" value="LOCAL" />
       <updated>1460398789560</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="image large view">
+      <created>1460400510457</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1460400510457</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28603000" />
+    <option name="totallyTimeSpent" value="29845000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -916,7 +921,8 @@
     <MESSAGE value="link fix" />
     <MESSAGE value="working on time issue" />
     <MESSAGE value="time verbiage" />
-    <option name="LAST_COMMIT_MESSAGE" value="time verbiage" />
+    <MESSAGE value="image large view" />
+    <option name="LAST_COMMIT_MESSAGE" value="image large view" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1297,9 +1303,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="86" selection-start-line="20" selection-start-column="86" selection-end-line="20" selection-end-column="86" />
-          <folding />
+        <state relative-caret-position="408">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
