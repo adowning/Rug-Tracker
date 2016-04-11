@@ -15,6 +15,8 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
 
     $scope.isNewRug = false;
     $scope.customer = $stateParams.customer;
+  $scope.key = $stateParams.rugKey;
+  console.log($stateParams.rugKey);
     $scope.newRug = false;
     $scope.discussion = "";
 
