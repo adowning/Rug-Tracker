@@ -27,8 +27,11 @@
         <h2>{{item.customer}}</h2>{{item.key}}{{item.completed}}
         <h2>{{item.status}}</h2>
 
+        <h2 ng-if="item.dueIn < 0 " style="color:red"><b>This rug is past due by {{item.dueIn}} days!
+        </b></h2>
+
         <!--// passed inspection but no deliver set in next 3 days so set to red-->
-          <h2 ng-if="item.dueIn < 4 && item.status == 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+        <h2 ng-if="item.dueIn < 4 && item.dueIn >= 0   " style="color:red"><b>Due in {{item.dueIn}}
           days.</b></h2>
 
         <!--// between 3 and 15 day but has passed so set to green-->
