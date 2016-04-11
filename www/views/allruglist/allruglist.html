@@ -40,7 +40,8 @@
           days.</b></h2>
 
         <!--// not passed and 9 days until due date-->
-        <h2 ng-if="item.dueIn < 10 && item.status != 'PassedInspection' " style="color:red"><b>Due in {{item.dueIn}}
+        <h2 ng-if="item.dueIn < 10 && item.dueIn >= 4 && item.status != 'PassedInspection' " style="color:red"><b>Due in
+          {{item.dueIn}}
           days.</b></h2>
 
         <!--// due in between 10 and 15 days and not passed-->
