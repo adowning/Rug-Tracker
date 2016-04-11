@@ -102,6 +102,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           //console.log('asdf ' + ((dueDate - creationDate) / 86400000));
           var daysTillDue = ((dueDate - creationDate) / 1000) / 86400;
           console.log('dtd ' + daysTillDue);
+          console.log('rug key ' + childData.key);
           childData.dueIn = Math.round(daysTillDue);
           //console.log('di ' + childData.dueIn);
             //childData.customer = $scope.customer;
