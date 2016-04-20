@@ -109,8 +109,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
 
           var childData = childSnapshot.val();
           // if (!childData.deleted) {
-          pdf.text(20, l, childData.customer);
-          l += 18;
+
           var dueDate = new Date(childData.dueDate).getTime();
 
 
@@ -123,24 +122,27 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           // console.log('dtd ' + daysTillDue);
           // console.log('rug key ' + childData.key);
           childData.dueIn = Math.round(daysTillDue);
-          if (childData.dueIn) {
-            console.log(childData.dueIn);
-            pdf.text(20, l, childData.dueDate.toString());
-            l += 18;
-          }
-          pdf.text(20, l, childData.description);
-          l += 18;
-          pdf.setLineWidth(0.5);
-          pdf.line(20, l, 120, l);
-          // pdf.text(20, l, l.toString())
-          l += 23;
-          if (l > 780) {
-            pdf.addPage();
-            l = 30;
-          }
+
           // console.log('di ' + childData.dueIn);
             //childData.customer = $scope.customer;
           if (!childData.completed && !childData.deleted) {
+            pdf.text(20, l, childData.customer);
+            l += 18;
+            if (childData.dueIn) {
+              console.log(childData.dueIn);
+              pdf.text(20, l, childData.dueDate.toString());
+              l += 18;
+            }
+            pdf.text(20, l, childData.description);
+            l += 18;
+            pdf.setLineWidth(0.5);
+            pdf.line(20, l, 120, l);
+            // pdf.text(20, l, l.toString())
+            l += 23;
+            if (l > 780) {
+              pdf.addPage();
+              l = 30;
+            }
             $scope.rugList.push(childData);
 
           }
