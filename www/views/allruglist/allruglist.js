@@ -30,6 +30,13 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         });
     };
 
+  var pdf = new jsPDF('p', 'pt', 'a4');
+
+  pdf.setFontSize(16);
+  $scope.printDocument = function () {
+    console.log('printing');
+    pdf.save('rug-list.pdf');
+  };
     $scope.sortList = function (value) {
 
       switch (value) {
@@ -85,27 +92,53 @@ angular.module('App').controller('allRugListController', function ($scope, $root
     };
     var rugList = function () {
       console.log('refreshing job list');
+
+      // pdf.text(35, 25, "Rug List");
       Utils.show();
       $scope.rugList = [];
       var ref = new Firebase(FURL + 'rugs');
       $scope.fbRugs = ref;
+      var l = 50;
+      var date = new Date();
+      pdf.text(20, 20, 'printed on : ' + date.toString());
+      pdf.setLineWidth(0.5);
+      pdf.line(20, 30, 120, 30);
       ref.orderByChild("createdOn").on("value", function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
 
+
           var childData = childSnapshot.val();
           // if (!childData.deleted) {
-
+          pdf.text(20, l, childData.customer);
+          l += 18;
           var dueDate = new Date(childData.dueDate).getTime();
+
+
           //console.log('dd ' + dueDate);
           var creationDate = new Date(childData.createdOn).getTime();
           //console.log('cd ' + creationDate);
           //console.log('asdf ' + ((dueDate - creationDate) / 86400000));
           var today = new Date();
           var daysTillDue = ((dueDate - today) / 1000) / 86400;
-          console.log('dtd ' + daysTillDue);
-          console.log('rug key ' + childData.key);
+          // console.log('dtd ' + daysTillDue);
+          // console.log('rug key ' + childData.key);
           childData.dueIn = Math.round(daysTillDue);
-          console.log('di ' + childData.dueIn);
+          if (childData.dueIn) {
+            console.log(childData.dueIn);
+            pdf.text(20, l, childData.dueDate.toString());
+            l += 18;
+          }
+          pdf.text(20, l, childData.description);
+          l += 18;
+          pdf.setLineWidth(0.5);
+          pdf.line(20, l, 120, l);
+          // pdf.text(20, l, l.toString())
+          l += 23;
+          if (l > 780) {
+            pdf.addPage();
+            l = 30;
+          }
+          // console.log('di ' + childData.dueIn);
             //childData.customer = $scope.customer;
           if (!childData.completed && !childData.deleted) {
             $scope.rugList.push(childData);
