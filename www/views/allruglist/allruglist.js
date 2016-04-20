@@ -133,6 +133,8 @@ angular.module('App').controller('allRugListController', function ($scope, $root
               pdf.text(20, l, childData.dueDate.toString());
               l += 18;
             }
+            pdf.text(20, l, childData.status);
+            l += 18;
             pdf.text(20, l, childData.description);
             l += 18;
             pdf.setLineWidth(0.5);
