@@ -90,7 +90,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
           return function (a, b) {
             // console.log(a[key]);
             var a = new Date(a[key]);
-            console.log(a.toString);
+            console.log(a);
             if (a[key] > b[key]) return 1;
             if (a[key] < b[key]) return -1;
             return 0;
