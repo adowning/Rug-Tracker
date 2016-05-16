@@ -94,8 +94,8 @@
       <file leaf-file-name="allruglist.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
-              <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
+            <state relative-caret-position="811">
+              <caret line="95" column="47" selection-start-line="95" selection-start-column="47" selection-end-line="95" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -459,14 +459,7 @@
       <workItem from="1461167600673" duration="60000" />
       <workItem from="1461167870155" duration="6571000" />
       <workItem from="1462549938919" duration="2437000" />
-      <workItem from="1463411202059" duration="2211000" />
-    </task>
-    <task id="LOCAL-00011" summary="think db fixed still fuckd on users">
-      <created>1454035764364</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1454035764364</updated>
+      <workItem from="1463411202059" duration="2293000" />
     </task>
     <task id="LOCAL-00012" summary="think db fixed still fuckd on users">
       <created>1454035768939</created>
@@ -804,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463416254040</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="removed due in and replaced with createdOn">
+      <created>1463416398054</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1463416398054</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41729000" />
+    <option name="totallyTimeSpent" value="41811000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1274,8 +1274,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
+        <state relative-caret-position="811">
+          <caret line="95" column="47" selection-start-line="95" selection-start-column="47" selection-end-line="95" selection-end-column="47" />
           <folding />
         </state>
       </provider>
