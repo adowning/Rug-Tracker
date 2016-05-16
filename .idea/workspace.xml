@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="removed due in and replaced with createdOn">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" afterPath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" afterPath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
     </list>
     <ignored path="cfbuilder.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,7 +24,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -64,18 +64,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
               <folding>
-                <marker date="1463415459425" expanded="false" signature="1313:1322" placeholder="..." />
-                <marker date="1463415459425" expanded="false" signature="1614:1623" placeholder="..." />
-                <marker date="1463415459425" expanded="false" signature="2087:2098" placeholder="..." />
-                <marker date="1463415459425" expanded="false" signature="2356:2365" placeholder="..." />
-                <marker date="1463415459425" expanded="false" signature="2648:2660" placeholder="..." />
-                <marker date="1463415459425" expanded="false" signature="2838:2849" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="1301:1310" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="1602:1611" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="2075:2086" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="2344:2353" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="2636:2648" placeholder="..." />
+                <marker date="1463415937796" expanded="false" signature="2826:2837" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -173,9 +173,9 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.js" />
         <option value="$PROJECT_DIR$/bower.json" />
-        <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
+        <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
       </list>
     </option>
   </component>
@@ -459,14 +459,7 @@
       <workItem from="1461167600673" duration="60000" />
       <workItem from="1461167870155" duration="6571000" />
       <workItem from="1462549938919" duration="2437000" />
-      <workItem from="1463411202059" duration="1736000" />
-    </task>
-    <task id="LOCAL-00008" summary="db shit">
-      <created>1454030772339</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1454030772339</updated>
+      <workItem from="1463411202059" duration="1761000" />
     </task>
     <task id="LOCAL-00009" summary="problems with furl">
       <created>1454033420009</created>
@@ -804,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463415832080</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="removed due in and replaced with createdOn">
+      <created>1463415922564</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1463415922564</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41254000" />
+    <option name="totallyTimeSpent" value="41279000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1225,21 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <marker date="1463415459425" expanded="false" signature="1313:1322" placeholder="..." />
-            <marker date="1463415459425" expanded="false" signature="1614:1623" placeholder="..." />
-            <marker date="1463415459425" expanded="false" signature="2087:2098" placeholder="..." />
-            <marker date="1463415459425" expanded="false" signature="2356:2365" placeholder="..." />
-            <marker date="1463415459425" expanded="false" signature="2648:2660" placeholder="..." />
-            <marker date="1463415459425" expanded="false" signature="2838:2849" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2295">
@@ -1277,6 +1262,21 @@
         <state relative-caret-position="17">
           <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <marker date="1463415937796" expanded="false" signature="1301:1310" placeholder="..." />
+            <marker date="1463415937796" expanded="false" signature="1602:1611" placeholder="..." />
+            <marker date="1463415937796" expanded="false" signature="2075:2086" placeholder="..." />
+            <marker date="1463415937796" expanded="false" signature="2344:2353" placeholder="..." />
+            <marker date="1463415937796" expanded="false" signature="2636:2648" placeholder="..." />
+            <marker date="1463415937796" expanded="false" signature="2826:2837" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
