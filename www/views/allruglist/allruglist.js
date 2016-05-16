@@ -83,6 +83,17 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         }
 
           $scope.rugList.sort(keysrt('customer'));
+        case 'Date In':
+          console.log('Date In ');
+        function keysrt(key) {
+          return function (a, b) {
+            if (a[key] > b[key]) return 1;
+            if (a[key] < b[key]) return -1;
+            return 0;
+          }
+        }
+
+          $scope.rugList.sort(keysrt('customer'));
           break;
         default:
 
