@@ -88,6 +88,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         function keysrt(key) {
           console.log(key);
           return function (a, b) {
+            console.log(a[key]);
             if (a[key] > b[key]) return 1;
             if (a[key] < b[key]) return -1;
             return 0;
