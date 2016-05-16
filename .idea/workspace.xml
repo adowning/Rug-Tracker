@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="added print feature to all rug list">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Rug_Tracker_node_modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cfbuilder.iml" afterPath="$PROJECT_DIR$/.idea/cfbuilder.iml" />
+    <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="removed due in and replaced with createdOn">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/.bower.json" afterPath="$PROJECT_DIR$/www/lib/angular/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular-csp.css" afterPath="$PROJECT_DIR$/www/lib/angular/angular-csp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.js" afterPath="$PROJECT_DIR$/www/lib/angular/angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js.map" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/bower.json" afterPath="$PROJECT_DIR$/www/lib/angular/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/package.json" afterPath="$PROJECT_DIR$/www/lib/angular/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" afterPath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" afterPath="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
     </list>
     <ignored path="cfbuilder.iws" />
@@ -38,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="rugedit.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5423">
-              <caret line="319" column="32" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="32" />
+            <state relative-caret-position="17">
+              <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -58,6 +44,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="rugedit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="862">
+              <caret line="131" column="95" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="95" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/home/home.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,18 +64,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="allruglist.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
               <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
-                <marker date="1463415425964" expanded="false" signature="1305:1314" placeholder="..." />
-                <marker date="1463415425964" expanded="false" signature="1606:1615" placeholder="..." />
-                <marker date="1463415425964" expanded="false" signature="2087:2098" placeholder="..." />
-                <marker date="1463415425964" expanded="false" signature="2360:2369" placeholder="..." />
-                <marker date="1463415425964" expanded="false" signature="2658:2670" placeholder="..." />
-                <marker date="1463415425964" expanded="false" signature="2850:2861" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="1313:1322" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="1614:1623" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="2087:2098" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="2356:2365" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="2648:2660" placeholder="..." />
+                <marker date="1463415459425" expanded="false" signature="2838:2849" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -105,23 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="largeImage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+              <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -140,8 +124,8 @@
       <file leaf-file-name="largeImage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+            <state relative-caret-position="374">
+              <caret line="33" column="25" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -188,10 +172,10 @@
         <option value="$PROJECT_DIR$/www/js/plugins/fileSaver/FileSaver.min.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.js" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
-        <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/views/rugedit/rugedit.js" />
       </list>
     </option>
   </component>
@@ -305,7 +289,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="rugedit" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cfbuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rug-Tracker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cfbuilder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rug-Tracker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -435,21 +459,7 @@
       <workItem from="1461167600673" duration="60000" />
       <workItem from="1461167870155" duration="6571000" />
       <workItem from="1462549938919" duration="2437000" />
-      <workItem from="1463411202059" duration="1276000" />
-    </task>
-    <task id="LOCAL-00006" summary="db shit">
-      <created>1454030076697</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1454030076697</updated>
-    </task>
-    <task id="LOCAL-00007" summary="db shit">
-      <created>1454030138258</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1454030138258</updated>
+      <workItem from="1463411202059" duration="1736000" />
     </task>
     <task id="LOCAL-00008" summary="db shit">
       <created>1454030772339</created>
@@ -780,11 +790,25 @@
       <option name="project" value="LOCAL" />
       <updated>1461182551655</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="removed due in and replaced with createdOn">
+      <created>1463415652903</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1463415652904</updated>
+    </task>
+    <task id="LOCAL-00056" summary="removed due in and replaced with createdOn">
+      <created>1463415832080</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1463415832080</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40794000" />
+    <option name="totallyTimeSpent" value="41254000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -853,6 +877,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="bitch hoe" />
     <MESSAGE value="db shit" />
@@ -872,7 +897,8 @@
     <MESSAGE value="time verbiage" />
     <MESSAGE value="image large view" />
     <MESSAGE value="added print feature to all rug list" />
-    <option name="LAST_COMMIT_MESSAGE" value="added print feature to all rug list" />
+    <MESSAGE value="removed due in and replaced with createdOn" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed due in and replaced with createdOn" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1150,14 +1176,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="131" column="95" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1165,14 +1183,6 @@
           <folding>
             <element signature="n#style#0;n#img#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1199,22 +1209,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5423">
-          <caret line="319" column="32" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1231,6 +1225,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <marker date="1463415459425" expanded="false" signature="1313:1322" placeholder="..." />
+            <marker date="1463415459425" expanded="false" signature="1614:1623" placeholder="..." />
+            <marker date="1463415459425" expanded="false" signature="2087:2098" placeholder="..." />
+            <marker date="1463415459425" expanded="false" signature="2356:2365" placeholder="..." />
+            <marker date="1463415459425" expanded="false" signature="2648:2660" placeholder="..." />
+            <marker date="1463415459425" expanded="false" signature="2838:2849" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2295">
@@ -1239,18 +1248,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.html">
+    <entry file="file://$PROJECT_DIR$/www/views/largeImage/largeImage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <marker date="1463415425964" expanded="false" signature="1305:1314" placeholder="..." />
-            <marker date="1463415425964" expanded="false" signature="1606:1615" placeholder="..." />
-            <marker date="1463415425964" expanded="false" signature="2087:2098" placeholder="..." />
-            <marker date="1463415425964" expanded="false" signature="2360:2369" placeholder="..." />
-            <marker date="1463415425964" expanded="false" signature="2658:2670" placeholder="..." />
-            <marker date="1463415425964" expanded="false" signature="2850:2861" placeholder="..." />
-          </folding>
+        <state relative-caret-position="374">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="32" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="862">
+          <caret line="131" column="95" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/views/rugedit/rugedit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>

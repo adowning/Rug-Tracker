@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('rugEditController', function ($scope, imgur, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
     var FURL = $rootScope.FURL;
     console.log(FURL);
 
