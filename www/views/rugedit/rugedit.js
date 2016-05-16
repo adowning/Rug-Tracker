@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('rugEditController', function ($scope, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
+angular.module('App').controller('rugEditController', function ($scope, imgur, $rootScope, $timeout, $window, $rootScope, $cordovaCamera, $stateParams, $state, $firebaseArray, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, Utils) {
     var FURL = $rootScope.FURL;
     console.log(FURL);
 
@@ -317,6 +317,9 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
           $scope.imageList.push(childData);
           console.log('a ' + $scope.imageList.length);
 
+          imgur.upload(childData).then(function then(model) {
+            console.log('Your adorable cat be here: ' + model.link);
+          });
           // }
 
           // }
