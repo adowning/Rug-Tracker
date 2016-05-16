@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="60227484-b0fe-41f6-b66d-0a46b439acb9" name="Default" comment="removed due in and replaced with createdOn">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" afterPath="$PROJECT_DIR$/www/views/allruglist/allruglist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/views/allruglist/allruglist.js" afterPath="$PROJECT_DIR$/www/views/allruglist/allruglist.js" />
     </list>
     <ignored path="cfbuilder.iws" />
@@ -96,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="658">
-              <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+              <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -460,14 +459,7 @@
       <workItem from="1461167600673" duration="60000" />
       <workItem from="1461167870155" duration="6571000" />
       <workItem from="1462549938919" duration="2437000" />
-      <workItem from="1463411202059" duration="2067000" />
-    </task>
-    <task id="LOCAL-00010" summary="think db fixed still fuckd on users">
-      <created>1454035183648</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1454035183648</updated>
+      <workItem from="1463411202059" duration="2211000" />
     </task>
     <task id="LOCAL-00011" summary="think db fixed still fuckd on users">
       <created>1454035764364</created>
@@ -805,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463415947865</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="removed due in and replaced with createdOn">
+      <created>1463416254040</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1463416254040</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41585000" />
+    <option name="totallyTimeSpent" value="41729000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1276,7 +1275,7 @@
     <entry file="file://$PROJECT_DIR$/www/views/allruglist/allruglist.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="658">
-          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+          <caret line="86" column="37" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="37" />
           <folding />
         </state>
       </provider>
