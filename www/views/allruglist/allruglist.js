@@ -86,6 +86,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
         case 'Date In':
           console.log('Date In ');
         function keysrt(key) {
+          console.log(key);
           return function (a, b) {
             if (a[key] > b[key]) return 1;
             if (a[key] < b[key]) return -1;
@@ -140,7 +141,7 @@ angular.module('App').controller('allRugListController', function ($scope, $root
             pdf.text(20, l, childData.customer);
             l += 18;
             if (childData.dueIn) {
-              console.log(childData.dueIn);
+              // console.log(childData.dueIn);
               pdf.text(20, l, childData.dueDate.toString());
               l += 18;
             }
