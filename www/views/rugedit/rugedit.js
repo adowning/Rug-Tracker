@@ -179,13 +179,18 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
       var childData = snapshot.val();
       var milliseconds = Date.parse(childData.dueDate);
       childData.dueDate = new Date(milliseconds);
-      console.log('converting to date from string');
+
       $scope.rug = childData;
       Utils.hide();
     });
 
     $scope.addRug = function (rug) {
-      console.log('here');
+      if (rug.status !== 'PassedInspection') {
+        rug.initials = '';
+      }
+      if (!rug.initials && rug.status == 'PassedInspection') {
+        alert('Your initials are required.')
+      }
       Utils.show();
       rug.orderNumber = $stateParams.jobID;
       rug.dueDate = rug.dueDate.toString();
@@ -386,9 +391,8 @@ angular.module('App').controller('rugEditController', function ($scope, $rootSco
             // User canceled the upload
             break;
 
-    
 
-    case 'storage/unknown':
+          case 'storage/unknown':
       // Unknown error occurred, inspect error.serverResponse
       break;
   }
